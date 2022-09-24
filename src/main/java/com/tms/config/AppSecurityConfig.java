@@ -1,5 +1,6 @@
 package com.tms.config;
 
+import com.tms.model.ROLE;
 import com.tms.service.impl.ClientDetailsServiceImpl;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

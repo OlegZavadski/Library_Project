@@ -1,12 +1,13 @@
 package com.tms.controller;
 
-import com.tms.exception.AddBookToUserException;
+import com.tms.exception.TransferBookException;
 import com.tms.exception.UserByIdNotFoundException;
 import com.tms.model.Book;
 import com.tms.model.Client;
 import com.tms.model.ROLE;
 import com.tms.service.BookService;
 import com.tms.service.ClientService;
+import com.tms.service.GeneralService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,30 +23,15 @@ import java.util.List;
 public class AdminController {
     private final ClientService clientService;
     private final BookService bookService;
+    private final GeneralService generalService;
 
 
     @Autowired
-    public AdminController(ClientService clientService, BookService bookService) {
+    public AdminController(ClientService clientService, BookService bookService, GeneralService generalService) {
         this.clientService = clientService;
         this.bookService = bookService;
+        this.generalService = generalService;
     }
-
-//    @PostMapping(path = "/check")
-//    public String check(@RequestParam(value = "login") String login,
-//                        @RequestParam(value = "password") String password,
-//                        Model model) {
-//        Client clientByLoginAndPassword = clientService.findByLoginAndPassword(login, password);
-//        if (clientByLoginAndPassword == null) {
-//            throw new UserByLoginAndPasswordNotFoundException("This user not found");
-//        }
-//        if (clientByLoginAndPassword.getRole().equals(ROLE.ADMIN)) {
-//            return "admin";
-//        } else {
-//            List<Book> booksOfUser = clientService.getAllBooks(clientByLoginAndPassword.getId());
-//            model.addAttribute("books", booksOfUser);
-//            return "user";
-//        }
-//    }
 
     @GetMapping()
     public String adminPage() {
@@ -61,7 +47,7 @@ public class AdminController {
     public String registration(@RequestParam String login,
                                @RequestParam String password,
                                Model model) {
-        clientService.registrationClient(new Client(login, password, ROLE.ROLE_USER));
+        clientService.save(new Client(login, password, ROLE.ROLE_USER));
         findAllUsers(model);
         return "admin";
     }
@@ -75,7 +61,7 @@ public class AdminController {
     @PostMapping(path = "/delete")
     public String delete(@RequestParam Integer idToDelete,
                          Model model) {
-        if (clientService.getById(idToDelete) == null) {
+        if (clientService.findById(idToDelete) == null) {
             throw new UserByIdNotFoundException("User with this id not found");
         }
         clientService.delete(idToDelete);
@@ -98,33 +84,53 @@ public class AdminController {
     @PostMapping(path = "/add_book_to_user")
     public String addBookToUser(@RequestParam Integer idOfBook,
                                 @RequestParam Integer idOfClient) {
-        Book bookById = bookService.getById(idOfBook);
-        Client clientById = clientService.getById(idOfClient);
+        Book bookById = bookService.findById(idOfBook);
+        Client clientById = clientService.findById(idOfClient);
         if (bookById == null) {
-            throw new AddBookToUserException("Book with this id not found");
+            throw new TransferBookException("Book with this id not found");
         }
         if (clientById == null) {
-            throw new AddBookToUserException("User with this id not found");
+            throw new TransferBookException("User with this id not found");
         }
         if (bookById != null) {
             if (bookById.getCount() < 1) {
-                throw new AddBookToUserException("You don't have enough books");
+                throw new TransferBookException("You don't have enough books");
             }
         }
         if (clientById != null) {
             if (clientById.getRole().equals(ROLE.ROLE_ADMIN)) {
-                throw new AddBookToUserException("You can't add a book to an administrator");
+                throw new TransferBookException("You can't add a book to an administrator");
             }
             if (clientById.getBooks().size() == 4) {
-                throw new AddBookToUserException("The client has 4 books");
+                throw new TransferBookException("The client has 4 books");
             }
         }
-        bookService.addBookToClient(idOfBook, idOfClient);
+        generalService.addBookToClient(idOfBook, idOfClient);
+        return "admin";
+    }
+
+    @GetMapping(path = "/return_book_from_user")
+    public String returnBookFromUser() {
+        return "return-book-from-user";
+    }
+
+    @PostMapping(path = "/return_book_from_user")
+    public String returnBookFromUser(@RequestParam Integer idOfBook,
+                                     @RequestParam Integer idOfClient) {
+        Book bookById = bookService.findById(idOfBook);
+        Client clientById = clientService.findById(idOfClient);
+        if (bookById == null) {
+            throw new TransferBookException("Book with this id not found");
+        }
+        if (clientById == null) {
+            throw new TransferBookException("User with this id not found");
+        }
+        generalService.returnBookFromClient(idOfBook, idOfClient);
         return "admin";
     }
 
     private void findAllUsers(Model model) {
-        List<Client> allUsers = clientService.findAllUsers();
+        List<Client> allUsers = clientService.findAll();
         model.addAttribute("allUsers", allUsers);
     }
 }

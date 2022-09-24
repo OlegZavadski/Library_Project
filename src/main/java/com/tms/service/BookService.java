@@ -1,17 +1,30 @@
 package com.tms.service;
 
 import com.tms.model.Book;
+import com.tms.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface BookService {
-    void save(Book book);
+@Service
+public class BookService {
+    private final BookRepository bookRepository;
 
-    Book getById(Integer id);
+    @Autowired
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
-    void addBookToClient(Integer idOfBook, Integer idOfClient);
+    public void save(Book book) {
+        bookRepository.save(book);
+    }
 
-    void returnBookFromClient(Integer idBook, Integer idClient);
+    public Book findById(Integer id) {
+        return bookRepository.findById(id).orElse(null);
+    }
 
-    List<Book> showAllBooks();
+    public List<Book> showAllBooks() {
+        return bookRepository.findAll();
+    }
 }

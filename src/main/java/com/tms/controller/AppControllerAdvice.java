@@ -1,6 +1,6 @@
 package com.tms.controller;
 
-import com.tms.exception.AddBookToUserException;
+import com.tms.exception.TransferBookException;
 import com.tms.exception.UserByIdNotFoundException;
 import com.tms.exception.UserByLoginAndPasswordNotFoundException;
 import org.springframework.ui.Model;
@@ -21,8 +21,8 @@ public class AppControllerAdvice {
         return "admin";
     }
 
-    @ExceptionHandler(AddBookToUserException.class)
-    public String catchException(AddBookToUserException e, Model model) {
+    @ExceptionHandler(TransferBookException.class)
+    public String catchException(TransferBookException e, Model model) {
         model.addAttribute("error", e.getMessage());
         return "add_book_to_user";
     }

@@ -2,21 +2,49 @@ package com.tms.service;
 
 import com.tms.model.Book;
 import com.tms.model.Client;
+import com.tms.repository.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface ClientService {
-    Client getById(Integer id);
+@Service
+public class ClientService {
+    private final ClientRepository clientRepository;
 
-    void registrationClient(Client client);
+    @Autowired
+    public ClientService(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
 
-    Client findByLoginAndPassword(String login, String password);
+    public Client findById(Integer id) {
+        return clientRepository.findById(id).orElse(null);
+    }
 
-    Client findByLogin(String login);
+    public void save(Client client) {
+        String encodedPassword = new BCryptPasswordEncoder().encode(client.getPassword());
+        client.setPassword(encodedPassword);
+        clientRepository.save(client);
+    }
 
-    List<Client> findAllUsers();
+    public Client findByLogin(String login) {
+        return clientRepository.findByLogin(login);
+    }
 
-    void delete(Integer id);
+    public List<Client> findAll() {
+        return clientRepository.findAll();
+    }
 
-    List<Book> getAllBooks(Integer id);
+    public void delete(Integer id) {
+        clientRepository.deleteById(id);
+    }
+
+    public List<Book> getAllBooksFromClient(Integer id) {
+        Client client = clientRepository.findById(id).orElse(null);
+        if (client == null) {
+            return null;
+        }
+        return client.getBooks();
+    }
 }

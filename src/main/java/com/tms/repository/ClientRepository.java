@@ -1,22 +1,11 @@
 package com.tms.repository;
 
-import com.tms.model.Book;
 import com.tms.model.Client;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-public interface ClientRepository {
-    Client getById(Integer id);
-
-    void registrationClient(Client client);
-
-    Client findByLoginAndPassword(String login, String password);
+@Repository
+public interface ClientRepository extends JpaRepository<Client, Integer> {
 
     Client findByLogin(String login);
-
-    List<Client> findAllUsers();
-
-    void delete(Integer id);
-
-    List<Book> getAllBooks(Integer id);
 }

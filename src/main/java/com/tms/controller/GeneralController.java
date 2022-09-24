@@ -11,22 +11,22 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/")
-public class MainController {
+public class GeneralController {
     private final BookService bookService;
 
-    public MainController(BookService bookService) {
+    public GeneralController(BookService bookService) {
         this.bookService = bookService;
     }
 
     @GetMapping
-    public String authorization(Model model) {
+    public String mainPage(Model model) {
         List<Book> books = bookService.showAllBooks();
         model.addAttribute("books", books);
         return "main-page";
     }
-
-    @GetMapping(path = "/login")
-    public String authorization() {
-        return "login";
-    }
+//
+//    @GetMapping(path = "/login")
+//    public String authorization() {
+//        return "login";
+//    }
 }

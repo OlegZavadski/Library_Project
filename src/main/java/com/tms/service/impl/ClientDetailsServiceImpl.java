@@ -2,6 +2,7 @@ package com.tms.service.impl;
 
 import com.tms.model.Client;
 import com.tms.model.ClientSecurity;
+import com.tms.service.ClientService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -9,15 +10,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ClientDetailsServiceImpl implements UserDetailsService {
-    private final ClientServiceImpl clientService;
+    private final ClientService clientService;
 
-    public ClientDetailsServiceImpl(ClientServiceImpl clientService) {
+    public ClientDetailsServiceImpl(ClientService clientService) {
         this.clientService = clientService;
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Client clientByLogin = clientService.findByLogin(username);
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        Client clientByLogin = clientService.findByLogin(login);
         return new ClientSecurity(clientByLogin.getLogin(), clientByLogin.getPassword(), clientByLogin.getRole());
     }
 }

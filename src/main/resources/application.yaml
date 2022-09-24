@@ -1,11 +1,16 @@
-hibernate:
-  connection:
+#hibernate:
+#  connection:
+#    username: postgres
+#    password: ghbdtn
+#    url: jdbc:postgresql://localhost:5432/library
+#    driver_class: org.postgresql.Driver
+#  dialect: org.hibernate.dialect.PostgreSQL95Dialect
+spring:
+  datasource:
     username: postgres
     password: ghbdtn
     url: jdbc:postgresql://localhost:5432/library
-    driver_class: org.postgresql.Driver
-  dialect: org.hibernate.dialect.PostgreSQL95Dialect
-spring:
+    driver-class-name: org.postgresql.Driver
   mvc:
     view:
       prefix: /page/
