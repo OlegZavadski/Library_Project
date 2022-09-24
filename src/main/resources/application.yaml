@@ -1,0 +1,15 @@
+hibernate:
+  connection:
+    driver_class: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/library
+    username: postgres
+    password: ghbdtn
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+spring:
+  mvc:
+    view:
+      prefix: /page/
+      suffix: .jsp
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
