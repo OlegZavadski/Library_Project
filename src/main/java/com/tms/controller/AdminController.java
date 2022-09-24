@@ -29,7 +29,7 @@ public class AdminController {
         this.clientService = clientService;
         this.bookService = bookService;
     }
-    
+
 //    @PostMapping(path = "/check")
 //    public String check(@RequestParam(value = "login") String login,
 //                        @RequestParam(value = "password") String password,
@@ -47,6 +47,11 @@ public class AdminController {
 //        }
 //    }
 
+    @GetMapping()
+    public String adminPage() {
+        return "admin";
+    }
+
     @GetMapping(path = "/registration")
     public String registration() {
         return "registration";
@@ -56,7 +61,7 @@ public class AdminController {
     public String registration(@RequestParam String login,
                                @RequestParam String password,
                                Model model) {
-        clientService.registrationClient(new Client(login, password, ROLE.USER));
+        clientService.registrationClient(new Client(login, password, ROLE.ROLE_USER));
         findAllUsers(model);
         return "admin";
     }
@@ -107,7 +112,7 @@ public class AdminController {
             }
         }
         if (clientById != null) {
-            if (clientById.getRole().equals(ROLE.ADMIN)) {
+            if (clientById.getRole().equals(ROLE.ROLE_ADMIN)) {
                 throw new AddBookToUserException("You can't add a book to an administrator");
             }
             if (clientById.getBooks().size() == 4) {

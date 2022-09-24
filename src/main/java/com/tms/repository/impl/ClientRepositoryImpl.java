@@ -73,7 +73,7 @@ public class ClientRepositoryImpl implements ClientRepository {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         NativeQuery<Client> nativeQuery = session.createSQLQuery(GET_ONLY_USERS).addEntity(Client.class);
-        nativeQuery.setParameter(1, "USER");
+        nativeQuery.setParameter(1, "ROLE_USER");
         List<Client> users = nativeQuery.getResultList();
         transaction.commit();
         session.close();

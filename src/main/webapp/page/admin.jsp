@@ -16,20 +16,20 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
-                       href="http://127.0.0.1:8080/admin/registration">New
+                       href="/admin/registration">New
                         user registration</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
-                       href="http://127.0.0.1:8080/admin/show_all_users">Show all users</a>
+                       href="/admin/show_all_users">Show all users</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
-                       href="http://127.0.0.1:8080/admin/show_all_books">Show all books</a>
+                       href="/admin/show_all_books">Show all books</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
-                       href="http://127.0.0.1:8080/admin/add_book_to_user">Add a book to user</a>
+                       href="/admin/add_book_to_user">Add a book to user</a>
                 </li>
             </ul>
             <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete" method="post">
