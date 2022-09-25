@@ -36,7 +36,7 @@ public class StartupService {
                 .toList();
         users.forEach(client -> {
             if (!loginsFromDb.contains(client.getLogin())) {
-                clientService.save(client);
+                clientService.saveNewClient(client);
             }
         });
         Book it = new Book("Stiven King", "It", 3);

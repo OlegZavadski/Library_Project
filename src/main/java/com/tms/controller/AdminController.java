@@ -47,7 +47,7 @@ public class AdminController {
     public String registration(@RequestParam String login,
                                @RequestParam String password,
                                Model model) {
-        clientService.save(new Client(login, password, ROLE.ROLE_USER));
+        clientService.saveNewClient(new Client(login, password, ROLE.ROLE_USER));
         findAllUsers(model);
         return "admin";
     }

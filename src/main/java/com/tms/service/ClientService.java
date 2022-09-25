@@ -23,6 +23,10 @@ public class ClientService {
     }
 
     public void save(Client client) {
+        clientRepository.save(client);
+    }
+
+    public void saveNewClient(Client client) {
         String encodedPassword = new BCryptPasswordEncoder().encode(client.getPassword());
         client.setPassword(encodedPassword);
         clientRepository.save(client);
