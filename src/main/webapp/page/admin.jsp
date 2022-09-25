@@ -14,18 +14,16 @@
         <a class="navbar-brand">Library</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                       href="/admin/registration">New
-                        client registration</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                       href="/admin/show_all_clients">Show all clients with books</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                       href="/admin/show_all_books">Show all books</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Actions with clients
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/admin/registration">New
+                            client registration</a></li>
+                        <li><a class="dropdown-item" href="/admin/show_all_clients">Show all clients with books</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -33,6 +31,7 @@
                         Actions with books
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/admin/show_all_books">Show all books</a></li>
                         <li><a class="dropdown-item" href="/admin/add_book_to_user">Add a book to client</a></li>
                         <li><a class="dropdown-item" href="/admin/return_book_from_user">Return a book from
                             client</a></li>

@@ -62,7 +62,7 @@ public class AdminController {
     public String delete(@RequestParam Integer idToDelete,
                          Model model) {
         if (clientService.findById(idToDelete) == null) {
-            throw new UserByIdNotFoundException("User with this id not found");
+            throw new UserByIdNotFoundException("Client with this id not found");
         }
         clientService.delete(idToDelete);
         findAllUsers(model);
@@ -90,20 +90,16 @@ public class AdminController {
             throw new TransferBookException("Book with this id not found");
         }
         if (clientById == null) {
-            throw new TransferBookException("User with this id not found");
+            throw new TransferBookException("Client with this id not found");
         }
-        if (bookById != null) {
-            if (bookById.getCount() < 1) {
-                throw new TransferBookException("You don't have enough books");
-            }
+        if (bookById.getCount() < 1) {
+            throw new TransferBookException("There aren't enough books");
         }
-        if (clientById != null) {
-            if (clientById.getRole().equals(ROLE.ROLE_ADMIN)) {
-                throw new TransferBookException("You can't add a book to an administrator");
-            }
-            if (clientById.getBooks().size() == 4) {
-                throw new TransferBookException("The client has 4 books");
-            }
+        if (clientById.getRole().equals(ROLE.ROLE_ADMIN)) {
+            throw new TransferBookException("You can't add a book to an administrator");
+        }
+        if (clientById.getBooks().size() == 4) {
+            throw new TransferBookException("The client has 4 books");
         }
         generalService.addBookToClient(idOfBook, idOfClient);
         return "admin";
@@ -123,7 +119,10 @@ public class AdminController {
             throw new TransferBookException("Book with this id not found");
         }
         if (clientById == null) {
-            throw new TransferBookException("User with this id not found");
+            throw new TransferBookException("Client with this id not found");
+        }
+        if (!clientById.getBooks().contains(bookById)) {
+            throw new TransferBookException("Client doesn't have this book");
         }
         generalService.returnBookFromClient(idOfBook, idOfClient);
         return "admin";
