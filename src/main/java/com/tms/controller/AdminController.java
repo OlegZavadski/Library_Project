@@ -52,8 +52,8 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping(path = "/show_all_users")
-    public String showAllUsers(Model model) {
+    @GetMapping(path = "/show_all_clients")
+    public String showAllClients(Model model) {
         findAllUsers(model);
         return "admin";
     }

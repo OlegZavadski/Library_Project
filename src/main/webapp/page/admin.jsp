@@ -17,23 +17,30 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
                        href="/admin/registration">New
-                        user registration</a>
+                        client registration</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
-                       href="/admin/show_all_users">Show all users</a>
+                       href="/admin/show_all_clients">Show all clients with books</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page"
                        href="/admin/show_all_books">Show all books</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                       href="/admin/add_book_to_user">Add a book to user</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Actions with books
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/admin/add_book_to_user">Add a book to client</a></li>
+                        <li><a class="dropdown-item" href="/admin/return_book_from_user">Return a book from
+                            client</a></li>
+                    </ul>
                 </li>
             </ul>
             <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete" method="post">
-                <input class="form-control me-2" type="number" placeholder="Input id user to delete"
+                <input class="form-control me-2" type="number" placeholder="Input id of client to delete"
                        aria-label="Search" name="idToDelete">
                 <button class="btn btn-outline-success" type="submit">Delete</button>
             </form>
@@ -44,55 +51,61 @@
 
 <div class="container">
     <div class="row">
-        <table class="table table-striped">
-            <caption>All clients</caption>
-            <thead>
-            <tr>
-                <th scope="col">№ of a line</th>
-                <th scope="col">Id of a client</th>
-                <th scope="col">Login of a client</th>
-                <th scope="col">Books of a client</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${allUsers}" var="client" varStatus="loop">
+        <c:if test="${allUsers.size()>0}">
+            <table class="table table-striped">
+                <caption>All clients with books</caption>
+                <thead>
                 <tr>
-                    <th scope="row"> ${loop.count}</th>
-                    <td> ${client.id}</td>
-                    <td> ${client.login}</td>
-                    <td> ${client.books}</td>
+                    <th scope="col">№ of a line</th>
+                    <th scope="col">Id of a client</th>
+                    <th scope="col">Login of a client</th>
+                    <th scope="col">Books of a client</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:forEach items="${allUsers}" var="client" varStatus="loop">
+                    <c:if test="${client.books.size()>0}">
+                        <tr>
+                            <th scope="row"> ${loop.count}</th>
+                            <td> ${client.id}</td>
+                            <td> ${client.login}</td>
+                            <td> ${client.books}</td>
+                        </tr>
+                    </c:if>
+                </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
-        <table class="table table-striped">
-            <caption>All books</caption>
-            <thead>
-            <tr>
-                <th scope="col">№ of a line</th>
-                <th scope="col">Id of a book</th>
-                <th scope="col">Author of a book</th>
-                <th scope="col">Name of a book</th>
-                <th scope="col">Count of a books</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${books}" var="book" varStatus="loop">
+        <c:if test="${books.size()>0}">
+            <table class="table table-striped">
+                <caption>All books</caption>
+                <thead>
                 <tr>
-                    <th scope="row"> ${loop.count}</th>
-                    <td> ${book.id}</td>
-                    <td> ${book.author}</td>
-                    <td> ${book.name}</td>
-                    <td> ${book.count}</td>
+                    <th scope="col">№ of a line</th>
+                    <th scope="col">Id of a book</th>
+                    <th scope="col">Author of a book</th>
+                    <th scope="col">Name of a book</th>
+                    <th scope="col">Count of a books</th>
                 </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <c:forEach items="${books}" var="book" varStatus="loop">
+                    <tr>
+                        <th scope="row"> ${loop.count}</th>
+                        <td> ${book.id}</td>
+                        <td> ${book.author}</td>
+                        <td> ${book.name}</td>
+                        <td> ${book.count}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
     </div>
 </div>
 
