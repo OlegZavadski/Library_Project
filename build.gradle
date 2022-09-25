@@ -37,6 +37,8 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     // https://mvnrepository.com/artifact/org.flywaydb/flyway-core
     implementation 'org.flywaydb:flyway-core'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs
+    implementation 'org.springframework.security:spring-security-taglibs'
 }
 
 tasks.named('test') {

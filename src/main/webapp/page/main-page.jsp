@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
     <title>Main page</title>
@@ -8,6 +9,26 @@
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand">Library</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <sec:authorize access="!isAuthenticated()">
+                    <a class="nav-link active" aria-current="page"
+                       href="${pageContext.request.contextPath}/login">Login</a>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <a class="nav-link active" aria-current="page"
+                       href="${pageContext.request.contextPath}/logout">
+                        Welcome Back, <sec:authentication property="name"/>!
+                        Logout</a>
+                </sec:authorize>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="container">
     <div class="row">
