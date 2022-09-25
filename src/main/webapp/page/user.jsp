@@ -23,9 +23,9 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="row">
-        <c:if test="${books.size()>0}">
+<c:if test="${books.size()>0}">
+    <div class="container">
+        <div class="row">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -46,12 +46,12 @@
                 </c:forEach>
                 </tbody>
             </table>
-        </c:if>
-        <c:if test="${books.size()==0}">
-            <H3>You don't have any books</H3>
-        </c:if>
+        </div>
     </div>
-</div>
+</c:if>
+<c:if test="${books.size()==0}">
+    <H3>You don't have any books</H3>
+</c:if>
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

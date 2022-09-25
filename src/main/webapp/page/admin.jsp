@@ -49,9 +49,9 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="row">
-        <c:if test="${allUsers.size()>0}">
+<c:if test="${allUsers.size()>0}">
+    <div class="container">
+        <div class="row">
             <table class="table table-striped">
                 <caption>All clients with books</caption>
                 <thead>
@@ -75,13 +75,13 @@
                 </c:forEach>
                 </tbody>
             </table>
-        </c:if>
+        </div>
     </div>
-</div>
+</c:if>
 
-<div class="container">
-    <div class="row">
-        <c:if test="${books.size()>0}">
+<c:if test="${books.size()>0}">
+    <div class="container">
+        <div class="row">
             <table class="table table-striped">
                 <caption>All books</caption>
                 <thead>
@@ -105,9 +105,9 @@
                 </c:forEach>
                 </tbody>
             </table>
-        </c:if>
+        </div>
     </div>
-</div>
+</c:if>
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
