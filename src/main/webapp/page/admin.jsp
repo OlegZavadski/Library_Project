@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand">Library</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">Library</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -21,16 +21,9 @@
                         Welcome Back, <sec:authentication property="name"/>!
                         Logout</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Actions with clients
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="/admin/registration">New
-                            client registration</a></li>
-                        <li><a class="dropdown-item" href="/admin/show_all_clients">Show all clients with books</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/admin/registration">New
+                        client registration</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -39,18 +32,10 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="/admin/show_all_books">Show all books</a></li>
-                        <li><a class="dropdown-item" href="/admin/add_book_to_user">Add a book to client</a></li>
-                        <li><a class="dropdown-item" href="/admin/return_book_from_user">Return a book from
-                            client</a></li>
+                        <li><a class="dropdown-item" href="/admin/add_book_to_user">Add a book to a client</a></li>
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete" method="post">
-                <input class="form-control me-2" type="number" placeholder="Input id of client to delete"
-                       aria-label="Search" name="idToDelete">
-                <button class="btn btn-outline-success" type="submit">Delete</button>
-            </form>
-            <H3><span style="color: #b22222; ">${error}</span></H3>
         </div>
     </div>
 </nav>
@@ -59,25 +44,47 @@
     <div class="container">
         <div class="row">
             <table class="table table-striped">
-                <caption>All clients with books</caption>
+                <caption>All clients</caption>
                 <thead>
                 <tr>
-                    <th scope="col">№ of a line</th>
-                    <th scope="col">Id of a client</th>
-                    <th scope="col">Login of a client</th>
-                    <th scope="col">Books of a client</th>
+                    <th scope="col">№ of the line</th>
+                    <th scope="col">Login of the client</th>
+                    <th scope="col">Show books of the client</th>
+                    <th scope="col">Delete the client</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${allUsers}" var="client" varStatus="loop">
-                    <c:if test="${client.books.size()>0}">
-                        <tr>
-                            <th scope="row"> ${loop.count}</th>
-                            <td> ${client.id}</td>
-                            <td> ${client.login}</td>
-                            <td> ${client.books}</td>
-                        </tr>
-                    </c:if>
+                    <tr>
+                        <th scope="row"> ${loop.count}</th>
+                        <td> ${client.login}</td>
+                        <c:choose>
+                            <c:when test="${client.books.size()>0}">
+                                <td>
+                                    <form class="d-flex"
+                                          action="${pageContext.request.contextPath}/admin/show_books_of_client"
+                                          method="post">
+                                        <input type="hidden" name="idOfClient" value="${client.id}">
+                                        <button type="submit" class="btn btn-info">Show books
+                                        </button>
+                                    </form>
+                                </td>
+                            </c:when>
+                            <c:otherwise>
+                                <td>
+                                    Client doesn't have any books
+                                </td>
+                            </c:otherwise>
+                        </c:choose>
+                        <td>
+                            <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete"
+                                  method="post">
+                                <input type="hidden" name="idToDelete" value="${client.id}">
+                                <button type="submit" class="btn btn-danger">Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
                 </c:forEach>
                 </tbody>
             </table>
@@ -85,28 +92,65 @@
     </div>
 </c:if>
 
-<c:if test="${books.size()>0}">
+<c:if test="${allBooks.size()>0}">
     <div class="container">
         <div class="row">
             <table class="table table-striped">
                 <caption>All books</caption>
                 <thead>
                 <tr>
-                    <th scope="col">№ of a line</th>
-                    <th scope="col">Id of a book</th>
-                    <th scope="col">Author of a book</th>
-                    <th scope="col">Name of a book</th>
-                    <th scope="col">Count of a books</th>
+                    <th scope="col">№ of the line</th>
+                    <th scope="col">Id of the book</th>
+                    <th scope="col">Author of the book</th>
+                    <th scope="col">Name of the book</th>
+                    <th scope="col">Count of the books</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${books}" var="book" varStatus="loop">
+                <c:forEach items="${allBooks}" var="book" varStatus="loop">
                     <tr>
                         <th scope="row"> ${loop.count}</th>
                         <td> ${book.id}</td>
                         <td> ${book.author}</td>
                         <td> ${book.name}</td>
                         <td> ${book.count}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</c:if>
+
+<c:if test="${booksOfClient.size()>0}">
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped">
+                <caption>All books of ${clientById.login}</caption>
+                <thead>
+                <tr>
+                    <th scope="col">№ of the line</th>
+                    <th scope="col">Author of the book</th>
+                    <th scope="col">Name of the book</th>
+                    <th scope="col">Return the book</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${booksOfClient}" var="book" varStatus="loop">
+                    <tr>
+                        <th scope="row"> ${loop.count}</th>
+                        <td> ${book.author}</td>
+                        <td> ${book.name}</td>
+                        <td>
+                            <form class="d-flex"
+                                  action="${pageContext.request.contextPath}/admin/return_book_from_client"
+                                  method="post">
+                                <input type="hidden" name="idOfBook" value="${book.id}">
+                                <input type="hidden" name="idOfClient" value="${clientById.id}">
+                                <button type="submit" class="btn btn-info">Return the book
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

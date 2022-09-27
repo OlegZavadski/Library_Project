@@ -9,9 +9,9 @@ values ('Kyle', '$2a$10$WD5gHHObTC2mRCIS2BJFjeiQoAnZriMbUUMKy.xcxmEcDw82b32H.', 
         '2022-09-26');
 
 insert into books (author, name, count, created, updated)
-values ('Stiven King', 'It', 2, '2022-09-26',
+values ('Stephen King', 'It', 2, '2022-09-26',
         '2022-09-26'),
-       ('Stiven King', '11/22/63', 2, '2022-09-26',
+       ('Stephen King', '11/22/63', 2, '2022-09-26',
         '2022-09-26');
 
 insert into clients_books (client_id, book_id)

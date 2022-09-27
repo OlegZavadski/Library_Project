@@ -51,4 +51,8 @@ public class ClientService {
         }
         return client.getBooks();
     }
+
+    public List<Client> findOnlyUsers(String role) {
+        return clientRepository.findOnlyUsers(role);
+    }
 }

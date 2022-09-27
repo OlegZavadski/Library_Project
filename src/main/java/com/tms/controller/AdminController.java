@@ -1,8 +1,6 @@
 package com.tms.controller;
 
 import com.tms.exception.AddBookException;
-import com.tms.exception.ReturnBookException;
-import com.tms.exception.UserByIdNotFoundException;
 import com.tms.model.Book;
 import com.tms.model.Client;
 import com.tms.model.ROLE;
@@ -35,7 +33,8 @@ public class AdminController {
     }
 
     @GetMapping()
-    public String adminPage() {
+    public String adminPage(Model model) {
+        findOnlyUsers(model);
         return "admin";
     }
 
@@ -49,31 +48,30 @@ public class AdminController {
                                @RequestParam String password,
                                Model model) {
         clientService.saveNewClient(new Client(login, password, ROLE.ROLE_USER));
-        findAllUsers(model);
+        findOnlyUsers(model);
         return "admin";
     }
 
-    @GetMapping(path = "/show_all_clients")
-    public String showAllClients(Model model) {
-        findAllUsers(model);
+    @PostMapping(path = "/show_books_of_client")
+    public String showBooksOfClient(@RequestParam Integer idOfClient, Model model) {
+        Client clientById = clientService.findById(idOfClient);
+        List<Book> booksOfClient = clientById.getBooks();
+        model.addAttribute("clientById", clientById);
+        model.addAttribute("booksOfClient", booksOfClient);
         return "admin";
     }
 
     @PostMapping(path = "/delete")
     public String delete(@RequestParam Integer idToDelete,
                          Model model) {
-        if (clientService.findById(idToDelete) == null) {
-            throw new UserByIdNotFoundException("Client with this id not found");
-        }
         clientService.delete(idToDelete);
-        findAllUsers(model);
+        findOnlyUsers(model);
         return "admin";
     }
 
     @GetMapping(path = "/show_all_books")
     public String showAllBooks(Model model) {
-        List<Book> books = bookService.showAllBooks();
-        model.addAttribute("books", books);
+        model.addAttribute("allBooks", bookService.showAllBooks());
         return "admin";
     }
 
@@ -106,31 +104,16 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping(path = "/return_book_from_user")
-    public String returnBookFromUser() {
-        return "return-book-from-user";
-    }
-
-    @PostMapping(path = "/return_book_from_user")
+    @PostMapping(path = "/return_book_from_client")
     public String returnBookFromUser(@RequestParam Integer idOfBook,
-                                     @RequestParam Integer idOfClient) {
-        Book bookById = bookService.findById(idOfBook);
-        Client clientById = clientService.findById(idOfClient);
-        if (bookById == null) {
-            throw new ReturnBookException("Book with this id not found");
-        }
-        if (clientById == null) {
-            throw new ReturnBookException("Client with this id not found");
-        }
-        if (!clientById.getBooks().contains(bookById)) {
-            throw new ReturnBookException("Client doesn't have this book");
-        }
+                                     @RequestParam Integer idOfClient,
+                                     Model model) {
         generalService.returnBookFromClient(idOfBook, idOfClient);
+        findOnlyUsers(model);
         return "admin";
     }
 
-    private void findAllUsers(Model model) {
-        List<Client> allUsers = clientService.findAll();
-        model.addAttribute("allUsers", allUsers);
+    private void findOnlyUsers(Model model) {
+        model.addAttribute("allUsers", clientService.findOnlyUsers(ROLE.ROLE_USER.toString()));
     }
 }
