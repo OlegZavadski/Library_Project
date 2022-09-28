@@ -10,35 +10,35 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">Library</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                       href="${pageContext.request.contextPath}/logout">
-                        Welcome Back, <sec:authentication property="name"/>!
-                        Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/admin/registration">New
-                        client registration</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Actions with books
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="/admin/show_all_books">Show all books</a></li>
-                        <li><a class="dropdown-item" href="/admin/add_book_to_user">Add a book to a client</a></li>
-                    </ul>
-                </li>
-            </ul>
+<jsp:include page="admin_header.jsp"/>
+
+<c:if test="${allBooks.size()>0}">
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped">
+                <caption>All books</caption>
+                <thead>
+                <tr>
+                    <th scope="col">№ of the line</th>
+                    <th scope="col">Author of the book</th>
+                    <th scope="col">Name of the book</th>
+                    <th scope="col">Count of the books</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${allBooks}" var="book" varStatus="loop">
+                    <tr>
+                        <th scope="row"> ${loop.count}</th>
+                        <td> ${book.author}</td>
+                        <td> ${book.name}</td>
+                        <td> ${book.count}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
     </div>
-</nav>
+</c:if>
 
 <c:if test="${allUsers.size()>0}">
     <div class="container">
@@ -92,41 +92,11 @@
     </div>
 </c:if>
 
-<c:if test="${allBooks.size()>0}">
-    <div class="container">
-        <div class="row">
-            <table class="table table-striped">
-                <caption>All books</caption>
-                <thead>
-                <tr>
-                    <th scope="col">№ of the line</th>
-                    <th scope="col">Id of the book</th>
-                    <th scope="col">Author of the book</th>
-                    <th scope="col">Name of the book</th>
-                    <th scope="col">Count of the books</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${allBooks}" var="book" varStatus="loop">
-                    <tr>
-                        <th scope="row"> ${loop.count}</th>
-                        <td> ${book.id}</td>
-                        <td> ${book.author}</td>
-                        <td> ${book.name}</td>
-                        <td> ${book.count}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</c:if>
-
 <c:if test="${booksOfClient.size()>0}">
     <div class="container">
         <div class="row">
             <table class="table table-striped">
-                <caption>All books of ${clientById.login}</caption>
+                <caption>${clientById.login}'s books</caption>
                 <thead>
                 <tr>
                     <th scope="col">№ of the line</th>

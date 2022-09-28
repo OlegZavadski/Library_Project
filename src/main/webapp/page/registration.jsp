@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<jsp:include page="admin_header.jsp"/>
+
 <div class="container">
     <div class="row">
         <div class="col-3">

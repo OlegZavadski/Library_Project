@@ -12,7 +12,15 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand">Library</a>
+        <sec:authorize access="isAnonymous()">
+            <a class="navbar-brand">Library</a>
+        </sec:authorize>
+        <sec:authorize access="hasRole('ADMIN')">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">Library</a>
+        </sec:authorize>
+        <sec:authorize access="hasRole('USER')">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/user">Library</a>
+        </sec:authorize>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <sec:authorize access="!isAuthenticated()">

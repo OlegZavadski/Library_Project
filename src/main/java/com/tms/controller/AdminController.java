@@ -114,6 +114,6 @@ public class AdminController {
     }
 
     private void findOnlyUsers(Model model) {
-        model.addAttribute("allUsers", clientService.findOnlyUsers(ROLE.ROLE_USER.toString()));
+        model.addAttribute("allUsers", clientService.findOnlyUsers());
     }
 }

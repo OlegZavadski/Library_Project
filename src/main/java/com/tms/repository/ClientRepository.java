@@ -14,6 +14,6 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
 
     Client findByLogin(String login);
 
-    @Query(value = "select * from clients where role = :role", nativeQuery = true)
-    List<Client> findOnlyUsers(String role);
+    @Query(value = "select * from clients where role = 'ROLE_USER'", nativeQuery = true)
+    List<Client> findOnlyUsers();
 }
