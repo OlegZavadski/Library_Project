@@ -58,7 +58,7 @@ public class AdminController {
         List<Book> booksOfClient = clientById.getBooks();
         model.addAttribute("clientById", clientById);
         model.addAttribute("booksOfClient", booksOfClient);
-        return "admin";
+        return "books-of-client";
     }
 
     @PostMapping(path = "/delete")
@@ -72,7 +72,7 @@ public class AdminController {
     @GetMapping(path = "/show_all_books")
     public String showAllBooks(Model model) {
         model.addAttribute("allBooks", bookService.showAllBooks());
-        return "admin";
+        return "all-books";
     }
 
     @GetMapping(path = "/add_book_to_user")
@@ -97,8 +97,8 @@ public class AdminController {
         if (clientById.getRole().equals(ROLE.ROLE_ADMIN)) {
             throw new AddBookException("You can't add a book to an administrator");
         }
-        if (clientById.getBooks().size() == 4) {
-            throw new AddBookException("The client has 4 books");
+        if (clientById.getBooks().size() == 5) {
+            throw new AddBookException("The client has 5 books");
         }
         generalService.addBookToClient(idOfBook, idOfClient);
         return "admin";

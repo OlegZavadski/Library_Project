@@ -23,10 +23,15 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/admin/registration">New
-                        client registration</a></li>
-                <li><a class="nav-link active" aria-current="page" href="/admin/show_all_books">Show all books</a></li>
-                <li><a class="nav-link active" aria-current="page" href="/admin/add_book_to_user">Add a book to a
-                    client</a></li>
+                        client registration</a>
+                </li>
+                <li>
+                    <a class="nav-link active" aria-current="page" href="/admin/show_all_books">Show all books</a>
+                </li>
+                <li>
+                    <a class="nav-link active" aria-current="page" href="/admin/add_book_to_user">Add a book to a
+                        client</a>
+                </li>
             </ul>
         </div>
     </div>
