@@ -13,24 +13,17 @@
         <div class="col-3">
         </div>
         <div class="col-6">
-            <form action="${pageContext.request.contextPath}/user" method="post">
-                <input class="form-control mr-sm-2" type="text" name="login"
-                       placeholder="Input login"
+            <form action="${pageContext.request.contextPath}/login" method="post">
+                <input class="form-control mr-sm-2" type="text" name="username"
+                       placeholder="Input username"
                        aria-label="Login">
                 <input class="form-control mr-sm-2" type="password" name="password"
                        placeholder="Input password"
-                       aria-label="Password">
-                <div class="buttons">
-                    <button type="submit" class="btn btn-outline-primary"
-                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
-                            value="Enter">Enter
-                    </button>
-                    <button type="reset" class="btn btn-outline-secondary"
-                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
-                            value="Reset">Reset
-                    </button>
+                       aria-label="Password"><br>
+                <div class="d-grid gap-2 col-8 mx-auto">
+                    <button class="btn btn-primary" type="submit">Enter</button>
+                    <button class="btn btn-secondary" type="reset">Reset</button>
                 </div>
-                <H1><span style="color: #b22222; ">${error}</span></H1>
             </form>
         </div>
         <div class="col-3">

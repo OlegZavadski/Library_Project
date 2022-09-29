@@ -34,8 +34,15 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**")
                 .hasRole("ADMIN")
                 .antMatchers("/user/**")
-                .hasAnyRole("ADMIN", "USER")
+                .hasRole("USER")
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll()
+                .logoutSuccessUrl("/");
     }
 }

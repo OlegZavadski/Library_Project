@@ -19,6 +19,9 @@ public class ClientDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         Client clientByLogin = clientService.findByLogin(login);
+        if (clientByLogin == null) {
+            return new ClientSecurity(null, null, null);
+        }
         return new ClientSecurity(clientByLogin.getLogin(), clientByLogin.getPassword(), clientByLogin.getRole());
     }
 }

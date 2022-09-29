@@ -45,7 +45,6 @@
             <thead>
             <tr>
                 <th scope="col">№ of a line</th>
-                <th scope="col">Id of a book</th>
                 <th scope="col">Author of a book</th>
                 <th scope="col">Name of a book</th>
                 <th scope="col">Count of a books</th>
@@ -55,7 +54,6 @@
             <c:forEach items="${books}" var="book" varStatus="loop">
                 <tr>
                     <th scope="row"> ${loop.count}</th>
-                    <td> ${book.id}</td>
                     <td> ${book.author}</td>
                     <td> ${book.name}</td>
                     <td> ${book.count}</td>

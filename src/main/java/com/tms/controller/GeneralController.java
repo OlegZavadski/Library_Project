@@ -24,9 +24,9 @@ public class GeneralController {
         model.addAttribute("books", books);
         return "main-page";
     }
-//
-//    @GetMapping(path = "/login")
-//    public String authorization() {
-//        return "login";
-//    }
+
+    @GetMapping(path = "login")
+    public String authorization() {
+        return "login";
+    }
 }
