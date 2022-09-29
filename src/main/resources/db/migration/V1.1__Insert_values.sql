@@ -11,7 +11,17 @@ values ('Kyle', '$2a$10$WD5gHHObTC2mRCIS2BJFjeiQoAnZriMbUUMKy.xcxmEcDw82b32H.', 
 insert into books (author, name, count, created, updated)
 values ('Stephen King', 'It', 2, '2022-09-26',
         '2022-09-26'),
-       ('Stephen King', '11/22/63', 2, '2022-09-26',
+       ('Herbert Schildt', 'Java 8. The Complete Reference', 4, '2022-09-26',
+        '2022-09-26'),
+       ('Stephen King', '11/22/63', 1, '2022-09-26',
+        '2022-09-26'),
+       ('Leo Tolstoy', 'War and Peace', 6, '2022-09-26',
+        '2022-09-26'),
+       ('Herbert Schildt', 'Java: A Beginner''s Guide, 5th edition', 3, '2022-09-26',
+        '2022-09-26'),
+       ('Cay Horstmann', 'Core Java SE 9 for the Impatient', 4, '2022-09-26',
+        '2022-09-26'),
+       ('Ray Bradbury', 'Fahrenheit 451', 7, '2022-09-26',
         '2022-09-26');
 
 insert into clients_books (client_id, book_id)
