@@ -47,15 +47,14 @@ public class AdminController {
                                @RequestParam String password,
                                Model model) {
         if (login.isBlank() || password.isBlank()) {
-            findOnlyUsers(model);
-            return "admin";
+            return "registration";
         }
         clientService.saveNewClient(new Client(login, password, ROLE.ROLE_USER));
         findOnlyUsers(model);
         return "admin";
     }
 
-    @PostMapping(path = "/show_books_of_client")
+    @GetMapping(path = "/show_books_of_client")
     public String showBooksOfClient(@RequestParam Integer idOfClient, Model model) {
         Client clientById = clientService.findById(idOfClient);
         List<Book> booksOfClient = clientById.getBooks();

@@ -34,7 +34,7 @@
                             <td>
                                 <form class="d-flex"
                                       action="${pageContext.request.contextPath}/admin/show_books_of_client"
-                                      method="post">
+                                      method="get">
                                     <input type="hidden" name="idOfClient" value="${client.id}">
                                     <button type="submit" class="btn btn-info">Show books
                                     </button>
