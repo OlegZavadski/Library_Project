@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>Admin page</title>
+    <title>Users of book</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -15,22 +15,18 @@
 <div class="container">
     <div class="row">
         <table class="table table-striped">
-            <caption>All books</caption>
+            <caption>Users of this book</caption>
             <thead>
             <tr>
                 <th scope="col">№ of the line</th>
-                <th scope="col">Author of the book</th>
-                <th scope="col">Name of the book</th>
-                <th scope="col">Count of the books</th>
+                <th scope="col">Login of the user</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${allBooks}" var="book" varStatus="loop">
+            <c:forEach items="${usersOfBook}" var="user" varStatus="loop">
                 <tr>
                     <th scope="row"> ${loop.count}</th>
-                    <td> ${book.author}</td>
-                    <td> ${book.name}</td>
-                    <td> ${book.count}</td>
+                    <td> ${user.login}</td>
                 </tr>
             </c:forEach>
             </tbody>

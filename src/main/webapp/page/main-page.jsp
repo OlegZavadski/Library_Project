@@ -48,6 +48,9 @@
                 <th scope="col">Author of a book</th>
                 <th scope="col">Name of a book</th>
                 <th scope="col">Count of a books</th>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <th scope="col">Show users</th>
+                </sec:authorize>
             </tr>
             </thead>
             <tbody>
@@ -57,6 +60,28 @@
                     <td> ${book.author}</td>
                     <td> ${book.name}</td>
                     <td> ${book.count}</td>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <c:choose>
+                            <c:when test="${book.users.size()>0}">
+                                <td>
+                                    <form class="d-flex"
+                                          action="${pageContext.request.contextPath}/admin/show_users_of_book"
+                                          method="get">
+                                        <input type="hidden" name="idOfBook" value="${book.id}">
+                                        <button type="submit" class="btn btn-info">Show users
+                                        </button>
+                                    </form>
+                                </td>
+                            </c:when>
+                            <c:otherwise>
+                                <td>
+                                    <button type="button" class="btn btn-secondary" disabled>This book is in stock
+                                        only
+                                    </button>
+                                </td>
+                            </c:otherwise>
+                        </c:choose>
+                    </sec:authorize>
                 </tr>
             </c:forEach>
             </tbody>

@@ -36,10 +36,6 @@ public class UserService {
         return userRepository.findByLogin(login);
     }
 
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
-
     public void delete(Integer id) {
         userRepository.deleteById(id);
     }

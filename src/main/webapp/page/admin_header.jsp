@@ -26,7 +26,7 @@
                         user registration</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/admin/show_all_books">Show all books</a>
+                    <a class="nav-link active" aria-current="page" href="/">Show all books</a>
                 </li>
             </ul>
         </div>

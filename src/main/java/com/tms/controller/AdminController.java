@@ -1,11 +1,11 @@
 package com.tms.controller;
 
 import com.tms.model.Book;
-import com.tms.model.User;
 import com.tms.model.ROLE;
+import com.tms.model.User;
 import com.tms.service.BookService;
-import com.tms.service.UserService;
 import com.tms.service.GeneralService;
+import com.tms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,12 +71,6 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping(path = "/show_all_books")
-    public String showAllBooks(Model model) {
-        model.addAttribute("allBooks", bookService.showAllBooks());
-        return "all-books";
-    }
-
     @GetMapping(path = "/add_book_to_user")
     public String addBookToUser(@RequestParam Integer idOfUser,
                                 Model model) {
@@ -101,6 +95,14 @@ public class AdminController {
         generalService.returnBookFromUser(idOfBook, idOfUser);
         findOnlyUsers(model);
         return "admin";
+    }
+
+    @GetMapping(path = "/show_users_of_book")
+    public String usersOfBook(@RequestParam Integer idOfBook,
+                              Model model) {
+        Book bookById = bookService.findById(idOfBook);
+        model.addAttribute("usersOfBook", bookById.getUsers());
+        return "users-of-book";
     }
 
     private void findOnlyUsers(Model model) {
