@@ -12,6 +12,22 @@
 
 <jsp:include page="admin_header.jsp"/>
 
+<c:choose>
+    <c:when test="${booksOfClient.size()<6}">
+        <form class="d-flex"
+              action="${pageContext.request.contextPath}/admin/add_book_to_user"
+              method="get">
+            <input type="hidden" name="idOfClient" value="${clientById.id}">
+            <button type="submit" class="btn btn-primary">Add a book to ${clientById.login}</button>
+        </form>
+    </c:when>
+    <c:otherwise>
+        <button type="button" class="btn btn-secondary" disabled>${clientById.login}
+            has ${booksOfClient.size()} books
+        </button>
+    </c:otherwise>
+</c:choose>
+
 <div class="container">
     <div class="row">
         <table class="table table-striped">

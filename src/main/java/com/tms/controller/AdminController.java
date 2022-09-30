@@ -1,6 +1,5 @@
 package com.tms.controller;
 
-import com.tms.exception.AddBookException;
 import com.tms.model.Book;
 import com.tms.model.Client;
 import com.tms.model.ROLE;
@@ -76,31 +75,20 @@ public class AdminController {
     }
 
     @GetMapping(path = "/add_book_to_user")
-    public String addBookToUser() {
+    public String addBookToUser(@RequestParam Integer idOfClient,
+                                Model model) {
+        Client clientById = clientService.findById(idOfClient);
+        model.addAttribute("clientById", clientById);
+        model.addAttribute("allBooks", bookService.showAllBooks());
         return "add-book-to-user";
     }
 
     @PostMapping(path = "/add_book_to_user")
     public String addBookToUser(@RequestParam Integer idOfBook,
-                                @RequestParam Integer idOfClient) {
-        Book bookById = bookService.findById(idOfBook);
-        Client clientById = clientService.findById(idOfClient);
-        if (bookById == null) {
-            throw new AddBookException("Book with this id not found");
-        }
-        if (clientById == null) {
-            throw new AddBookException("Client with this id not found");
-        }
-        if (bookById.getCount() < 1) {
-            throw new AddBookException("There aren't enough books");
-        }
-        if (clientById.getRole().equals(ROLE.ROLE_ADMIN)) {
-            throw new AddBookException("You can't add a book to an administrator");
-        }
-        if (clientById.getBooks().size() == 5) {
-            throw new AddBookException("The client has 5 books");
-        }
+                                @RequestParam Integer idOfClient,
+                                Model model) {
         generalService.addBookToClient(idOfBook, idOfClient);
+        findOnlyUsers(model);
         return "admin";
     }
 

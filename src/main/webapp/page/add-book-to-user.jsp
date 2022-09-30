@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
@@ -12,31 +13,44 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-3">
-        </div>
-        <div class="col-6">
-            <form action="${pageContext.request.contextPath}/admin/add_book_to_user" method="post">
-                <input class="form-control mr-sm-2" type="number" name="idOfBook"
-                       placeholder="Input id of a book"
-                       aria-label="Id">
-                <input class="form-control mr-sm-2" type="number" name="idOfClient"
-                       placeholder="Input id of a client"
-                       aria-label="Id">
-                <div class="buttons">
-                    <button type="submit" class="btn btn-outline-primary"
-                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
-                            value="Enter">Enter
-                    </button>
-                    <button type="reset" class="btn btn-outline-secondary"
-                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
-                            value="Reset">Reset
-                    </button>
-                </div>
-                <H3><span style="color: #b22222; ">${error}</span></H3>
-            </form>
-        </div>
-        <div class="col-3">
-        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">№ of the line</th>
+                <th scope="col">Author of the book</th>
+                <th scope="col">Name of the book</th>
+                <th scope="col">Add the book</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${allBooks}" var="book" varStatus="loop">
+                <tr>
+                    <th scope="row"> ${loop.count}</th>
+                    <td> ${book.author}</td>
+                    <td> ${book.name}</td>
+                    <c:choose>
+                        <c:when test="${clientById.books.contains(book)}">
+                            <td>
+                                    ${clientById.login} has this book
+                            </td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>
+                                <form class="d-flex"
+                                      action="${pageContext.request.contextPath}/admin/add_book_to_user"
+                                      method="post">
+                                    <input type="hidden" name="idOfBook" value="${book.id}">
+                                    <input type="hidden" name="idOfClient" value="${clientById.id}">
+                                    <button type="submit" class="btn btn-info">Add the book
+                                    </button>
+                                </form>
+                            </td>
+                        </c:otherwise>
+                    </c:choose>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
 </div>
 

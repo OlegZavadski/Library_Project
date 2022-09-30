@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Book {
     @Temporal(TemporalType.DATE)
     private Date updated;
     @ManyToMany(mappedBy = "books")
-    private List<Client> clients;
+    private List<Client> clients = new ArrayList<>();
 
     public Book(String author, String name, int count) {
         this.author = author;
