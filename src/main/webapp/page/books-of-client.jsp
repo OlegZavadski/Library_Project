@@ -10,23 +10,32 @@
 </head>
 <body>
 
-<jsp:include page="admin_header.jsp"/>
-
-<c:choose>
-    <c:when test="${booksOfClient.size()<6}">
-        <form class="d-flex"
-              action="${pageContext.request.contextPath}/admin/add_book_to_user"
-              method="get">
-            <input type="hidden" name="idOfClient" value="${clientById.id}">
-            <button type="submit" class="btn btn-primary">Add a book to ${clientById.login}</button>
-        </form>
-    </c:when>
-    <c:otherwise>
-        <button type="button" class="btn btn-secondary" disabled>${clientById.login}
-            has ${booksOfClient.size()} books
-        </button>
-    </c:otherwise>
-</c:choose>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <jsp:include page="admin_header.jsp"/>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <c:choose>
+                        <c:when test="${booksOfClient.size()<6}">
+                            <form class="d-flex"
+                                  action="${pageContext.request.contextPath}/admin/add_book_to_user"
+                                  method="get">
+                                <input type="hidden" name="idOfClient" value="${clientById.id}">
+                                <button type="submit" class="btn btn-primary">Add a book to ${clientById.login}</button>
+                            </form>
+                        </c:when>
+                        <c:otherwise>
+                            <button type="button" class="btn btn-secondary" disabled>${clientById.login}
+                                has ${booksOfClient.size()} books
+                            </button>
+                        </c:otherwise>
+                    </c:choose>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="container">
     <div class="row">

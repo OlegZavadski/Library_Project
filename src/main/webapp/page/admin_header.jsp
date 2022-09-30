@@ -25,7 +25,7 @@
                     <a class="nav-link active" aria-current="page" href="/admin/registration">New
                         client registration</a>
                 </li>
-                <li>
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/admin/show_all_books">Show all books</a>
                 </li>
             </ul>

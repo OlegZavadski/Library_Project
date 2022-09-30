@@ -46,6 +46,10 @@ public class AdminController {
     public String registration(@RequestParam String login,
                                @RequestParam String password,
                                Model model) {
+        if (login.isBlank() || password.isBlank()) {
+            findOnlyUsers(model);
+            return "admin";
+        }
         clientService.saveNewClient(new Client(login, password, ROLE.ROLE_USER));
         findOnlyUsers(model);
         return "admin";
