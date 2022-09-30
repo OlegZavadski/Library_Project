@@ -29,7 +29,7 @@ public class Book {
     @Temporal(TemporalType.DATE)
     private Date updated;
     @ManyToMany(mappedBy = "books")
-    private List<Client> clients = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     public Book(String author, String name, int count) {
         this.author = author;

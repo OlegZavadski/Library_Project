@@ -15,27 +15,28 @@
 <div class="container">
     <div class="row">
         <table class="table table-striped">
-            <caption>All clients</caption>
+            <caption>All users</caption>
             <thead>
             <tr>
                 <th scope="col">№ of the line</th>
-                <th scope="col">Login of the client</th>
-                <th scope="col">Show books of the client</th>
-                <th scope="col">Delete the client</th>
+                <th scope="col">Login of the user</th>
+                <th scope="col">Show books of the user</th>
+                <th scope="col">Add book to user</th>
+                <th scope="col">Delete the user</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${allUsers}" var="client" varStatus="loop">
+            <c:forEach items="${allUsers}" var="user" varStatus="loop">
                 <tr>
                     <th scope="row"> ${loop.count}</th>
-                    <td> ${client.login}</td>
+                    <td> ${user.login}</td>
                     <c:choose>
-                        <c:when test="${client.books.size()>0}">
+                        <c:when test="${user.books.size()>0}">
                             <td>
                                 <form class="d-flex"
-                                      action="${pageContext.request.contextPath}/admin/show_books_of_client"
+                                      action="${pageContext.request.contextPath}/admin/show_books_of_user"
                                       method="get">
-                                    <input type="hidden" name="idOfClient" value="${client.id}">
+                                    <input type="hidden" name="idOfUser" value="${user.id}">
                                     <button type="submit" class="btn btn-info">Show books
                                     </button>
                                 </form>
@@ -43,14 +44,33 @@
                         </c:when>
                         <c:otherwise>
                             <td>
-                                Client doesn't have any books
+                                User doesn't have any books
+                            </td>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${user.books.size()<6}">
+                            <td>
+                                <form class="d-flex"
+                                      action="${pageContext.request.contextPath}/admin/add_book_to_user"
+                                      method="get">
+                                    <input type="hidden" name="idOfUser" value="${user.id}">
+                                    <button type="submit" class="btn btn-primary">Add a book to ${user.login}</button>
+                                </form>
+                            </td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>
+                                <button type="button" class="btn btn-secondary" disabled>${user.login}
+                                    has ${user.books.size()} books
+                                </button>
                             </td>
                         </c:otherwise>
                     </c:choose>
                     <td>
                         <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete"
                               method="post">
-                            <input type="hidden" name="idToDelete" value="${client.id}">
+                            <input type="hidden" name="idToDelete" value="${user.id}">
                             <button type="submit" class="btn btn-danger">Delete
                             </button>
                         </form>

@@ -24,30 +24,33 @@
             </thead>
             <tbody>
             <c:forEach items="${allBooks}" var="book" varStatus="loop">
-                <tr>
-                    <th scope="row"> ${loop.count}</th>
-                    <td> ${book.author}</td>
-                    <td> ${book.name}</td>
-                    <c:choose>
-                        <c:when test="${clientById.books.contains(book)}">
-                            <td>
-                                    ${clientById.login} has this book
-                            </td>
-                        </c:when>
-                        <c:otherwise>
-                            <td>
-                                <form class="d-flex"
-                                      action="${pageContext.request.contextPath}/admin/add_book_to_user"
-                                      method="post">
-                                    <input type="hidden" name="idOfBook" value="${book.id}">
-                                    <input type="hidden" name="idOfClient" value="${clientById.id}">
-                                    <button type="submit" class="btn btn-info">Add the book
+                <c:if test="${!userById.books.contains(book)}">
+                    <tr>
+                        <th scope="row"> ${loop.count}</th>
+                        <td> ${book.author}</td>
+                        <td> ${book.name}</td>
+                        <c:choose>
+                            <c:when test="${book.count>=1}">
+                                <td>
+                                    <form class="d-flex"
+                                          action="${pageContext.request.contextPath}/admin/add_book_to_user"
+                                          method="post">
+                                        <input type="hidden" name="idOfBook" value="${book.id}">
+                                        <input type="hidden" name="idOfUser" value="${userById.id}">
+                                        <button type="submit" class="btn btn-info">Add the book
+                                        </button>
+                                    </form>
+                                </td>
+                            </c:when>
+                            <c:otherwise>
+                                <td>
+                                    <button type="button" class="btn btn-secondary" disabled>This book is out of stock
                                     </button>
-                                </form>
-                            </td>
-                        </c:otherwise>
-                    </c:choose>
-                </tr>
+                                </td>
+                            </c:otherwise>
+                        </c:choose>
+                    </tr>
+                </c:if>
             </c:forEach>
             </tbody>
         </table>

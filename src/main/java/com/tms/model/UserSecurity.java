@@ -7,12 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public class ClientSecurity implements UserDetails {
+public class UserSecurity implements UserDetails {
     private String login;
     private String password;
     private ROLE role;
 
-    public ClientSecurity(String login, String password, ROLE role) {
+    public UserSecurity(String login, String password, ROLE role) {
         this.login = login;
         this.password = password;
         this.role = role;

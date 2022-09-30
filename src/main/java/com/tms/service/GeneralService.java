@@ -1,7 +1,7 @@
 package com.tms.service;
 
 import com.tms.model.Book;
-import com.tms.model.Client;
+import com.tms.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,32 +9,32 @@ import java.util.List;
 @Service
 public class GeneralService {
     private final BookService bookService;
-    private final ClientService clientService;
+    private final UserService userService;
 
-    public GeneralService(BookService bookService, ClientService clientService) {
+    public GeneralService(BookService bookService, UserService userService) {
         this.bookService = bookService;
-        this.clientService = clientService;
+        this.userService = userService;
     }
 
-    public void addBookToClient(Integer idOfBook, Integer idOfClient) {
+    public void addBookToUser(Integer idOfBook, Integer idOfUser) {
         Book bookById = bookService.findById(idOfBook);
-        Client clientById = clientService.findById(idOfClient);
+        User userById = userService.findById(idOfUser);
         bookById.setCount(bookById.getCount() - 1);
-        List<Book> books = clientById.getBooks();
+        List<Book> books = userById.getBooks();
         books.add(bookById);
-        clientById.setBooks(books);
+        userById.setBooks(books);
         bookService.save(bookById);
-        clientService.save(clientById);
+        userService.save(userById);
     }
 
-    public void returnBookFromClient(Integer idOfBook, Integer idOfClient) {
+    public void returnBookFromUser(Integer idOfBook, Integer idOfUser) {
         Book bookById = bookService.findById(idOfBook);
-        Client clientById = clientService.findById(idOfClient);
+        User userById = userService.findById(idOfUser);
         bookById.setCount(bookById.getCount() + 1);
-        List<Book> books = clientById.getBooks();
+        List<Book> books = userById.getBooks();
         books.remove(bookById);
-        clientById.setBooks(books);
+        userById.setBooks(books);
         bookService.save(bookById);
-        clientService.save(clientById);
+        userService.save(userById);
     }
 }

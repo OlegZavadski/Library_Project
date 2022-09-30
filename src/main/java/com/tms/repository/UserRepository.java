@@ -1,6 +1,6 @@
 package com.tms.repository;
 
-import com.tms.model.Client;
+import com.tms.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -10,10 +10,10 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface ClientRepository extends JpaRepository<Client, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
-    Client findByLogin(String login);
+    User findByLogin(String login);
 
-    @Query(value = "select * from clients where role = 'ROLE_USER'", nativeQuery = true)
-    List<Client> findOnlyUsers();
+    @Query(value = "select * from users where role = 'ROLE_USER'", nativeQuery = true)
+    List<User> findOnlyUsers();
 }

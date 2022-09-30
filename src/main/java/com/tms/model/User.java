@@ -10,11 +10,11 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "users")
 
 @NoArgsConstructor
 @Data
-public class Client {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -30,12 +30,12 @@ public class Client {
     @Temporal(TemporalType.DATE)
     private Date updated;
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "clients_books",
-            joinColumns = @JoinColumn(name = "client_id"),
+    @JoinTable(name = "users_books",
+            joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> books = new ArrayList<>();
 
-    public Client(String login, String password, ROLE role) {
+    public User(String login, String password, ROLE role) {
         this.login = login;
         this.password = password;
         this.role = role;
@@ -43,7 +43,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
+        return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 '}';

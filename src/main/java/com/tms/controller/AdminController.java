@@ -1,10 +1,10 @@
 package com.tms.controller;
 
 import com.tms.model.Book;
-import com.tms.model.Client;
+import com.tms.model.User;
 import com.tms.model.ROLE;
 import com.tms.service.BookService;
-import com.tms.service.ClientService;
+import com.tms.service.UserService;
 import com.tms.service.GeneralService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,14 +19,14 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/admin")
 public class AdminController {
-    private final ClientService clientService;
+    private final UserService userService;
     private final BookService bookService;
     private final GeneralService generalService;
 
 
     @Autowired
-    public AdminController(ClientService clientService, BookService bookService, GeneralService generalService) {
-        this.clientService = clientService;
+    public AdminController(UserService userService, BookService bookService, GeneralService generalService) {
+        this.userService = userService;
         this.bookService = bookService;
         this.generalService = generalService;
     }
@@ -49,24 +49,24 @@ public class AdminController {
         if (login.isBlank() || password.isBlank()) {
             return "registration";
         }
-        clientService.saveNewClient(new Client(login, password, ROLE.ROLE_USER));
+        userService.saveNewUser(new User(login, password, ROLE.ROLE_USER));
         findOnlyUsers(model);
         return "admin";
     }
 
-    @GetMapping(path = "/show_books_of_client")
-    public String showBooksOfClient(@RequestParam Integer idOfClient, Model model) {
-        Client clientById = clientService.findById(idOfClient);
-        List<Book> booksOfClient = clientById.getBooks();
-        model.addAttribute("clientById", clientById);
-        model.addAttribute("booksOfClient", booksOfClient);
-        return "books-of-client";
+    @GetMapping(path = "/show_books_of_user")
+    public String showBooksOfUser(@RequestParam Integer idOfUser, Model model) {
+        User userById = userService.findById(idOfUser);
+        List<Book> booksOfUser = userById.getBooks();
+        model.addAttribute("userById", userById);
+        model.addAttribute("booksOfUser", booksOfUser);
+        return "books-of-user";
     }
 
     @PostMapping(path = "/delete")
     public String delete(@RequestParam Integer idToDelete,
                          Model model) {
-        clientService.delete(idToDelete);
+        userService.delete(idToDelete);
         findOnlyUsers(model);
         return "admin";
     }
@@ -78,33 +78,32 @@ public class AdminController {
     }
 
     @GetMapping(path = "/add_book_to_user")
-    public String addBookToUser(@RequestParam Integer idOfClient,
+    public String addBookToUser(@RequestParam Integer idOfUser,
                                 Model model) {
-        Client clientById = clientService.findById(idOfClient);
-        model.addAttribute("clientById", clientById);
+        model.addAttribute("userById", userService.findById(idOfUser));
         model.addAttribute("allBooks", bookService.showAllBooks());
         return "add-book-to-user";
     }
 
     @PostMapping(path = "/add_book_to_user")
     public String addBookToUser(@RequestParam Integer idOfBook,
-                                @RequestParam Integer idOfClient,
+                                @RequestParam Integer idOfUser,
                                 Model model) {
-        generalService.addBookToClient(idOfBook, idOfClient);
+        generalService.addBookToUser(idOfBook, idOfUser);
         findOnlyUsers(model);
         return "admin";
     }
 
-    @PostMapping(path = "/return_book_from_client")
+    @PostMapping(path = "/return_book_from_user")
     public String returnBookFromUser(@RequestParam Integer idOfBook,
-                                     @RequestParam Integer idOfClient,
+                                     @RequestParam Integer idOfUser,
                                      Model model) {
-        generalService.returnBookFromClient(idOfBook, idOfClient);
+        generalService.returnBookFromUser(idOfBook, idOfUser);
         findOnlyUsers(model);
         return "admin";
     }
 
     private void findOnlyUsers(Model model) {
-        model.addAttribute("allUsers", clientService.findOnlyUsers());
+        model.addAttribute("allUsers", userService.findOnlyUsers());
     }
 }

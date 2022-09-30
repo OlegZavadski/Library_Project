@@ -1,7 +1,6 @@
 package com.tms.config;
 
-import com.tms.model.ROLE;
-import com.tms.service.impl.ClientDetailsServiceImpl;
+import com.tms.service.impl.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,9 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
-    private ClientDetailsServiceImpl clientDetailsService;
+    private UserDetailsServiceImpl clientDetailsService;
 
-    public AppSecurityConfig(ClientDetailsServiceImpl clientDetailsService) {
+    public AppSecurityConfig(UserDetailsServiceImpl clientDetailsService) {
         this.clientDetailsService = clientDetailsService;
     }
 

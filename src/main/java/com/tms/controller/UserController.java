@@ -1,8 +1,8 @@
 package com.tms.controller;
 
 import com.tms.model.Book;
-import com.tms.model.Client;
-import com.tms.service.ClientService;
+import com.tms.model.User;
+import com.tms.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -15,10 +15,10 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/user")
 public class UserController {
-    private final ClientService clientService;
+    private final UserService userService;
 
-    public UserController(ClientService clientService) {
-        this.clientService = clientService;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
@@ -30,8 +30,8 @@ public class UserController {
         } else {
             login = principal.toString();
         }
-        Client clientByLogin = clientService.findByLogin(login);
-        List<Book> booksOfUser = clientService.getAllBooksFromClient(clientByLogin.getId());
+        User userByLogin = userService.findByLogin(login);
+        List<Book> booksOfUser = userService.getAllBooksFromUser(userByLogin.getId());
         model.addAttribute("books", booksOfUser);
         return "user";
     }
