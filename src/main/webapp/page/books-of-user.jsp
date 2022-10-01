@@ -19,6 +19,7 @@
             <thead>
             <tr>
                 <th scope="col">№ of the line</th>
+                <th scope="col">Id of the book</th>
                 <th scope="col">Author of the book</th>
                 <th scope="col">Name of the book</th>
                 <th scope="col">Return the book</th>
@@ -28,6 +29,7 @@
             <c:forEach items="${booksOfUser}" var="book" varStatus="loop">
                 <tr>
                     <th scope="row"> ${loop.count}</th>
+                    <td> ${book.id}</td>
                     <td> ${book.author}</td>
                     <td> ${book.name}</td>
                     <td>

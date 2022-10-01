@@ -45,6 +45,9 @@
             <thead>
             <tr>
                 <th scope="col">№ of a line</th>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <th scope="col">Id of a book</th>
+                </sec:authorize>
                 <th scope="col">Author of a book</th>
                 <th scope="col">Name of a book</th>
                 <th scope="col">Count of a books</th>
@@ -57,6 +60,9 @@
             <c:forEach items="${books}" var="book" varStatus="loop">
                 <tr>
                     <th scope="row"> ${loop.count}</th>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <td> ${book.id}</td>
+                    </sec:authorize>
                     <td> ${book.author}</td>
                     <td> ${book.name}</td>
                     <td> ${book.count}</td>

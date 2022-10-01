@@ -6,7 +6,6 @@ import com.tms.model.User;
 import com.tms.service.BookService;
 import com.tms.service.GeneralService;
 import com.tms.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +22,6 @@ public class AdminController {
     private final BookService bookService;
     private final GeneralService generalService;
 
-
-    @Autowired
     public AdminController(UserService userService, BookService bookService, GeneralService generalService) {
         this.userService = userService;
         this.bookService = bookService;

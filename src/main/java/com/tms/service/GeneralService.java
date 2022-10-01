@@ -25,8 +25,6 @@ public class GeneralService {
         books.add(bookById);
         userById.setBooks(books);
         userById.setUpdated(new Date());
-        bookService.save(bookById);
-        userService.save(userById);
     }
 
     public void returnBookFromUser(Integer idOfBook, Integer idOfUser) {
@@ -37,7 +35,5 @@ public class GeneralService {
         books.remove(bookById);
         userById.setBooks(books);
         userById.setUpdated(new Date());
-        bookService.save(bookById);
-        userService.save(userById);
     }
 }

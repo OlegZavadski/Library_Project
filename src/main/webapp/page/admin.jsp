@@ -19,6 +19,7 @@
             <thead>
             <tr>
                 <th scope="col">№ of the line</th>
+                <th scope="col">Id of the user</th>
                 <th scope="col">Login of the user</th>
                 <th scope="col">Show books of the user</th>
                 <th scope="col">Add book to user</th>
@@ -29,6 +30,7 @@
             <c:forEach items="${allUsers}" var="user" varStatus="loop">
                 <tr>
                     <th scope="row"> ${loop.count}</th>
+                    <td> ${user.id}</td>
                     <td> ${user.login}</td>
                     <c:choose>
                         <c:when test="${user.books.size()>0}">

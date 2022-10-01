@@ -19,6 +19,7 @@
             <thead>
             <tr>
                 <th scope="col">№ of the line</th>
+                <th scope="col">Id of the user</th>
                 <th scope="col">Login of the user</th>
             </tr>
             </thead>
@@ -26,6 +27,7 @@
             <c:forEach items="${usersOfBook}" var="user" varStatus="loop">
                 <tr>
                     <th scope="row"> ${loop.count}</th>
+                    <td> ${user.id}</td>
                     <td> ${user.login}</td>
                 </tr>
             </c:forEach>

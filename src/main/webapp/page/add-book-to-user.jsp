@@ -17,6 +17,7 @@
             <thead>
             <tr>
                 <th scope="col">№ of the line</th>
+                <th scope="col">Id of the book</th>
                 <th scope="col">Author of the book</th>
                 <th scope="col">Name of the book</th>
                 <th scope="col">Add the book</th>
@@ -27,6 +28,7 @@
                 <c:if test="${!userById.books.contains(book)}">
                     <tr>
                         <th scope="row"> ${loop.count}</th>
+                        <td> ${book.id}</td>
                         <td> ${book.author}</td>
                         <td> ${book.name}</td>
                         <c:choose>
