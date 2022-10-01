@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">Library</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/">Library</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -22,11 +22,13 @@
                         Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/admin/registration">New
-                        user registration</a>
+                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/admin">Admin
+                        page</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Show all books</a>
+                    <a class="nav-link active" aria-current="page"
+                       href="${pageContext.request.contextPath}/admin/registration">New
+                        user registration</a>
                 </li>
             </ul>
         </div>

@@ -101,6 +101,7 @@ public class AdminController {
     public String usersOfBook(@RequestParam Integer idOfBook,
                               Model model) {
         Book bookById = bookService.findById(idOfBook);
+        model.addAttribute("bookById", bookById);
         model.addAttribute("usersOfBook", bookById.getUsers());
         return "users-of-book";
     }

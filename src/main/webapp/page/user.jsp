@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand">Library</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/">Library</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -20,10 +20,6 @@
                        href="${pageContext.request.contextPath}/logout">
                         Welcome Back, <sec:authentication property="name"/>!
                         Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                       href="/">Show all books</a>
                 </li>
             </ul>
         </div>
@@ -38,7 +34,6 @@
                 <thead>
                 <tr>
                     <th scope="col">№ of a line</th>
-                    <th scope="col">Id of a book</th>
                     <th scope="col">An author of a book</th>
                     <th scope="col">A name of a book</th>
                 </tr>
@@ -47,7 +42,6 @@
                 <c:forEach items="${books}" var="book" varStatus="loop">
                     <tr>
                         <th scope="row"> ${loop.count}</th>
-                        <td> ${book.id}</td>
                         <td> ${book.author}</td>
                         <td> ${book.name}</td>
                     </tr>

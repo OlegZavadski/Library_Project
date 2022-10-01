@@ -13,7 +13,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <sec:authorize access="isAnonymous()">
-            <a class="navbar-brand">Library</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/">Library</a>
         </sec:authorize>
         <sec:authorize access="hasRole('ADMIN')">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">Library</a>
