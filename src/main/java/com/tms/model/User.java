@@ -3,6 +3,7 @@ package com.tms.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class User {
     @CreationTimestamp
     @Temporal(TemporalType.DATE)
     private Date created;
-    @CreationTimestamp
+    @UpdateTimestamp
     @Temporal(TemporalType.DATE)
     private Date updated;
     @ManyToMany(fetch = FetchType.EAGER)
