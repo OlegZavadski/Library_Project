@@ -4,6 +4,7 @@ import com.tms.model.Book;
 import com.tms.model.User;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,6 +24,7 @@ public class GeneralService {
         List<Book> books = userById.getBooks();
         books.add(bookById);
         userById.setBooks(books);
+        userById.setUpdated(new Date());
         bookService.save(bookById);
         userService.save(userById);
     }
