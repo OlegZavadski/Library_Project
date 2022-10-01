@@ -36,6 +36,7 @@ public class GeneralService {
         List<Book> books = userById.getBooks();
         books.remove(bookById);
         userById.setBooks(books);
+        userById.setUpdated(new Date());
         bookService.save(bookById);
         userService.save(userById);
     }
