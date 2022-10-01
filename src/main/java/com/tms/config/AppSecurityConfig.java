@@ -1,12 +1,19 @@
 package com.tms.config;
 
+import com.tms.model.ROLE;
 import com.tms.service.impl.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.io.IOException;
+import java.util.Collection;
 
 @Configuration
 @EnableWebSecurity
@@ -37,11 +44,23 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
-                .permitAll()
+                .loginProcessingUrl("/process_login")
+                .successHandler((request, response, authentication) -> {
+                    response.sendRedirect("/");
+                })
+                .failureHandler((request, response, exception) -> {
+                    response.sendRedirect("/login");
+                })
                 .and()
                 .logout()
-                .permitAll()
-                .logoutSuccessUrl("/");
+                .logoutUrl("/logout")
+                .addLogoutHandler((request, response, authentication) -> {
+                    request.getSession().invalidate();
+                    try {
+                        response.sendRedirect("/");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
     }
 }

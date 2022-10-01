@@ -13,7 +13,7 @@
         <div class="col-3">
         </div>
         <div class="col-6">
-            <form action="${pageContext.request.contextPath}/login" method="post">
+            <form action="${pageContext.request.contextPath}/process_login" method="post">
                 <input class="form-control mr-sm-2" type="text" name="username"
                        placeholder="Input username"
                        aria-label="Login">
