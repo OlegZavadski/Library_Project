@@ -46,6 +46,10 @@ public class AdminController {
         if (login.isBlank() || password.isBlank()) {
             return "registration";
         }
+        if (userService.findByLogin(login) != null) {
+            model.addAttribute("userExists", "User with this login exists!");
+            return "registration";
+        }
         userService.saveNewUser(new User(login, password, ROLE.ROLE_USER));
         findOnlyUsers(model);
         return "admin";
