@@ -26,34 +26,36 @@
     </div>
 </nav>
 
-<c:if test="${books.size()>0}">
-    <div class="container">
-        <div class="row">
-            <table class="table table-striped">
-                <caption>These are your books</caption>
-                <thead>
-                <tr>
-                    <th scope="col">№ of a line</th>
-                    <th scope="col">An author of a book</th>
-                    <th scope="col">A name of a book</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${books}" var="book" varStatus="loop">
+<c:choose>
+    <c:when test="${books.size()>0}">
+        <div class="container">
+            <div class="row">
+                <table class="table table-striped">
+                    <caption>These are your books</caption>
+                    <thead>
                     <tr>
-                        <th scope="row"> ${loop.count}</th>
-                        <td> ${book.author}</td>
-                        <td> ${book.name}</td>
+                        <th scope="col">№ of a line</th>
+                        <th scope="col">An author of a book</th>
+                        <th scope="col">A name of a book</th>
                     </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${books}" var="book" varStatus="loop">
+                        <tr>
+                            <th scope="row"> ${loop.count}</th>
+                            <td> ${book.author}</td>
+                            <td> ${book.name}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-</c:if>
-<c:if test="${books.size()==0}">
-    <H3>You don't have any books</H3>
-</c:if>
+    </c:when>
+    <c:otherwise>
+        <H3>You don't have any books</H3>
+    </c:otherwise>
+</c:choose>
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row">
         <table class="table table-striped">
-            <caption>Users of "${bookById.name}" written by ${bookById.author}</caption>
+            <caption>Users of "${bookById.name}" written by ${bookById.author}, id "${bookById.id}"</caption>
             <thead>
             <tr>
                 <th scope="col">№ of the line</th>
