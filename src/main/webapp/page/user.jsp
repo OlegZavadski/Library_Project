@@ -53,7 +53,17 @@
         </div>
     </c:when>
     <c:otherwise>
-        <H3>You don't have any books</H3>
+        <div class="container">
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col"><H4>You don't have any books</H4></th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
     </c:otherwise>
 </c:choose>
 

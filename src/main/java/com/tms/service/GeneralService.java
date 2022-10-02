@@ -22,6 +22,7 @@ public class GeneralService {
         bookById.setCount(bookById.getCount() - 1);
         userById.getBooks().add(bookById);
         userById.setUpdated(new Date());
+        userById.getDates().put(bookById, new Date());
     }
 
     public void returnBookFromUser(Integer idOfBook, Integer idOfUser) {
@@ -30,5 +31,6 @@ public class GeneralService {
         bookById.setCount(bookById.getCount() + 1);
         userById.getBooks().remove(bookById);
         userById.setUpdated(new Date());
+        userById.getDates().remove(bookById);
     }
 }
