@@ -2,51 +2,21 @@ package com.tms.service;
 
 import com.tms.model.Book;
 import com.tms.model.User;
-import com.tms.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class UserService {
-    private final UserRepository userRepository;
+public interface UserService {
+    User findById(Integer id);
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    void save(User user);
 
-    public User findById(Integer id) {
-        return userRepository.findById(id).orElse(null);
-    }
+    void saveNewUser(User user);
 
-    public void save(User user) {
-        userRepository.save(user);
-    }
+    User findByLogin(String login);
 
-    public void saveNewUser(User user) {
-        String encodedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
-        user.setPassword(encodedPassword);
-        userRepository.save(user);
-    }
+    void delete(Integer id);
 
-    public User findByLogin(String login) {
-        return userRepository.findByLogin(login);
-    }
+    List<Book> getAllBooksFromUser(Integer id);
 
-    public void delete(Integer id) {
-        userRepository.deleteById(id);
-    }
-
-    public List<Book> getAllBooksFromUser(Integer id) {
-        User user = userRepository.findById(id).orElse(null);
-        if (user == null) {
-            return null;
-        }
-        return user.getBooks();
-    }
-
-    public List<User> findOnlyUsers() {
-        return userRepository.findOnlyUsers();
-    }
+    List<User> findOnlyUsers();
 }
