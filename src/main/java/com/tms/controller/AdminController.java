@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/admin")
@@ -58,7 +60,10 @@ public class AdminController {
     @GetMapping(path = "/show_books_of_user")
     public String showBooksOfUser(@RequestParam Integer idOfUser, Model model) {
         User userById = userService.findById(idOfUser);
-        List<Book> booksOfUser = userById.getBooks();
+        List<Book> booksOfUser = userById.getBooks()
+                .stream()
+                .sorted(Comparator.comparing(Book::getId))
+                .toList();
         model.addAttribute("userById", userById);
         model.addAttribute("booksOfUser", booksOfUser);
         return "books-of-user";
@@ -102,8 +107,12 @@ public class AdminController {
     public String usersOfBook(@RequestParam Integer idOfBook,
                               Model model) {
         Book bookById = bookService.findById(idOfBook);
+        List<User> usersOfBook = bookById.getUsers()
+                .stream()
+                .sorted(Comparator.comparing(User::getId))
+                .toList();
         model.addAttribute("bookById", bookById);
-        model.addAttribute("usersOfBook", bookById.getUsers());
+        model.addAttribute("usersOfBook", usersOfBook);
         return "users-of-book";
     }
 

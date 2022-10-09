@@ -5,7 +5,9 @@ import com.tms.repository.BookRepository;
 import com.tms.service.BookService;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -24,6 +26,9 @@ public class BookServiceImpl implements BookService {
     }
 
     public List<Book> showAllBooks() {
-        return bookRepository.findAll();
+        return bookRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(Book::getId))
+                .toList();
     }
 }

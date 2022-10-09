@@ -7,7 +7,9 @@ import com.tms.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -44,10 +46,16 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             return null;
         }
-        return user.getBooks();
+        return user.getBooks()
+                .stream()
+                .sorted(Comparator.comparing(Book::getId))
+                .toList();
     }
 
     public List<User> findOnlyUsers() {
-        return userRepository.findOnlyUsers();
+        return userRepository.findOnlyUsers()
+                .stream()
+                .sorted(Comparator.comparing(User::getId))
+                .toList();
     }
 }
