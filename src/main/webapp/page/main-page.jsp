@@ -24,11 +24,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <sec:authorize access="!isAuthenticated()">
-                    <a class="nav-link active" aria-current="page"
+                    <a class="nav-link" aria-current="page"
                        href="${pageContext.request.contextPath}/login">Login</a>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    <a class="nav-link active" aria-current="page"
+                    <a class="nav-link" aria-current="page"
                        href="${pageContext.request.contextPath}/logout">
                         Welcome Back, <sec:authentication property="name"/>!
                         Logout</a>

@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
+                    <a class="nav-link" aria-current="page"
                        href="${pageContext.request.contextPath}/logout">
                         Welcome Back, <sec:authentication property="name"/>!
                         Logout</a>
@@ -35,8 +35,8 @@
                     <thead>
                     <tr>
                         <th scope="col">№ of a line</th>
-                        <th scope="col">An author of a book</th>
-                        <th scope="col">A name of a book</th>
+                        <th scope="col">Author of a book</th>
+                        <th scope="col">Name of a book</th>
                     </tr>
                     </thead>
                     <tbody>
