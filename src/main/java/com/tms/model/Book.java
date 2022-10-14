@@ -1,18 +1,23 @@
 package com.tms.model;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "books")
 
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +32,7 @@ public class Book {
     @Temporal(TemporalType.DATE)
     private Date updated;
     @ManyToMany(mappedBy = "books")
-    private Set<User> users = new HashSet<>();
+    private List<User> users = new ArrayList<>();
 
     public Book(String author, String name, int count) {
         this.author = author;
