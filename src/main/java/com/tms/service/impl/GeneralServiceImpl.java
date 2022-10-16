@@ -2,7 +2,6 @@ package com.tms.service.impl;
 
 import com.tms.dto.UserDto;
 import com.tms.model.Book;
-import com.tms.model.User;
 import com.tms.service.BookService;
 import com.tms.service.GeneralService;
 import com.tms.service.UserService;
