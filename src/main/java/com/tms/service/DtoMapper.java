@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class DtoMapper {
     public UserDto createUserDto(User userFromDb) {
+        if (userFromDb == null) {
+            return null;
+        }
         return new UserDto(userFromDb.getId(),
                 userFromDb.getLogin(),
                 userFromDb.getPassword(),
