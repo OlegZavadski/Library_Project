@@ -35,13 +35,9 @@
                     <c:choose>
                         <c:when test="${user.books.size()>0}">
                             <td>
-                                <form class="d-flex"
-                                      action="${pageContext.request.contextPath}/admin/show_books_of_user"
-                                      method="get">
-                                    <input type="hidden" name="idOfUser" value="${user.id}">
-                                    <button type="submit" class="btn btn-info">Show books
-                                    </button>
-                                </form>
+                                <a class="btn btn-info"
+                                   href="${pageContext.request.contextPath}/admin/${user.id}" role="button">Show
+                                    books</a>
                             </td>
                         </c:when>
                         <c:otherwise>

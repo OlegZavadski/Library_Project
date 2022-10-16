@@ -9,10 +9,7 @@ import com.tms.service.GeneralService;
 import com.tms.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Comparator;
 import java.util.List;
@@ -58,8 +55,8 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping(path = "/show_books_of_user")
-    public String showBooksOfUser(@RequestParam Integer idOfUser,
+    @GetMapping(path = "/{id}")
+    public String showBooksOfUser(@PathVariable(name = "id") Integer idOfUser,
                                   Model model) {
         UserDto userById = userService.findById(idOfUser);
         List<Book> booksOfUser = userById.getBooks()
