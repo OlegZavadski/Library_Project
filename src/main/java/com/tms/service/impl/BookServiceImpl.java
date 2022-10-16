@@ -36,11 +36,6 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> showOverdueBooks() {
         return bookRepository
-                .findAll()
-                .stream()
-                .filter(book -> book.getDateOfIssue() != null)
-                .filter(book -> (new Date().getTime() - book.getDateOfIssue().getTime()) > 20 * 24 * 60 * 60 * 1000)
-                .sorted(Comparator.comparing(Book::getDateOfIssue))
-                .toList();
+                .showOverdueBooks();
     }
 }
