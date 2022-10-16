@@ -22,7 +22,7 @@ public class GeneralServiceImpl implements GeneralService {
     public void addBookToUser(Integer idOfBook, Integer idOfUser) {
         Book bookById = bookService.findById(idOfBook);
         UserDto userById = userService.findById(idOfUser);
-        bookById.setAvailable(!bookById.isAvailable());
+        bookById.setAvailable(false);
         bookById.setDateOfIssue(new Date());
         userById.getBooks().add(bookById);
         userById.setUpdated(new Date());
@@ -31,7 +31,7 @@ public class GeneralServiceImpl implements GeneralService {
     public void returnBookFromUser(Integer idOfBook, Integer idOfUser) {
         Book bookById = bookService.findById(idOfBook);
         UserDto userById = userService.findById(idOfUser);
-        bookById.setAvailable(!bookById.isAvailable());
+        bookById.setAvailable(true);
         bookById.setDateOfIssue(null);
         userById.getBooks().remove(bookById);
         userById.setUpdated(new Date());
