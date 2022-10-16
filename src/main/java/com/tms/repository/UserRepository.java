@@ -14,6 +14,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     User findByLogin(String login);
 
-    @Query(value = "select * from users where role = 'ROLE_USER'", nativeQuery = true)
+    @Query(value = "select * from users where role = 'ROLE_USER' and deleted = 'false'", nativeQuery = true)
     List<User> findOnlyUsers();
 }

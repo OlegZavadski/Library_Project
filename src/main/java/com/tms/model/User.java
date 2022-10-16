@@ -33,7 +33,9 @@ public class User {
     @UpdateTimestamp
     @Temporal(TemporalType.DATE)
     private Date updated;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Column(name = "deleted")
+    private boolean isDeleted = false;
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_books",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))

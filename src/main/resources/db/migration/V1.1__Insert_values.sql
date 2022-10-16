@@ -1,12 +1,12 @@
-insert into users (login, password, role, created, updated)
+insert into users (login, password, role, created, updated, deleted)
 values ('Kyle', '$2a$10$WD5gHHObTC2mRCIS2BJFjeiQoAnZriMbUUMKy.xcxmEcDw82b32H.', 'ROLE_ADMIN', '2022-09-26',
-        '2022-09-26'),
+        '2022-09-26', false),
        ('Mike', '$2a$10$r4HxiS.59e9CbEa9hnCTm.OQfyC4tJBU43Wm1MP7Af423A5Tm1w9y', 'ROLE_USER', '2022-09-26',
-        '2022-09-26'),
+        '2022-09-26', false),
        ('Peter', '$2a$10$YLdgwBNzJQzczQq8YjZ7eu/U2maNfv1NXUtmz5nXlo2qznWMcZSVa', 'ROLE_USER', '2022-09-26',
-        '2022-09-26'),
+        '2022-09-26', false),
        ('Andy', '$2a$10$ible0yWIvqn5JPFcibyMBeYdGNCKDL2cEqBzFHRtiSyebprBYL0Vi', 'ROLE_USER', '2022-09-26',
-        '2022-09-26');
+        '2022-09-26', false);
 
 insert into books (author, title, year, created, updated, availability, date_of_issue)
 values ('Stephen King', 'It', 2005, '2022-09-26',
