@@ -105,13 +105,7 @@ public class AdminController {
 
     @GetMapping(path = "/show_overdue_books")
     public String overdueBooks(Model model) {
-        List<Book> books = bookService
-                .showAllBooks()
-                .stream()
-                .filter(book -> book.getDateOfIssue() != null)
-                .filter(book -> (new Date().getTime() - book.getDateOfIssue().getTime()) > 20 * 24 * 60 * 60 * 1000)
-                .sorted(Comparator.comparing(Book::getDateOfIssue))
-                .toList();
+        List<Book> books = bookService.showOverdueBooks();
         model.addAttribute("books", books);
         return "overdue-books";
     }

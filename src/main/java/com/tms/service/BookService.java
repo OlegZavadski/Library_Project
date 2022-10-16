@@ -8,4 +8,5 @@ public interface BookService {
     void save(Book book);
     Book findById(Integer id);
     List<Book> showAllBooks();
+    List<Book> showOverdueBooks();
 }
