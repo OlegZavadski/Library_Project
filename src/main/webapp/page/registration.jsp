@@ -31,7 +31,7 @@
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
                             value="Reset">Reset
                     </button>
-                    <H4><font color="red"> ${userExists}</font></H4>
+                    <H4><font color="red"> ${error}</font></H4>
                 </div>
             </form>
         </div>

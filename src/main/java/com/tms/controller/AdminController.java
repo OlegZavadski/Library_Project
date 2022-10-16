@@ -46,10 +46,11 @@ public class AdminController {
                                @RequestParam String password,
                                Model model) {
         if (login.isBlank() || password.isBlank()) {
+            model.addAttribute("error", "Some field is empty");
             return "registration";
         }
         if (userService.findByLogin(login) != null) {
-            model.addAttribute("userExists", "User with this login exists!");
+            model.addAttribute("error", "User with this login exists!");
             return "registration";
         }
         userService.saveNewUser(new User(login, password, ROLE.ROLE_USER));
@@ -58,7 +59,8 @@ public class AdminController {
     }
 
     @GetMapping(path = "/show_books_of_user")
-    public String showBooksOfUser(@RequestParam Integer idOfUser, Model model) {
+    public String showBooksOfUser(@RequestParam Integer idOfUser,
+                                  Model model) {
         UserDto userById = userService.findById(idOfUser);
         List<Book> booksOfUser = userById.getBooks()
                 .stream()
