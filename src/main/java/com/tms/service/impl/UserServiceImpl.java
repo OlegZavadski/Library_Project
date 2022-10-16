@@ -45,8 +45,9 @@ public class UserServiceImpl implements UserService {
         userRepository.findById(id).ifPresent(user -> user.setDeleted(true));
     }
 
-    public List<UserDto> findOnlyUsers() {
-        return userRepository.findOnlyUsers()
+    public List<UserDto> findOnlyActiveUsers() {
+        return userRepository
+                .findOnlyActiveUsers()
                 .stream()
                 .map(mapper::createUserDto)
                 .sorted(Comparator.comparing(UserDto::getId))

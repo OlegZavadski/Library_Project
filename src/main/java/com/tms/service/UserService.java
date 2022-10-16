@@ -16,5 +16,5 @@ public interface UserService {
 
     void delete(Integer id);
 
-    List<UserDto> findOnlyUsers();
+    List<UserDto> findOnlyActiveUsers();
 }
