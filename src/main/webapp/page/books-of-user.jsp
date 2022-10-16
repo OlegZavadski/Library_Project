@@ -23,6 +23,7 @@
                 <th scope="col">Id of the book</th>
                 <th scope="col">Author of the book</th>
                 <th scope="col">Title of the book</th>
+                <th scope="col">Year of publishing</th>
                 <th scope="col">Date of issue</th>
                 <th scope="col">Return the book</th>
             </tr>
@@ -34,6 +35,7 @@
                     <td> ${book.id}</td>
                     <td> ${book.author}</td>
                     <td> ${book.title}</td>
+                    <td> ${book.year}</td>
                     <td><fmt:formatDate value="${book.dateOfIssue}" pattern="yyyy-MM-dd"/></td>
                     <td>
                         <form class="d-flex"

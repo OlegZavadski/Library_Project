@@ -1,5 +1,6 @@
 package com.tms.controller;
 
+import com.tms.dto.UserDto;
 import com.tms.model.Book;
 import com.tms.model.ROLE;
 import com.tms.model.User;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -59,7 +59,7 @@ public class AdminController {
 
     @GetMapping(path = "/show_books_of_user")
     public String showBooksOfUser(@RequestParam Integer idOfUser, Model model) {
-        User userById = userService.findById(idOfUser);
+        UserDto userById = userService.findById(idOfUser);
         List<Book> booksOfUser = userById.getBooks()
                 .stream()
                 .sorted(Comparator.comparing(Book::getId))

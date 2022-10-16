@@ -1,5 +1,6 @@
 package com.tms.service.impl;
 
+import com.tms.dto.UserDto;
 import com.tms.model.Book;
 import com.tms.model.User;
 import com.tms.service.BookService;
@@ -21,7 +22,7 @@ public class GeneralServiceImpl implements GeneralService {
 
     public void addBookToUser(Integer idOfBook, Integer idOfUser) {
         Book bookById = bookService.findById(idOfBook);
-        User userById = userService.findById(idOfUser);
+        UserDto userById = userService.findById(idOfUser);
         bookById.setAvailable(!bookById.isAvailable());
         bookById.setDateOfIssue(new Date());
         userById.getBooks().add(bookById);
@@ -30,7 +31,7 @@ public class GeneralServiceImpl implements GeneralService {
 
     public void returnBookFromUser(Integer idOfBook, Integer idOfUser) {
         Book bookById = bookService.findById(idOfBook);
-        User userById = userService.findById(idOfUser);
+        UserDto userById = userService.findById(idOfUser);
         bookById.setAvailable(!bookById.isAvailable());
         bookById.setDateOfIssue(null);
         userById.getBooks().remove(bookById);

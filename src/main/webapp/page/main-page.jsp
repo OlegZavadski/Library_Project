@@ -50,7 +50,7 @@
                 </sec:authorize>
                 <th scope="col">Author of a book</th>
                 <th scope="col">Title of a book</th>
-                <th scope="col">Year of a book</th>
+                <th scope="col">Year of publishing</th>
                 <th scope="col">Availability</th>
             </tr>
             </thead>

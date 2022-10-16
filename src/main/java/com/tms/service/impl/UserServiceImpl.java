@@ -1,7 +1,9 @@
 package com.tms.service.impl;
 
+import com.tms.dto.UserDto;
 import com.tms.model.User;
 import com.tms.repository.UserRepository;
+import com.tms.service.DtoMapper;
 import com.tms.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,13 +14,16 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final DtoMapper mapper;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, DtoMapper mapper) {
         this.userRepository = userRepository;
+        this.mapper = mapper;
     }
 
-    public User findById(Integer id) {
-        return userRepository.findById(id).orElse(null);
+    public UserDto findById(Integer id) {
+        User userFromDb = userRepository.findById(id).orElse(null);
+        return userFromDb != null ? mapper.createUserDto(userFromDb) : null;
     }
 
     public void save(User user) {
@@ -31,18 +36,20 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    public User findByLogin(String login) {
-        return userRepository.findByLogin(login);
+    public UserDto findByLogin(String login) {
+        User userByLogin = userRepository.findByLogin(login);
+        return mapper.createUserDto(userByLogin);
     }
 
     public void delete(Integer id) {
         userRepository.deleteById(id);
     }
 
-    public List<User> findOnlyUsers() {
+    public List<UserDto> findOnlyUsers() {
         return userRepository.findOnlyUsers()
                 .stream()
-                .sorted(Comparator.comparing(User::getId))
+                .map(mapper::createUserDto)
+                .sorted(Comparator.comparing(UserDto::getId))
                 .toList();
     }
 }

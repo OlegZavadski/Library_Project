@@ -1,6 +1,6 @@
 package com.tms.service.impl;
 
-import com.tms.model.User;
+import com.tms.dto.UserDto;
 import com.tms.model.UserSecurity;
 import com.tms.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +18,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User userByLogin = userService.findByLogin(login);
+        UserDto userByLogin = userService.findByLogin(login);
         if (userByLogin == null) {
             return new UserSecurity(null, null, null);
         }

@@ -33,7 +33,7 @@ public class User {
     @UpdateTimestamp
     @Temporal(TemporalType.DATE)
     private Date updated;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_books",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
