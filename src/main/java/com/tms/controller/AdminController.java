@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -100,6 +101,19 @@ public class AdminController {
         generalService.returnBookFromUser(idOfBook, idOfUser);
         findOnlyUsers(model);
         return "admin";
+    }
+
+    @GetMapping(path = "/show_overdue_books")
+    public String overdueBooks(Model model) {
+        List<Book> books = bookService
+                .showAllBooks()
+                .stream()
+                .filter(book -> book.getDateOfIssue() != null)
+                .filter(book -> (new Date().getTime() - book.getDateOfIssue().getTime()) > 20 * 24 * 60 * 60 * 1000)
+                .sorted(Comparator.comparing(Book::getDateOfIssue))
+                .toList();
+        model.addAttribute("books", books);
+        return "overdue-books";
     }
 
     private void findOnlyUsers(Model model) {

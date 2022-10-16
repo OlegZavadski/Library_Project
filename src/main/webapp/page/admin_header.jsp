@@ -30,6 +30,10 @@
                        href="${pageContext.request.contextPath}/admin/registration">New
                         user registration</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page"
+                       href="${pageContext.request.contextPath}/admin/show_overdue_books">Show overdue books</a>
+                </li>
             </ul>
         </div>
     </div>

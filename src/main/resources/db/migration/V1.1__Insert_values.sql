@@ -10,11 +10,11 @@ values ('Kyle', '$2a$10$WD5gHHObTC2mRCIS2BJFjeiQoAnZriMbUUMKy.xcxmEcDw82b32H.', 
 
 insert into books (author, title, year, created, updated, availability, date_of_issue)
 values ('Stephen King', 'It', 2005, '2022-09-26',
-        '2022-09-26', false, '2022-09-26'),
+        '2022-09-26', false, '2022-09-30'),
        ('Stephen King', 'It', 2005, '2022-09-26',
         '2022-09-26', true, null),
        ('Herbert Schildt', 'Java 8. The Complete Reference', 2015, '2022-09-26',
-        '2022-09-26', false, '2022-09-26'),
+        '2022-09-26', false, '2022-10-10'),
        ('Herbert Schildt', 'Java 8. The Complete Reference', 2015, '2022-09-26',
         '2022-09-26', true, null),
        ('Stephen King', '11/22/63', 2010, '2022-09-26',
