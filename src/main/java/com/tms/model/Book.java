@@ -7,9 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -23,27 +21,37 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String author;
-    private String name;
-    private int count;
+    private String title;
+    private Integer year;
     @CreationTimestamp
     @Temporal(TemporalType.DATE)
     private Date created;
     @UpdateTimestamp
     @Temporal(TemporalType.DATE)
     private Date updated;
-    @ManyToMany(mappedBy = "books")
-    private List<User> users = new ArrayList<>();
+    @Column(name = "availability")
+    private boolean isAvailable = true;
+    @Column(name = "date_of_issue")
+    private Date dateOfIssue;
+    @ManyToOne
+    @JoinTable(name = "users_books",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private User user;
 
-    public Book(String author, String name, int count) {
+    public Book(String author, String title, Integer year) {
         this.author = author;
-        this.name = name;
-        this.count = count;
+        this.title = title;
+        this.year = year;
     }
 
     @Override
     public String toString() {
-        return "{Author='" + author + '\'' +
-                ", Name='" + name + '\'' + "}";
+        return "Book{" +
+                "author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", year=" + year +
+                '}';
     }
 
     @Override

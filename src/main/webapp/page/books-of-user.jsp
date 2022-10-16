@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Books of user</title>
@@ -21,7 +22,8 @@
                 <th scope="col">№ of the line</th>
                 <th scope="col">Id of the book</th>
                 <th scope="col">Author of the book</th>
-                <th scope="col">Name of the book</th>
+                <th scope="col">Title of the book</th>
+                <th scope="col">Date of issue</th>
                 <th scope="col">Return the book</th>
             </tr>
             </thead>
@@ -31,7 +33,8 @@
                     <th scope="row"> ${loop.count}</th>
                     <td> ${book.id}</td>
                     <td> ${book.author}</td>
-                    <td> ${book.name}</td>
+                    <td> ${book.title}</td>
+                    <td><fmt:formatDate value="${book.dateOfIssue}" pattern="yyyy-MM-dd"/></td>
                     <td>
                         <form class="d-flex"
                               action="${pageContext.request.contextPath}/admin/return_book_from_user"

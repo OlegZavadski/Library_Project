@@ -19,7 +19,7 @@
                 <th scope="col">№ of the line</th>
                 <th scope="col">Id of the book</th>
                 <th scope="col">Author of the book</th>
-                <th scope="col">Name of the book</th>
+                <th scope="col">Title of the book</th>
                 <th scope="col">Add the book</th>
             </tr>
             </thead>
@@ -30,9 +30,9 @@
                         <th scope="row"> ${loop.count}</th>
                         <td> ${book.id}</td>
                         <td> ${book.author}</td>
-                        <td> ${book.name}</td>
+                        <td> ${book.title}</td>
                         <c:choose>
-                            <c:when test="${book.count>=1}">
+                            <c:when test="${book.available}">
                                 <td>
                                     <form class="d-flex"
                                           action="${pageContext.request.contextPath}/admin/add_book_to_user"

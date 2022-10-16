@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>User account</title>
@@ -36,7 +37,9 @@
                     <tr>
                         <th scope="col">№ of a line</th>
                         <th scope="col">Author of a book</th>
-                        <th scope="col">Name of a book</th>
+                        <th scope="col">Title of a book</th>
+                        <th scope="col">Year of a book</th>
+                        <th scope="col">Date of issue</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,7 +47,10 @@
                         <tr>
                             <th scope="row"> ${loop.count}</th>
                             <td> ${book.author}</td>
-                            <td> ${book.name}</td>
+                            <td> ${book.title}</td>
+                            <td> ${book.year}</td>
+                            <td><fmt:formatDate value="${book.dateOfIssue}" pattern="yyyy-MM-dd"/></td>
+
                         </tr>
                     </c:forEach>
                     </tbody>

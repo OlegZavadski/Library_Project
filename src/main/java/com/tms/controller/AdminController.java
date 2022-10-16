@@ -102,19 +102,6 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping(path = "/show_users_of_book")
-    public String usersOfBook(@RequestParam Integer idOfBook,
-                              Model model) {
-        Book bookById = bookService.findById(idOfBook);
-        List<User> usersOfBook = bookById.getUsers()
-                .stream()
-                .sorted(Comparator.comparing(User::getId))
-                .toList();
-        model.addAttribute("bookById", bookById);
-        model.addAttribute("usersOfBook", usersOfBook);
-        return "users-of-book";
-    }
-
     private void findOnlyUsers(Model model) {
         model.addAttribute("allUsers", userService.findOnlyUsers());
     }
