@@ -13,7 +13,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <sec:authorize access="isAnonymous()">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/">Library</a>
+            <a class="navbar-brand">Library</a>
         </sec:authorize>
         <sec:authorize access="hasRole('ADMIN')">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/admin">Library</a>
@@ -64,14 +64,26 @@
                     <td> ${book.author}</td>
                     <td> ${book.title}</td>
                     <td> ${book.year}</td>
-                    <c:choose>
-                        <c:when test="${book.available}">
-                            <td> Available</td>
-                        </c:when>
-                        <c:otherwise>
-                            <td> Not available</td>
-                        </c:otherwise>
-                    </c:choose>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <c:choose>
+                            <c:when test="${book.available}">
+                                <td> Available</td>
+                            </c:when>
+                            <c:otherwise>
+                                <td> The user with id ${book.user.id} has this book</td>
+                            </c:otherwise>
+                        </c:choose>
+                    </sec:authorize>
+                    <sec:authorize access="hasRole('USER') || isAnonymous()">
+                        <c:choose>
+                            <c:when test="${book.available}">
+                                <td> Available</td>
+                            </c:when>
+                            <c:otherwise>
+                                <td> Not available</td>
+                            </c:otherwise>
+                        </c:choose>
+                    </sec:authorize>
                 </tr>
             </c:forEach>
             </tbody>
