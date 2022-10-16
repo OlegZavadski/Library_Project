@@ -1,7 +1,6 @@
 package com.tms.controller;
 
 import com.tms.model.Book;
-import com.tms.model.User;
 import com.tms.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,8 +29,7 @@ public class UserController {
         } else {
             login = principal.toString();
         }
-        User userByLogin = userService.findByLogin(login);
-        List<Book> booksOfUser = userService.getAllBooksFromUser(userByLogin.getId());
+        List<Book> booksOfUser = userService.findByLogin(login).getBooks();
         model.addAttribute("books", booksOfUser);
         return "user";
     }

@@ -1,6 +1,5 @@
 package com.tms.service;
 
-import com.tms.model.Book;
 import com.tms.model.User;
 
 import java.util.List;
@@ -15,8 +14,6 @@ public interface UserService {
     User findByLogin(String login);
 
     void delete(Integer id);
-
-    List<Book> getAllBooksFromUser(Integer id);
 
     List<User> findOnlyUsers();
 }

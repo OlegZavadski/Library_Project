@@ -1,6 +1,5 @@
 package com.tms.service.impl;
 
-import com.tms.model.Book;
 import com.tms.model.User;
 import com.tms.repository.UserRepository;
 import com.tms.service.UserService;
@@ -38,17 +37,6 @@ public class UserServiceImpl implements UserService {
 
     public void delete(Integer id) {
         userRepository.deleteById(id);
-    }
-
-    public List<Book> getAllBooksFromUser(Integer id) {
-        User user = userRepository.findById(id).orElse(null);
-        if (user == null) {
-            return null;
-        }
-        return user.getBooks()
-                .stream()
-                .sorted(Comparator.comparing(Book::getId))
-                .toList();
     }
 
     public List<User> findOnlyUsers() {
