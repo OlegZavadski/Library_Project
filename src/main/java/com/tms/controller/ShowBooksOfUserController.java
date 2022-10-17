@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/admin")
-public class ShowBooksOfUserController extends AdminAbstractController {
+public class ShowBooksOfUserController extends AbstractAdminController {
 
     public ShowBooksOfUserController(UserService userService, BookService bookService, GeneralService generalService) {
         super(userService, bookService, generalService);

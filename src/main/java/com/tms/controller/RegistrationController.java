@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(path = "/admin")
-public class RegistrationController extends AdminAbstractController {
+public class RegistrationController extends AbstractAdminController {
 
     public RegistrationController(UserService userService, BookService bookService, GeneralService generalService) {
         super(userService, bookService, generalService);

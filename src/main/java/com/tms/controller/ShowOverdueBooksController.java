@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/admin")
-public class ShowOverdueBooksController extends AdminAbstractController {
+public class ShowOverdueBooksController extends AbstractAdminController {
 
     public ShowOverdueBooksController(UserService userService, BookService bookService, GeneralService generalService) {
         super(userService, bookService, generalService);

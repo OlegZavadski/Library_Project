@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(path = "/admin")
-public class DeleteUserController extends AdminAbstractController {
+public class DeleteUserController extends AbstractAdminController {
 
     public DeleteUserController(UserService userService, BookService bookService, GeneralService generalService) {
         super(userService, bookService, generalService);

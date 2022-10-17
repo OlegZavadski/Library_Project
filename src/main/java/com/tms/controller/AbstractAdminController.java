@@ -7,12 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 @Controller
-public abstract class AdminAbstractController {
+public abstract class AbstractAdminController {
     protected final UserService userService;
     protected final BookService bookService;
     protected final GeneralService generalService;
 
-    public AdminAbstractController(UserService userService, BookService bookService, GeneralService generalService) {
+    public AbstractAdminController(UserService userService, BookService bookService, GeneralService generalService) {
         this.userService = userService;
         this.bookService = bookService;
         this.generalService = generalService;
