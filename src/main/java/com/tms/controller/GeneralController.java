@@ -1,6 +1,8 @@
 package com.tms.controller;
 
 import com.tms.service.BookService;
+import com.tms.service.GeneralService;
+import com.tms.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,11 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(path = "/")
-public class GeneralController {
-    private final BookService bookService;
+public class GeneralController extends AdminAbstractController{
 
-    public GeneralController(BookService bookService) {
-        this.bookService = bookService;
+    public GeneralController(UserService userService, BookService bookService, GeneralService generalService) {
+        super(userService, bookService, generalService);
     }
 
     @GetMapping
@@ -21,8 +22,4 @@ public class GeneralController {
         return "main-page";
     }
 
-    @GetMapping(path = "login")
-    public String authorization() {
-        return "login";
-    }
 }

@@ -23,12 +23,7 @@ public class UserController {
     @GetMapping
     public String main(Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String login = null;
-        if (principal instanceof UserDetails) {
-            login = ((UserDetails) principal).getUsername();
-        } else {
-            login = principal.toString();
-        }
+        String login = ((UserDetails) principal).getUsername();
         List<Book> booksOfUser = userService.findByLogin(login).getBooks();
         model.addAttribute("books", booksOfUser);
         return "user";
