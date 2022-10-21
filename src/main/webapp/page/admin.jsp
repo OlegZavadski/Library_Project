@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<jsp:include page="admin_header.jsp"/>
+<jsp:include page="header-for-admin.jsp"/>
 
 <div class="container">
     <div class="row">
@@ -18,11 +18,11 @@
             <caption>All users</caption>
             <thead>
             <tr>
-                <th scope="col">№ of the line</th>
-                <th scope="col">Id of the user</th>
+                <th scope="col">Line number</th>
+                <th scope="col">User id</th>
                 <th scope="col">Login of the user</th>
                 <th scope="col">Show books of the user</th>
-                <th scope="col">Add book to user</th>
+                <th scope="col">Add book to the user</th>
                 <th scope="col">Delete the user</th>
             </tr>
             </thead>

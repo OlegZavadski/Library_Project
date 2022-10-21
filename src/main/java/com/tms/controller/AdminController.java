@@ -20,4 +20,10 @@ public class AdminController extends AbstractAdminController {
         findOnlyActiveUsers(model);
         return "admin";
     }
+
+    @GetMapping(path = "/show_all_books")
+    public String showAllBooks(Model model) {
+        model.addAttribute("books", bookService.findAllBooks());
+        return "list-of-books-for-admin";
+    }
 }

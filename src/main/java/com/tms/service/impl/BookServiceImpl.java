@@ -1,6 +1,7 @@
 package com.tms.service.impl;
 
 import com.tms.model.Book;
+import com.tms.model.BookProjection;
 import com.tms.repository.BookRepository;
 import com.tms.service.BookService;
 import org.springframework.stereotype.Service;
@@ -24,17 +25,27 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findById(id).orElse(null);
     }
 
-    public List<Book> showAllBooks() {
+    public List<Book> findAllBooks() {
         return bookRepository
                 .findAll()
                 .stream()
-                .sorted(Comparator.comparing(Book::getId))
+                .sorted(Comparator.comparing(Book::getTitle))
                 .toList();
+    }
+
+    @Override
+    public List<BookProjection> findAllBooksWithCount() {
+        return bookRepository.findAllBooksWithCount();
     }
 
     @Override
     public List<Book> showOverdueBooks() {
         return bookRepository
                 .showOverdueBooks();
+    }
+
+    @Override
+    public List<BookProjection> findByAuthorOrderByTitle(String author) {
+        return bookRepository.findByAuthorOrderByTitle(author);
     }
 }

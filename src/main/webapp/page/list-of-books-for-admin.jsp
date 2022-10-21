@@ -10,17 +10,7 @@
 </head>
 <body>
 
-<sec:authorize access="hasRole('ADMIN')">
-    <jsp:include page="header-for-admin.jsp"/>
-</sec:authorize>
-
-<sec:authorize access="hasRole('USER')">
-    <jsp:include page="header-for-user.jsp"/>
-</sec:authorize>
-
-<sec:authorize access="isAnonymous()">
-    <jsp:include page="header-for-anonymous.jsp"/>
-</sec:authorize>
+<jsp:include page="header-for-admin.jsp"/>
 
 <div class="container">
     <div class="row">
@@ -29,21 +19,30 @@
             <thead>
             <tr>
                 <th scope="col">Line number</th>
-                <th scope="col">Book author</th>
-                <th scope="col">Title of the book</th>
+                <th scope="col">Id of a book</th>
+                <th scope="col">Author of a book</th>
+                <th scope="col">Title of a book</th>
                 <th scope="col">Year of publishing</th>
-                <th scope="col">Count of available books</th>
+                <th scope="col">Availability</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${books}" var="book" varStatus="loop">
                 <tr>
                     <th scope="row"> ${loop.count}</th>
+                    <td> ${book.id}</td>
                     <td><a href="${pageContext.request.contextPath}/authors/${book.author}"
                            class="link-primary">${book.author}</a></td>
                     <td> ${book.title}</td>
                     <td> ${book.year}</td>
-                    <td> ${book.count}</td>
+                    <c:choose>
+                        <c:when test="${book.available}">
+                            <td> Available</td>
+                        </c:when>
+                        <c:otherwise>
+                            <td> The user with id ${book.user.id} has this book</td>
+                        </c:otherwise>
+                    </c:choose>
                 </tr>
             </c:forEach>
             </tbody>

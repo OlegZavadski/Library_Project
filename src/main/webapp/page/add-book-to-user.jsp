@@ -9,16 +9,16 @@
 </head>
 <body>
 
-<jsp:include page="admin_header.jsp"/>
+<jsp:include page="header-for-admin.jsp"/>
 
 <div class="container">
     <div class="row">
         <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col">№ of the line</th>
-                <th scope="col">Id of the book</th>
-                <th scope="col">Author of the book</th>
+                <th scope="col">Line number</th>
+                <th scope="col">Book id</th>
+                <th scope="col">Book author</th>
                 <th scope="col">Title of the book</th>
                 <th scope="col">Add the book</th>
             </tr>

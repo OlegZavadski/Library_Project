@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<jsp:include page="admin_header.jsp"/>
+<jsp:include page="header-for-admin.jsp"/>
 
 <c:choose>
     <c:when test="${books.size()>0}">
@@ -21,9 +21,9 @@
                     <caption>Overdue books</caption>
                     <thead>
                     <tr>
-                        <th scope="col">№ of the line</th>
-                        <th scope="col">Id of the book</th>
-                        <th scope="col">Author of the book</th>
+                        <th scope="col">Line number</th>
+                        <th scope="col">Book id</th>
+                        <th scope="col">Book author</th>
                         <th scope="col">Title of the book</th>
                         <th scope="col">Year of publishing</th>
                         <th scope="col">Date of issue</th>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>Admin header</title>
+    <title>User header</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/">Library</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/user">Library</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -20,19 +20,6 @@
                        href="${pageContext.request.contextPath}/logout">
                         Welcome Back, <sec:authentication property="name"/>!
                         Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/admin">Admin
-                        page</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page"
-                       href="${pageContext.request.contextPath}/admin/registration">New
-                        user registration</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page"
-                       href="${pageContext.request.contextPath}/admin/show_overdue_books">Show overdue books</a>
                 </li>
             </ul>
         </div>

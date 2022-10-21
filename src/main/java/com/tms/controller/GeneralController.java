@@ -18,7 +18,7 @@ public class GeneralController extends AbstractAdminController {
 
     @GetMapping
     public String mainPage(Model model) {
-        model.addAttribute("books", bookService.showAllBooks());
+        model.addAttribute("books", bookService.findAllBooksWithCount());
         return "main-page";
     }
 

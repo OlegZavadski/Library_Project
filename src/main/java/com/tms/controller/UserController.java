@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -24,7 +25,12 @@ public class UserController {
     public String main(Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String login = ((UserDetails) principal).getUsername();
-        List<Book> booksOfUser = userService.findByLogin(login).getBooks();
+        List<Book> booksOfUser = userService
+                .findByLogin(login)
+                .getBooks()
+                .stream()
+                .sorted(Comparator.comparing(Book::getDateOfIssue))
+                .toList();
         model.addAttribute("books", booksOfUser);
         return "user";
     }

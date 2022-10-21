@@ -22,7 +22,7 @@ public class AddBookToUserController extends AbstractAdminController {
     public String addBookToUser(@RequestParam Integer idOfUser,
                                 Model model) {
         model.addAttribute("userById", userService.findById(idOfUser));
-        model.addAttribute("allBooks", bookService.showAllBooks());
+        model.addAttribute("allBooks", bookService.findAllBooks());
         return "add-book-to-user";
     }
 

@@ -11,34 +11,20 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/">Library</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page"
-                       href="${pageContext.request.contextPath}/logout">
-                        Welcome Back, <sec:authentication property="name"/>!
-                        Logout</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="header-for-user.jsp"/>
 
 <c:choose>
     <c:when test="${books.size()>0}">
         <div class="container">
             <div class="row">
                 <table class="table table-striped">
-                    <caption>These are your books</caption>
+                    <caption>These are your books. You have ${books.size()} books</caption>
                     <thead>
                     <tr>
-                        <th scope="col">№ of a line</th>
-                        <th scope="col">Author of a book</th>
-                        <th scope="col">Title of a book</th>
-                        <th scope="col">Year of a book</th>
+                        <th scope="col">Line number</th>
+                        <th scope="col">Book author</th>
+                        <th scope="col">Title of the book</th>
+                        <th scope="col">Year of publishing</th>
                         <th scope="col">Date of issue</th>
                     </tr>
                     </thead>
