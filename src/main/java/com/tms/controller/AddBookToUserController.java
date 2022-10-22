@@ -32,7 +32,7 @@ public class AddBookToUserController extends AbstractAdminController {
                                 Model model) {
         generalService.addBookToUser(idOfBook, idOfUser);
         findOnlyActiveUsers(model);
-        return "admin";
+        return "list-of-users-for-admin";
     }
 
 }

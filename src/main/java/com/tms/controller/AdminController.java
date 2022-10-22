@@ -16,9 +16,9 @@ public class AdminController extends AbstractAdminController {
     }
 
     @GetMapping()
-    public String adminPage(Model model) {
+    public String showAllUsers(Model model) {
         findOnlyActiveUsers(model);
-        return "admin";
+        return "list-of-users-for-admin";
     }
 
     @GetMapping(path = "/show_all_books")

@@ -22,7 +22,7 @@
                 <th scope="col">Login of the user</th>
                 <th scope="col">Show books of the user</th>
                 <th scope="col">Add book to the user</th>
-                <th scope="col">Delete the user</th>
+                <th scope="col">Delete user</th>
             </tr>
             </thead>
             <tbody>
@@ -65,7 +65,7 @@
                         </c:otherwise>
                     </c:choose>
                     <td>
-                        <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete"
+                        <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete_user"
                               method="post">
                             <input type="hidden" name="idToDelete" value="${user.id}">
                             <button type="submit" class="btn btn-danger">Delete

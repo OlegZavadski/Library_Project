@@ -29,6 +29,7 @@ public class BookServiceImpl implements BookService {
         return bookRepository
                 .findAll()
                 .stream()
+                .filter(book -> !book.isDeleted())
                 .sorted(Comparator.comparing(Book::getTitle))
                 .toList();
     }
@@ -40,12 +41,16 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> showOverdueBooks() {
-        return bookRepository
-                .showOverdueBooks();
+        return bookRepository.showOverdueBooks();
     }
 
     @Override
     public List<BookProjection> findByAuthorOrderByTitle(String author) {
         return bookRepository.findByAuthorOrderByTitle(author);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        bookRepository.findById(id).ifPresent(book -> book.setDeleted(true));
     }
 }

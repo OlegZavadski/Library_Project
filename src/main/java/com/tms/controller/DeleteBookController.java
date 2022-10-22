@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(path = "/admin")
-public class ReturnBookFromUserController extends AbstractAdminController {
+public class DeleteBookController extends AbstractAdminController {
 
-    public ReturnBookFromUserController(UserService userService, BookService bookService, GeneralService generalService) {
+    public DeleteBookController(UserService userService, BookService bookService, GeneralService generalService) {
         super(userService, bookService, generalService);
     }
 
-    @PostMapping(path = "/return_book_from_user")
-    public String returnBookFromUser(@RequestParam Integer idOfBook,
-                                     @RequestParam Integer idOfUser,
-                                     Model model) {
-        generalService.returnBookFromUser(idOfBook, idOfUser);
+    @PostMapping(path = "/delete_book")
+    public String delete(@RequestParam Integer idToDelete,
+                         Model model) {
+        bookService.delete(idToDelete);
         findOnlyActiveUsers(model);
         return "list-of-users-for-admin";
     }
+
 }

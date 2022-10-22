@@ -31,6 +31,8 @@ public class Book {
     private Date updated;
     @Column(name = "availability")
     private boolean isAvailable = true;
+    @Column(name = "is_deleted")
+    private boolean isDeleted = false;
     @Column(name = "date_of_issue")
     private Date dateOfIssue;
     @ManyToOne

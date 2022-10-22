@@ -18,11 +18,12 @@
             <thead>
             <tr>
                 <th scope="col">Line number</th>
-                <th scope="col">Id of a book</th>
-                <th scope="col">Author of a book</th>
-                <th scope="col">Title of a book</th>
+                <th scope="col">Book id</th>
+                <th scope="col">Book author</th>
+                <th scope="col">Title of the book</th>
                 <th scope="col">Year of publishing</th>
                 <th scope="col">Availability</th>
+                <th scope="col">Delete book</th>
             </tr>
             </thead>
             <tbody>
@@ -40,6 +41,24 @@
                         </c:when>
                         <c:otherwise>
                             <td> The user with id ${book.user.id} has this book</td>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${book.user==null}">
+                            <td>
+                                <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete_book"
+                                      method="post">
+                                    <input type="hidden" name="idToDelete" value="${book.id}">
+                                    <button type="submit" class="btn btn-danger">Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>
+                                <button type="button" class="btn btn-secondary" disabled>You can't delete this book
+                                </button>
+                            </td>
                         </c:otherwise>
                     </c:choose>
                 </tr>

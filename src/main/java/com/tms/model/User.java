@@ -33,7 +33,7 @@ public class User {
     @UpdateTimestamp
     @Temporal(TemporalType.DATE)
     private Date updated;
-    @Column(name = "deleted")
+    @Column(name = "is_deleted")
     private boolean isDeleted = false;
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_books",

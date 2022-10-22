@@ -22,8 +22,8 @@
                         Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/admin">Admin
-                        page</a>
+                    <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/admin">Show all
+                        users</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page"
@@ -31,12 +31,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page"
-                       href="${pageContext.request.contextPath}/admin/registration">New
-                        user registration</a>
+                       href="${pageContext.request.contextPath}/admin/show_overdue_books">Show overdue books</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page"
-                       href="${pageContext.request.contextPath}/admin/show_overdue_books">Show overdue books</a>
+                       href="${pageContext.request.contextPath}/admin/registration">New
+                        user registration</a>
                 </li>
             </ul>
         </div>

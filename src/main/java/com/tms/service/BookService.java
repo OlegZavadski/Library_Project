@@ -17,4 +17,5 @@ public interface BookService {
     List<Book> showOverdueBooks();
 
     List<BookProjection> findByAuthorOrderByTitle(String author);
+    void delete(Integer id);
 }

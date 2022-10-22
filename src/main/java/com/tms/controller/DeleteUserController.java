@@ -17,12 +17,12 @@ public class DeleteUserController extends AbstractAdminController {
         super(userService, bookService, generalService);
     }
 
-    @PostMapping(path = "/delete")
+    @PostMapping(path = "/delete_user")
     public String delete(@RequestParam Integer idToDelete,
                          Model model) {
         userService.delete(idToDelete);
         findOnlyActiveUsers(model);
-        return "admin";
+        return "list-of-users-for-admin";
     }
 
 }

@@ -39,7 +39,7 @@ public class RegistrationController extends AbstractAdminController {
         }
         userService.saveNewUser(new User(login, password, ROLE.ROLE_USER));
         findOnlyActiveUsers(model);
-        return "admin";
+        return "list-of-users-for-admin";
     }
 
 }

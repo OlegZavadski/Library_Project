@@ -24,7 +24,7 @@
                 <th scope="col">Title of the book</th>
                 <th scope="col">Year of publishing</th>
                 <th scope="col">Date of issue</th>
-                <th scope="col">Return the book</th>
+                <th scope="col">Return book</th>
             </tr>
             </thead>
             <tbody>
