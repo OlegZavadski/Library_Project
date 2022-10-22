@@ -35,13 +35,15 @@
                         <c:when test="${user.books.size()>0}">
                             <td>
                                 <a class="btn btn-info"
-                                   href="${pageContext.request.contextPath}/admin/${user.id}" role="button">Show
+                                   href="${pageContext.request.contextPath}/admin/show_books_of_user/${user.id}"
+                                   role="button">Show
                                     books</a>
                             </td>
                         </c:when>
                         <c:otherwise>
                             <td>
-                                User doesn't have any books
+                                <button type="button" class="btn btn-secondary" disabled>User doesn't have any books
+                                </button>
                             </td>
                         </c:otherwise>
                     </c:choose>

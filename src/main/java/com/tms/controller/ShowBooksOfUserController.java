@@ -22,7 +22,7 @@ public class ShowBooksOfUserController extends AbstractAdminController {
         super(userService, bookService, generalService);
     }
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/show_books_of_user/{id}")
     public String showBooksOfUser(@PathVariable(name = "id") Integer idOfUser,
                                   Model model) {
         UserDto userById = userService.findById(idOfUser);
