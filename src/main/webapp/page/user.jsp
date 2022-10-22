@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<jsp:include page="header-for-user.jsp"/>
+<jsp:include page="headers/header-for-user.jsp"/>
 
 <c:choose>
     <c:when test="${books.size()>0}">

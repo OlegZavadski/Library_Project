@@ -51,6 +51,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void delete(Integer id) {
+        bookRepository.findById(id).ifPresent(book -> book.setAvailable(false));
         bookRepository.findById(id).ifPresent(book -> book.setDeleted(true));
     }
 }

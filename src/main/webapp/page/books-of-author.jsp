@@ -11,15 +11,15 @@
 <body>
 
 <sec:authorize access="hasRole('ADMIN')">
-    <jsp:include page="header-for-admin.jsp"/>
+    <jsp:include page="headers/header-for-admin.jsp"/>
 </sec:authorize>
 
 <sec:authorize access="hasRole('USER')">
-    <jsp:include page="header-for-user.jsp"/>
+    <jsp:include page="headers/header-for-user.jsp"/>
 </sec:authorize>
 
 <sec:authorize access="isAnonymous()">
-    <jsp:include page="header-for-anonymous.jsp"/>
+    <jsp:include page="headers/header-for-anonymous.jsp"/>
 </sec:authorize>
 
 <div class="container">
