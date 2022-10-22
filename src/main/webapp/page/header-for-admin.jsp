@@ -38,6 +38,10 @@
                        href="${pageContext.request.contextPath}/admin/registration">New
                         user registration</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page"
+                       href="${pageContext.request.contextPath}/admin/save_new_book">Save a new book</a>
+                </li>
             </ul>
         </div>
     </div>

@@ -26,4 +26,5 @@ public class AdminController extends AbstractAdminController {
         model.addAttribute("books", bookService.findAllBooks());
         return "list-of-books-for-admin";
     }
+
 }

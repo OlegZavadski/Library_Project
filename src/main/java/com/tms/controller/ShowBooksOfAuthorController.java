@@ -28,4 +28,5 @@ public class ShowBooksOfAuthorController {
         model.addAttribute("booksOfAuthor", booksOfAuthor);
         return "books-of-author";
     }
+
 }

@@ -34,4 +34,5 @@ public class UserController {
         model.addAttribute("books", booksOfUser);
         return "user";
     }
+
 }

@@ -25,4 +25,5 @@ public class ReturnBookFromUserController extends AbstractAdminController {
         findOnlyActiveUsers(model);
         return "list-of-users-for-admin";
     }
+
 }
