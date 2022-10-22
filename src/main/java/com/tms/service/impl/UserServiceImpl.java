@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     public UserDto findByLogin(String login) {
         User userByLogin = userRepository.findByLogin(login);
-        return !userByLogin.isDeleted() ? mapper.createUserDto(userByLogin) : null;
+        return userByLogin != null && !userByLogin.isDeleted() ? mapper.createUserDto(userByLogin) : null;
     }
 
     public void delete(Integer id) {
