@@ -48,12 +48,10 @@
                     <c:choose>
                         <c:when test="${user.books.size()<6}">
                             <td>
-                                <form class="d-flex"
-                                      action="${pageContext.request.contextPath}/admin/add_book_to_user"
-                                      method="get">
-                                    <input type="hidden" name="idOfUser" value="${user.id}">
-                                    <button type="submit" class="btn btn-primary">Add a book to ${user.login}</button>
-                                </form>
+                                <a class="btn btn-primary"
+                                   href="${pageContext.request.contextPath}/admin/add_book_to_user/${user.id}"
+                                   role="button">Add book to
+                                    user</a>
                             </td>
                         </c:when>
                         <c:otherwise>

@@ -5,10 +5,7 @@ import com.tms.service.GeneralService;
 import com.tms.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(path = "/admin")
@@ -18,8 +15,8 @@ public class AddBookToUserController extends AbstractAdminController {
         super(userService, bookService, generalService);
     }
 
-    @GetMapping(path = "/add_book_to_user")
-    public String addBookToUser(@RequestParam Integer idOfUser,
+    @GetMapping(path = "/add_book_to_user/{id}")
+    public String addBookToUser(@PathVariable(name = "id") Integer idOfUser,
                                 Model model) {
         model.addAttribute("userById", userService.findById(idOfUser));
         model.addAttribute("allBooks", bookService.findAllBooks());
