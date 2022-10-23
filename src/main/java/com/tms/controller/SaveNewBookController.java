@@ -22,15 +22,15 @@ public class SaveNewBookController extends AbstractAdminController {
     }
 
     @GetMapping(path = "/save_new_book")
-    public String registration() {
+    public String saveNewBook() {
         return "save-new-book";
     }
 
     @PostMapping(path = "/save_new_book")
-    public String registration(@RequestParam String author,
-                               @RequestParam String title,
-                               @RequestParam(defaultValue = "0") Integer year,
-                               Model model) {
+    public String saveNewBook(@RequestParam String author,
+                              @RequestParam String title,
+                              @RequestParam(defaultValue = "0") Integer year,
+                              Model model) {
         if (author.isBlank() || title.isBlank()) {
             model.addAttribute("error", "Some field is empty");
             return "save-new-book";
