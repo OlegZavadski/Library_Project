@@ -22,7 +22,7 @@
                 <input class="form-control mr-sm-2" type="text" name="title"
                        placeholder="Input title"
                        aria-label="Title">
-                <input class="form-control mr-sm-2" type="text" name="year"
+                <input class="form-control mr-sm-2" type="number" name="year"
                        placeholder="Input year of publishing"
                        aria-label="Year">
                 <div class="buttons">
