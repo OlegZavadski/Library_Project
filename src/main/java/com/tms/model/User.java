@@ -1,5 +1,6 @@
 package com.tms.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "users")
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter

@@ -1,5 +1,6 @@
 package com.tms.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "books")
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -40,6 +42,13 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private User user;
+
+    public Book(Integer id, String author, String title, Integer year) {
+        this.id = id;
+        this.author = author;
+        this.title = title;
+        this.year = year;
+    }
 
     public Book(String author, String title, Integer year) {
         this.author = author;
