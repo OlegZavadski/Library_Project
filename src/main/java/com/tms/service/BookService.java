@@ -18,4 +18,5 @@ public interface BookService {
 
     List<BookProjection> findByAuthorOrderByTitle(String author);
     void delete(Integer id);
+    List<BookProjection> getBooksFromSearch(String forSearch);
 }

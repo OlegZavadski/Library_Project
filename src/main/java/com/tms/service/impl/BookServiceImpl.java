@@ -51,4 +51,9 @@ public class BookServiceImpl implements BookService {
         bookRepository.findById(id).ifPresent(book -> book.setAvailable(false));
         bookRepository.findById(id).ifPresent(book -> book.setDeleted(true));
     }
+
+    @Override
+    public List<BookProjection> getBooksFromSearch(String forSearch) {
+        return bookRepository.getBooksFromSearch("%" + forSearch + "%");
+    }
 }

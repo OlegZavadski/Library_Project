@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(path = "/")
@@ -19,6 +20,13 @@ public class GeneralController extends AbstractAdminController {
     @GetMapping
     public String mainPage(Model model) {
         model.addAttribute("books", bookService.findAllBooksWithCount());
+        return "main-page";
+    }
+
+    @GetMapping(path = "search")
+    public String search(@RequestParam String forSearch,
+                         Model model) {
+        model.addAttribute("books", bookService.getBooksFromSearch(forSearch));
         return "main-page";
     }
 

@@ -43,6 +43,12 @@
                        href="${pageContext.request.contextPath}/admin/save_new_book">Save a new book</a>
                 </li>
             </ul>
+            <form class="form-inline my-2 my-lg-0" method="get"
+                  action="${pageContext.request.contextPath}/search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Input author or title"
+                       aria-label="Search" name="forSearch">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search a book</button>
+            </form>
         </div>
     </div>
 </nav>
