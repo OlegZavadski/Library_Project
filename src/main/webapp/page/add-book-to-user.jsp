@@ -37,8 +37,8 @@
                                     <form class="d-flex"
                                           action="${pageContext.request.contextPath}/admin/add_book_to_user"
                                           method="post">
-                                        <input type="hidden" name="idOfBook" value="${book.id}">
-                                        <input type="hidden" name="idOfUser" value="${userById.id}">
+                                        <input type="hidden" name="bookId" value="${book.id}">
+                                        <input type="hidden" name="userId" value="${userById.id}">
                                         <button type="submit" class="btn btn-info">Add the book
                                         </button>
                                     </form>

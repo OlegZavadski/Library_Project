@@ -70,7 +70,7 @@
                             <td>
                                 <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete_user"
                                       method="post">
-                                    <input type="hidden" name="idToDelete" value="${user.id}">
+                                    <input type="hidden" name="userId" value="${user.id}">
                                     <button type="submit" class="btn btn-danger">Delete
                                     </button>
                                 </form>

@@ -21,25 +21,35 @@ public class UserServiceImpl implements UserService {
         this.mapper = mapper;
     }
 
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
     public UserDto findById(Integer id) {
         User userFromDb = userRepository.findById(id).orElse(null);
         return userFromDb != null ? mapper.createUserDto(userFromDb) : null;
     }
 
+    @Override
     public void saveNewUser(User user) {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);
     }
 
+    @Override
     public UserDto findByLogin(String login) {
         User userByLogin = userRepository.findByLogin(login);
         return userByLogin != null && !userByLogin.isDeleted() ? mapper.createUserDto(userByLogin) : null;
     }
 
+    @Override
     public void delete(Integer id) {
         userRepository.findById(id).ifPresent(user -> user.setDeleted(true));
     }
 
+    @Override
     public List<UserDto> findAllNotDeletedUsers() {
         return userRepository
                 .findAllNotDeletedUsers()

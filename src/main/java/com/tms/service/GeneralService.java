@@ -1,7 +1,7 @@
 package com.tms.service;
 
 public interface GeneralService {
-    void addBookToUser(Integer idOfBook, Integer idOfUser);
+    void addBookToUser(Integer bookId, Integer userId);
 
-    void returnBookFromUser(Integer idOfBook, Integer idOfUser);
+    void returnBookFromUser(Integer bookId, Integer userId);
 }

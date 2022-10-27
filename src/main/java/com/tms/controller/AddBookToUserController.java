@@ -16,18 +16,18 @@ public class AddBookToUserController extends AbstractAdminController {
     }
 
     @GetMapping(path = "/add_book_to_user/{id}")
-    public String addBookToUser(@PathVariable(name = "id") Integer idOfUser,
+    public String addBookToUser(@PathVariable(name = "id") Integer userId,
                                 Model model) {
-        model.addAttribute("userById", userService.findById(idOfUser));
+        model.addAttribute("userById", userService.findById(userId));
         model.addAttribute("allBooks", bookService.findAllNotDeletedBooks());
         return "add-book-to-user";
     }
 
     @PostMapping(path = "/add_book_to_user")
-    public String addBookToUser(@RequestParam Integer idOfBook,
-                                @RequestParam Integer idOfUser,
+    public String addBookToUser(@RequestParam Integer bookId,
+                                @RequestParam Integer userId,
                                 Model model) {
-        generalService.addBookToUser(idOfBook, idOfUser);
+        generalService.addBookToUser(bookId, userId);
         findOnlyActiveUsers(model);
         return "list-of-users-for-admin";
     }

@@ -18,10 +18,10 @@ public class ReturnBookFromUserController extends AbstractAdminController {
     }
 
     @PostMapping(path = "/return_book_from_user")
-    public String returnBookFromUser(@RequestParam Integer idOfBook,
-                                     @RequestParam Integer idOfUser,
+    public String returnBookFromUser(@RequestParam Integer bookId,
+                                     @RequestParam Integer userId,
                                      Model model) {
-        generalService.returnBookFromUser(idOfBook, idOfUser);
+        generalService.returnBookFromUser(bookId, userId);
         findOnlyActiveUsers(model);
         return "list-of-users-for-admin";
     }

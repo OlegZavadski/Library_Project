@@ -48,7 +48,7 @@
                             <td>
                                 <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete_book"
                                       method="post">
-                                    <input type="hidden" name="idToDelete" value="${book.id}">
+                                    <input type="hidden" name="bookId" value="${book.id}">
                                     <button type="submit" class="btn btn-danger">Delete
                                     </button>
                                 </form>

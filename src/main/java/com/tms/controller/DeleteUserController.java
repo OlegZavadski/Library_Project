@@ -18,9 +18,9 @@ public class DeleteUserController extends AbstractAdminController {
     }
 
     @PostMapping(path = "/delete_user")
-    public String delete(@RequestParam Integer idToDelete,
+    public String delete(@RequestParam Integer userId,
                          Model model) {
-        userService.delete(idToDelete);
+        userService.delete(userId);
         findOnlyActiveUsers(model);
         return "list-of-users-for-admin";
     }

@@ -23,9 +23,9 @@ public class ShowBooksOfUserController extends AbstractAdminController {
     }
 
     @GetMapping(path = "/show_books_of_user/{id}")
-    public String showBooksOfUser(@PathVariable(name = "id") Integer idOfUser,
+    public String showBooksOfUser(@PathVariable(name = "id") Integer userId,
                                   Model model) {
-        UserDto userById = userService.findById(idOfUser);
+        UserDto userById = userService.findById(userId);
         List<Book> booksOfUser = userById.getBooks()
                 .stream()
                 .sorted(Comparator.comparing(Book::getId))

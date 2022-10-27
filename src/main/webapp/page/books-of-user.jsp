@@ -40,8 +40,8 @@
                         <form class="d-flex"
                               action="${pageContext.request.contextPath}/admin/return_book_from_user"
                               method="post">
-                            <input type="hidden" name="idOfBook" value="${book.id}">
-                            <input type="hidden" name="idOfUser" value="${userById.id}">
+                            <input type="hidden" name="bookId" value="${book.id}">
+                            <input type="hidden" name="userId" value="${userById.id}">
                             <button type="submit" class="btn btn-info">Return the book
                             </button>
                         </form>

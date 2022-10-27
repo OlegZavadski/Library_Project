@@ -16,14 +16,17 @@ public class BookServiceImpl implements BookService {
         this.bookRepository = bookRepository;
     }
 
+    @Override
     public void save(Book book) {
         bookRepository.save(book);
     }
 
+    @Override
     public Book findById(Integer id) {
         return bookRepository.findById(id).orElse(null);
     }
 
+    @Override
     public List<Book> findAllNotDeletedBooks() {
         return bookRepository.findAllNotDeletedBooks();
     }
