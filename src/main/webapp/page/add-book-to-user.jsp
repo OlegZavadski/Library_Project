@@ -12,6 +12,9 @@
 <jsp:include page="headers/header-for-admin.jsp"/>
 
 <div class="container">
+    <div class="row mt-2">
+        <h4>Add book to ${userById.login}</h4>
+    </div>
     <div class="row">
         <table class="table table-striped">
             <thead>
