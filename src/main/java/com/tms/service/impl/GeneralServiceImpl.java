@@ -19,6 +19,7 @@ public class GeneralServiceImpl implements GeneralService {
         this.userRepository = userRepository;
     }
 
+    @Override
     public void addBookToUser(Integer bookId, Integer userId) {
         Book bookById = bookRepository.findById(bookId).get();
         User userById = userRepository.findById(userId).get();
@@ -30,6 +31,7 @@ public class GeneralServiceImpl implements GeneralService {
         userRepository.save(userById);
     }
 
+    @Override
     public void returnBookFromUser(Integer bookId, Integer userId) {
         Book bookById = bookRepository.findById(bookId).get();
         User userById = userRepository.findById(userId).get();
