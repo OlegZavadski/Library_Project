@@ -19,7 +19,7 @@ public class AddBookToUserController extends AbstractAdminController {
     public String addBookToUser(@PathVariable(name = "id") Integer idOfUser,
                                 Model model) {
         model.addAttribute("userById", userService.findById(idOfUser));
-        model.addAttribute("allBooks", bookService.findAllBooks());
+        model.addAttribute("allBooks", bookService.findAllNotDeletedBooks());
         return "add-book-to-user";
     }
 

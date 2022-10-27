@@ -19,7 +19,7 @@ public abstract class AbstractAdminController {
     }
 
     protected void findOnlyActiveUsers(Model model) {
-        model.addAttribute("allUsers", userService.findOnlyActiveUsers());
+        model.addAttribute("allUsers", userService.findAllNotDeletedUsers());
     }
 
 }

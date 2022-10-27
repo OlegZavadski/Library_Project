@@ -19,7 +19,7 @@ create table if not exists books
     year          integer      not null,
     created       date         not null,
     updated       date         not null,
-    availability  boolean      not null,
+    is_available  boolean      not null,
     is_deleted    boolean      not null,
     date_of_issue date,
     primary key (id)

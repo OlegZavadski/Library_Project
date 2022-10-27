@@ -10,11 +10,11 @@ public interface BookService {
 
     Book findById(Integer id);
 
-    List<Book> findAllBooks();
+    List<Book> findAllNotDeletedBooks();
 
     List<BookProjection> findAllBooksWithCount();
 
-    List<Book> showOverdueBooks();
+    List<Book> findOverdueBooks();
 
     List<BookProjection> findByAuthorOrderByTitle(String author);
     void delete(Integer id);

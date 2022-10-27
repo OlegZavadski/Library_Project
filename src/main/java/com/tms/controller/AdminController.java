@@ -23,7 +23,7 @@ public class AdminController extends AbstractAdminController {
 
     @GetMapping(path = "/show_all_books")
     public String showAllBooks(Model model) {
-        model.addAttribute("books", bookService.findAllBooks());
+        model.addAttribute("books", bookService.findAllNotDeletedBooks());
         return "list-of-books-for-admin";
     }
 

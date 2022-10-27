@@ -6,7 +6,6 @@ import com.tms.repository.BookRepository;
 import com.tms.service.BookService;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -25,13 +24,8 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findById(id).orElse(null);
     }
 
-    public List<Book> findAllBooks() {
-        return bookRepository
-                .findAll()
-                .stream()
-                .filter(book -> !book.isDeleted())
-                .sorted(Comparator.comparing(Book::getTitle))
-                .toList();
+    public List<Book> findAllNotDeletedBooks() {
+        return bookRepository.findAllNotDeletedBooks();
     }
 
     @Override
@@ -40,8 +34,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> showOverdueBooks() {
-        return bookRepository.showOverdueBooks();
+    public List<Book> findOverdueBooks() {
+        return bookRepository.findOverdueBooks();
     }
 
     @Override

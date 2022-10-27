@@ -21,7 +21,7 @@ public class ShowOverdueBooksController extends AbstractAdminController {
 
     @GetMapping(path = "/show_overdue_books")
     public String overdueBooks(Model model) {
-        List<Book> books = bookService.showOverdueBooks();
+        List<Book> books = bookService.findOverdueBooks();
         model.addAttribute("books", books);
         return "overdue-books";
     }

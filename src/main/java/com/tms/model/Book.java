@@ -31,7 +31,7 @@ public class Book {
     @UpdateTimestamp
     @Temporal(TemporalType.DATE)
     private Date updated;
-    @Column(name = "availability")
+    @Column(name = "is_available")
     private boolean isAvailable = true;
     @Column(name = "is_deleted")
     private boolean isDeleted = false;

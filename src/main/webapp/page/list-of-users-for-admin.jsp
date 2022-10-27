@@ -64,14 +64,25 @@
                             </td>
                         </c:otherwise>
                     </c:choose>
-                    <td>
-                        <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete_user"
-                              method="post">
-                            <input type="hidden" name="idToDelete" value="${user.id}">
-                            <button type="submit" class="btn btn-danger">Delete
-                            </button>
-                        </form>
-                    </td>
+
+                    <c:choose>
+                        <c:when test="${user.books.size()==0}">
+                            <td>
+                                <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete_user"
+                                      method="post">
+                                    <input type="hidden" name="idToDelete" value="${user.id}">
+                                    <button type="submit" class="btn btn-danger">Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>
+                                <button type="button" class="btn btn-secondary" disabled>You can't delete this user
+                                </button>
+                            </td>
+                        </c:otherwise>
+                    </c:choose>
                 </tr>
             </c:forEach>
             </tbody>

@@ -8,13 +8,11 @@ import java.util.List;
 public interface UserService {
     UserDto findById(Integer id);
 
-    void save(User user);
-
     void saveNewUser(User user);
 
     UserDto findByLogin(String login);
 
     void delete(Integer id);
 
-    List<UserDto> findOnlyActiveUsers();
+    List<UserDto> findAllNotDeletedUsers();
 }

@@ -8,7 +8,7 @@ values ('Kyle', '$2a$10$WD5gHHObTC2mRCIS2BJFjeiQoAnZriMbUUMKy.xcxmEcDw82b32H.', 
        ('Andy', '$2a$10$ible0yWIvqn5JPFcibyMBeYdGNCKDL2cEqBzFHRtiSyebprBYL0Vi', 'ROLE_USER', '2022-09-26',
         '2022-09-26', false);
 
-insert into books (author, title, year, created, updated, availability, is_deleted, date_of_issue)
+insert into books (author, title, year, created, updated, is_available, is_deleted, date_of_issue)
 values ('Stephen King', 'It', 2005, '2022-09-26',
         '2022-09-26', false, false, '2022-09-30'),
        ('Stephen King', 'It', 2005, '2022-09-26',

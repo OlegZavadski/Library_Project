@@ -26,13 +26,8 @@ public class UserServiceImpl implements UserService {
         return userFromDb != null ? mapper.createUserDto(userFromDb) : null;
     }
 
-    public void save(User user) {
-        userRepository.save(user);
-    }
-
     public void saveNewUser(User user) {
-        String encodedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
-        user.setPassword(encodedPassword);
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -45,9 +40,9 @@ public class UserServiceImpl implements UserService {
         userRepository.findById(id).ifPresent(user -> user.setDeleted(true));
     }
 
-    public List<UserDto> findOnlyActiveUsers() {
+    public List<UserDto> findAllNotDeletedUsers() {
         return userRepository
-                .findOnlyActiveUsers()
+                .findAllNotDeletedUsers()
                 .stream()
                 .map(mapper::createUserDto)
                 .sorted(Comparator.comparing(UserDto::getId))
