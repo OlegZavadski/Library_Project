@@ -10,11 +10,15 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="${pageContext.request.contextPath}/">Library</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page"
                        href="${pageContext.request.contextPath}/logout">
@@ -43,11 +47,11 @@
                        href="${pageContext.request.contextPath}/admin/save_new_book">Save a new book</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" method="get"
+            <form class="d-flex" role="search" method="get"
                   action="${pageContext.request.contextPath}/search">
-                <input class="form-control mr-sm-2" type="search" placeholder="Input author or title"
+                <input class="form-control me-2" type="search" placeholder="Input author or title"
                        aria-label="Search" name="forSearch">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search a book</button>
+                <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
     </div>
