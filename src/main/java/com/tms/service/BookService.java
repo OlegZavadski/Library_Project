@@ -12,13 +12,13 @@ public interface BookService {
 
     Book findById(Integer id);
 
-    List<Book> findAllNotDeletedBooks();
+    Page<Book> findAllNotDeletedBooks(Pageable pageable);
 
     Page<BookProjection> findAllBooksWithCount(Pageable pageable);
 
     List<Book> findOverdueBooks();
 
-    List<BookProjection> findByAuthorOrderByTitle(String author);
+    Page<BookProjection> findByAuthorOrderByTitle(String author, Pageable pageable);
 
     void delete(Integer id);
 

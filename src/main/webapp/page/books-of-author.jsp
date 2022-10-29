@@ -45,6 +45,15 @@
             </c:forEach>
             </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <c:forEach begin="0" end="${totalPages-1}" var="page">
+                    <li class="page-item"><a class="page-link"
+                                             href="${pageContext.request.contextPath}/authors/${author}?page=${page}">${page+1}</a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </nav>
     </div>
 </div>
 

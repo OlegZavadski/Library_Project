@@ -27,7 +27,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${allBooks}" var="book" varStatus="loop">
+            <c:forEach items="${books}" var="book" varStatus="loop">
                 <c:if test="${!userById.books.contains(book)}">
                     <tr>
                         <th scope="row"> ${loop.count}</th>
@@ -59,6 +59,17 @@
             </c:forEach>
             </tbody>
         </table>
+        <c:if test="${books.size()>0}">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <c:forEach begin="0" end="${totalPages-1}" var="page">
+                        <li class="page-item"><a class="page-link"
+                                                 href="${pageContext.request.contextPath}/admin/add_book_to_user/${userById.id}?page=${page}">${page+1}</a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </nav>
+        </c:if>
     </div>
 </div>
 

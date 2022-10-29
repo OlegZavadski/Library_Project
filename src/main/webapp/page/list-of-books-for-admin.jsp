@@ -69,6 +69,17 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                <c:if test="${books.size()>0}">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <c:forEach begin="0" end="${totalPages-1}" var="page">
+                                <li class="page-item"><a class="page-link"
+                                                         href="${pageContext.request.contextPath}/admin/show_all_books?page=${page}">${page+1}</a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </nav>
+                </c:if>
             </div>
         </div>
     </c:when>

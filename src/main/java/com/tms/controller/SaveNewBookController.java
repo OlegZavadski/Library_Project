@@ -4,6 +4,8 @@ import com.tms.model.Book;
 import com.tms.service.BookService;
 import com.tms.service.GeneralService;
 import com.tms.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +42,9 @@ public class SaveNewBookController extends AbstractAdminController {
             return "save-new-book";
         }
         bookService.save(new Book(author, title, year));
-        model.addAttribute("books", bookService.findAllNotDeletedBooks());
+        Page<Book> pages = bookService.findAllNotDeletedBooks(PageRequest.of(0, 10));
+        model.addAttribute("totalPages", pages.getTotalPages());
+        model.addAttribute("books", pages.getContent());
         return "list-of-books-for-admin";
     }
 

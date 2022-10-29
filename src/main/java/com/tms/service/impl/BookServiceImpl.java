@@ -29,8 +29,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findAllNotDeletedBooks() {
-        return bookRepository.findAllNotDeletedBooks();
+    public Page<Book> findAllNotDeletedBooks(Pageable pageable) {
+        return bookRepository.findAllNotDeletedBooks(pageable);
     }
 
     @Override
@@ -44,8 +44,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookProjection> findByAuthorOrderByTitle(String author) {
-        return bookRepository.findByAuthorOrderByTitle(author);
+    public Page<BookProjection> findByAuthorOrderByTitle(String author, Pageable pageable) {
+        return bookRepository.findByAuthorOrderByTitle(author, pageable);
     }
 
     @Override
