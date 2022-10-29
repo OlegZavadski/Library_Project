@@ -2,6 +2,8 @@ package com.tms.repository;
 
 import com.tms.model.Book;
 import com.tms.model.BookProjection;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,11 +22,11 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> findAllNotDeletedBooks();
 
     @Query(value = "select b.author, b.title, b.year, count(b.title) from books as b where b.is_available = true and b.is_deleted = false group by b.author, b.title, b.year order by b.author, b.title, b.year", nativeQuery = true)
-    List<BookProjection> findAllBooksWithCount();
+    Page<BookProjection> findAllBooksWithCount(Pageable pageable);
 
     @Query(value = "select b.title, b.year, count(b.title) from books as b where b.is_available = true and b.is_deleted = false and b.author = :author group by b.title, b.year order by b.title", nativeQuery = true)
     List<BookProjection> findByAuthorOrderByTitle(String author);
 
     @Query(value = "select b.author, b.title, b.year, count(b.title) from books as b where b.is_available = true and b.is_deleted = false and upper(b.author) like upper(:forSearch) or upper(b.title) like upper(:forSearch) group by b.author, b.title, b.year", nativeQuery = true)
-    List<BookProjection> getBooksFromSearch(String forSearch);
+    Page<BookProjection> getBooksFromSearch(String forSearch, Pageable pageable);
 }

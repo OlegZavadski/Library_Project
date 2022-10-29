@@ -4,6 +4,8 @@ import com.tms.model.Book;
 import com.tms.model.BookProjection;
 import com.tms.repository.BookRepository;
 import com.tms.service.BookService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,8 +34,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookProjection> findAllBooksWithCount() {
-        return bookRepository.findAllBooksWithCount();
+    public Page<BookProjection> findAllBooksWithCount(Pageable pageable) {
+        return bookRepository.findAllBooksWithCount(pageable);
     }
 
     @Override
@@ -53,7 +55,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookProjection> getBooksFromSearch(String forSearch) {
-        return bookRepository.getBooksFromSearch("%" + forSearch + "%");
+    public Page<BookProjection> getBooksFromSearch(String forSearch, Pageable pageable) {
+        return bookRepository.getBooksFromSearch("%" + forSearch + "%", pageable);
     }
 }

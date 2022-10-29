@@ -50,6 +50,17 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                <c:if test="${books.size()>0}">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <c:forEach begin="0" end="${totalPages-1}" var="page">
+                                <li class="page-item"><a class="page-link"
+                                                         href="${pageContext.request.contextPath}/?page=${page}">${page+1}</a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </nav>
+                </c:if>
             </div>
         </div>
     </c:when>
@@ -67,6 +78,7 @@
         </div>
     </c:otherwise>
 </c:choose>
+
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
