@@ -11,62 +11,81 @@
 
 <jsp:include page="headers/header-for-admin.jsp"/>
 
-<div class="container">
-    <div class="row">
-        <table class="table table-striped">
-            <caption>All books in the library</caption>
-            <thead>
-            <tr>
-                <th scope="col">Line number</th>
-                <th scope="col">Book id</th>
-                <th scope="col">Book author</th>
-                <th scope="col">Title of the book</th>
-                <th scope="col">Year of publishing</th>
-                <th scope="col">Availability</th>
-                <th scope="col">Delete book</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${books}" var="book" varStatus="loop">
-                <tr>
-                    <th scope="row"> ${loop.count}</th>
-                    <td> ${book.id}</td>
-                    <td><a href="${pageContext.request.contextPath}/authors/${book.author}"
-                           class="link-primary">${book.author}</a></td>
-                    <td> ${book.title}</td>
-                    <td> ${book.year}</td>
-                    <c:choose>
-                        <c:when test="${book.available}">
-                            <td> Available</td>
-                        </c:when>
-                        <c:otherwise>
-                            <td> The user with id ${book.user.id} has this book</td>
-                        </c:otherwise>
-                    </c:choose>
-                    <c:choose>
-                        <c:when test="${book.user==null}">
-                            <td>
-                                <form class="d-flex" action="${pageContext.request.contextPath}/admin/delete_book"
-                                      method="post">
-                                    <input type="hidden" name="bookId" value="${book.id}">
-                                    <button type="submit" class="btn btn-danger">Delete
-                                    </button>
-                                </form>
-                            </td>
-                        </c:when>
-                        <c:otherwise>
-                            <td>
-                                <button type="button" class="btn btn-secondary" disabled>You can't delete this book
-                                </button>
-                            </td>
-                        </c:otherwise>
-                    </c:choose>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-    </div>
-</div>
+<c:choose>
+    <c:when test="${books.size()>0}">
+        <div class="container">
+            <div class="row">
+                <table class="table table-striped">
+                    <caption>All books in the library</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col">Line number</th>
+                        <th scope="col">Book id</th>
+                        <th scope="col">Book author</th>
+                        <th scope="col">Title of the book</th>
+                        <th scope="col">Year of publishing</th>
+                        <th scope="col">Availability</th>
+                        <th scope="col">Delete book</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${books}" var="book" varStatus="loop">
+                        <tr>
+                            <th scope="row"> ${loop.count}</th>
+                            <td> ${book.id}</td>
+                            <td><a href="${pageContext.request.contextPath}/authors/${book.author}"
+                                   class="link-primary">${book.author}</a></td>
+                            <td> ${book.title}</td>
+                            <td> ${book.year}</td>
+                            <c:choose>
+                                <c:when test="${book.available}">
+                                    <td> Available</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td> The user with id ${book.user.id} has this book</td>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${book.user==null}">
+                                    <td>
+                                        <form class="d-flex"
+                                              action="${pageContext.request.contextPath}/admin/delete_book"
+                                              method="post">
+                                            <input type="hidden" name="bookId" value="${book.id}">
+                                            <button type="submit" class="btn btn-danger">Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td>
+                                        <button type="button" class="btn btn-secondary" disabled>You can't delete this
+                                            book
+                                        </button>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <div class="container">
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col"><H4>There aren't any books</H4></th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </c:otherwise>
+</c:choose>
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
