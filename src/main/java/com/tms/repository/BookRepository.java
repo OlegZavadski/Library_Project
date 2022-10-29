@@ -15,10 +15,10 @@ import java.util.List;
 @Transactional
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-    @Query(value = "select * from books inner join users_books ub on books.id = ub.book_id where is_deleted = false and  date_of_issue <= (CURRENT_DATE-20) order by date_of_issue", nativeQuery = true)
+    @Query(value = "select * from books as b inner join users_books as ub on b.id = ub.book_id where b.is_deleted = false and b.date_of_issue <= (CURRENT_DATE-20) order by b.date_of_issue", nativeQuery = true)
     List<Book> findOverdueBooks();
 
-    @Query(value = "select * from books full join users_books ub on books.id = ub.book_id where is_deleted = false order by title", nativeQuery = true)
+    @Query(value = "select * from books as b full join users_books as ub on b.id = ub.book_id where b.is_deleted = false order by b.title", nativeQuery = true)
     List<Book> findAllNotDeletedBooks();
 
     @Query(value = "select b.author, b.title, b.year, count(b.title) from books as b where b.is_available = true and b.is_deleted = false group by b.author, b.title, b.year order by b.author, b.title, b.year", nativeQuery = true)
