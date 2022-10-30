@@ -19,7 +19,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> findOverdueBooks();
 
     @Query(value = "select * from books as b left join users_books as ub on b.id = ub.book_id where b.is_available = true and b.is_deleted = false order by b.title", nativeQuery = true)
-    Page<Book> findAvailableBooksForAddToUser(Pageable pageable);
+    Page<Book> findAvailableBooksToAddToUser(Pageable pageable);
 
     @Query(value = "select * from books as b full join users_books as ub on b.id = ub.book_id where b.is_deleted = false order by b.title", nativeQuery = true)
     Page<Book> findAllNotDeletedBooks(Pageable pageable);
@@ -28,8 +28,8 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     Page<BookProjection> findAllBooksWithCount(Pageable pageable);
 
     @Query(value = "select b.title, b.year, count(b.title) from books as b where b.is_available = true and b.is_deleted = false and b.author = :author group by b.title, b.year order by b.title", nativeQuery = true)
-    Page<BookProjection> findByAuthorOrderByTitle(String author, Pageable pageable);
+    Page<BookProjection> findBooksByAuthor(String author, Pageable pageable);
 
     @Query(value = "select b.author, b.title, b.year, count(b.title) from books as b where b.is_available = true and b.is_deleted = false and upper(b.author) like upper(:forSearch) or upper(b.title) like upper(:forSearch) group by b.author, b.title, b.year", nativeQuery = true)
-    Page<BookProjection> getBooksFromSearch(String forSearch, Pageable pageable);
+    Page<BookProjection> findAvailableBooksFromSearch(String forSearch, Pageable pageable);
 }

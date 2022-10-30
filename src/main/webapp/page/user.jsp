@@ -12,10 +12,10 @@
 
 <jsp:include page="headers/header-for-user.jsp"/>
 
-<c:choose>
-    <c:when test="${books.size()>0}">
-        <div class="container">
-            <div class="row">
+<div class="container">
+    <div class="row">
+        <c:choose>
+            <c:when test="${books.size()>0}">
                 <table class="table table-striped">
                     <caption>These are your books. You have ${books.size()} books</caption>
                     <thead>
@@ -40,12 +40,8 @@
                     </c:forEach>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </c:when>
-    <c:otherwise>
-        <div class="container">
-            <div class="row">
+            </c:when>
+            <c:otherwise>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -53,10 +49,10 @@
                     </tr>
                     </thead>
                 </table>
-            </div>
-        </div>
-    </c:otherwise>
-</c:choose>
+            </c:otherwise>
+        </c:choose>
+    </div>
+</div>
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

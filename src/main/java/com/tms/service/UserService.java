@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface UserService {
     void save(User user);
-    UserDto findById(Integer id);
+    UserDto findUserById(Integer id);
 
     void saveNewUser(User user);
 
-    UserDto findByLogin(String login);
+    UserDto findUserByLogin(String login);
 
-    void delete(Integer id);
+    void deleteUserById(Integer id);
 
     List<UserDto> findAllNotDeletedUsers();
 }

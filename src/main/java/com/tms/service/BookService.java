@@ -18,11 +18,11 @@ public interface BookService {
 
     List<Book> findOverdueBooks();
 
-    Page<BookProjection> findByAuthorOrderByTitle(String author, Pageable pageable);
+    Page<BookProjection> findBooksByAuthor(String author, Pageable pageable);
 
-    void delete(Integer id);
+    void deleteBookById(Integer id);
 
-    Page<BookProjection> getBooksFromSearch(String forSearch, Pageable pageable);
+    Page<BookProjection> findAvailableBooksFromSearch(String forSearch, Pageable pageable);
 
-    Page<Book> findAvailableBooksForAddToUser(Pageable pageable);
+    Page<Book> findAvailableBooksToAddToUser(Pageable pageable);
 }

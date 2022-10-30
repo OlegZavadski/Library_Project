@@ -25,7 +25,7 @@ public class ShowBooksOfAuthorController extends AbstractAdminController {
     public String showBooksOfUser(@PathVariable(name = "author") String author,
                                   @RequestParam(defaultValue = "0") Integer page,
                                   Model model) {
-        Page<BookProjection> pages = bookService.findByAuthorOrderByTitle(author, PageRequest.of(page, sizeOfPage));
+        Page<BookProjection> pages = bookService.findBooksByAuthor(author, PageRequest.of(page, sizeOfPage));
         model.addAttribute("author", author);
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("booksOfAuthor", pages.getContent());

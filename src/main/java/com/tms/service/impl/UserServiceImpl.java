@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto findById(Integer id) {
+    public UserDto findUserById(Integer id) {
         User userFromDb = userRepository.findById(id).orElse(null);
         return userFromDb != null ? mapper.createUserDto(userFromDb) : null;
     }
@@ -39,13 +39,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto findByLogin(String login) {
-        User userByLogin = userRepository.findByLogin(login);
+    public UserDto findUserByLogin(String login) {
+        User userByLogin = userRepository.findUserByLogin(login);
         return userByLogin != null && !userByLogin.isDeleted() ? mapper.createUserDto(userByLogin) : null;
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteUserById(Integer id) {
         userRepository.findById(id).ifPresent(user -> user.setDeleted(true));
     }
 

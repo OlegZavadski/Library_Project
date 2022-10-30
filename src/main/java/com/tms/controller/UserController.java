@@ -26,7 +26,7 @@ public class UserController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String login = ((UserDetails) principal).getUsername();
         List<Book> booksOfUser = userService
-                .findByLogin(login)
+                .findUserByLogin(login)
                 .getBooks()
                 .stream()
                 .sorted(Comparator.comparing(Book::getDateOfIssue))

@@ -44,23 +44,23 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Page<BookProjection> findByAuthorOrderByTitle(String author, Pageable pageable) {
-        return bookRepository.findByAuthorOrderByTitle(author, pageable);
+    public Page<BookProjection> findBooksByAuthor(String author, Pageable pageable) {
+        return bookRepository.findBooksByAuthor(author, pageable);
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteBookById(Integer id) {
         bookRepository.findById(id).ifPresent(book -> book.setAvailable(false));
         bookRepository.findById(id).ifPresent(book -> book.setDeleted(true));
     }
 
     @Override
-    public Page<BookProjection> getBooksFromSearch(String forSearch, Pageable pageable) {
-        return bookRepository.getBooksFromSearch("%" + forSearch + "%", pageable);
+    public Page<BookProjection> findAvailableBooksFromSearch(String forSearch, Pageable pageable) {
+        return bookRepository.findAvailableBooksFromSearch("%" + forSearch + "%", pageable);
     }
 
     @Override
-    public Page<Book> findAvailableBooksForAddToUser(Pageable pageable) {
-        return bookRepository.findAvailableBooksForAddToUser(pageable);
+    public Page<Book> findAvailableBooksToAddToUser(Pageable pageable) {
+        return bookRepository.findAvailableBooksToAddToUser(pageable);
     }
 }

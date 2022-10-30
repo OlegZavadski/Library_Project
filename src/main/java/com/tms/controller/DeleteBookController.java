@@ -20,7 +20,7 @@ public class DeleteBookController extends AbstractAdminController {
     @PostMapping(path = "/delete_book")
     public String delete(@RequestParam Integer bookId,
                          Model model) {
-        bookService.delete(bookId);
+        bookService.deleteBookById(bookId);
         model.addAttribute("allUsers", userService.findAllNotDeletedUsers());
         return "list-of-users-for-admin";
     }

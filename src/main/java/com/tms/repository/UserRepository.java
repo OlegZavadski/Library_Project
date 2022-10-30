@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    User findByLogin(String login);
+    User findUserByLogin(String login);
 
     @Query(value = "select * from users where role = 'ROLE_USER' and is_deleted = 'false'", nativeQuery = true)
     List<User> findAllNotDeletedUsers();

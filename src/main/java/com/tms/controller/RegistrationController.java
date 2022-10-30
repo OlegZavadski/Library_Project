@@ -33,7 +33,7 @@ public class RegistrationController extends AbstractAdminController {
             model.addAttribute("error", "Some field is empty");
             return "registration";
         }
-        if (userService.findByLogin(login) != null) {
+        if (userService.findUserByLogin(login) != null) {
             model.addAttribute("error", "User with this login exists!");
             return "registration";
         }
