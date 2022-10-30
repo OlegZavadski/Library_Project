@@ -69,7 +69,7 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <c:if test="${books.size()>0}">
+                <c:if test="${totalPages>1}">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <c:forEach begin="0" end="${totalPages-1}" var="page">

@@ -28,38 +28,28 @@
             </thead>
             <tbody>
             <c:forEach items="${books}" var="book" varStatus="loop">
-                <c:if test="${!userById.books.contains(book)}">
-                    <tr>
-                        <th scope="row"> ${loop.count}</th>
-                        <td> ${book.id}</td>
-                        <td> ${book.author}</td>
-                        <td> ${book.title}</td>
-                        <c:choose>
-                            <c:when test="${book.available}">
-                                <td>
-                                    <form class="d-flex"
-                                          action="${pageContext.request.contextPath}/admin/add_book_to_user"
-                                          method="post">
-                                        <input type="hidden" name="bookId" value="${book.id}">
-                                        <input type="hidden" name="userId" value="${userById.id}">
-                                        <button type="submit" class="btn btn-info">Add the book
-                                        </button>
-                                    </form>
-                                </td>
-                            </c:when>
-                            <c:otherwise>
-                                <td>
-                                    <button type="button" class="btn btn-secondary" disabled>This book is out of stock
-                                    </button>
-                                </td>
-                            </c:otherwise>
-                        </c:choose>
-                    </tr>
-                </c:if>
+                <%--                <c:if test="${!userById.books.contains(book)}">--%>
+                <tr>
+                    <th scope="row"> ${loop.count}</th>
+                    <td> ${book.id}</td>
+                    <td> ${book.author}</td>
+                    <td> ${book.title}</td>
+                    <td>
+                        <form class="d-flex"
+                              action="${pageContext.request.contextPath}/admin/add_book_to_user"
+                              method="post">
+                            <input type="hidden" name="bookId" value="${book.id}">
+                            <input type="hidden" name="userId" value="${userById.id}">
+                            <button type="submit" class="btn btn-info">Add the book
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <%--                </c:if>--%>
             </c:forEach>
             </tbody>
         </table>
-        <c:if test="${books.size()>0}">
+        <c:if test="${totalPages>1}">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <c:forEach begin="0" end="${totalPages-1}" var="page">

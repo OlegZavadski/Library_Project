@@ -23,9 +23,10 @@ public class AddBookToUserController extends AbstractAdminController {
                                 @RequestParam(name = "page", defaultValue = "0") Integer page,
                                 Model model) {
         model.addAttribute("userById", userService.findById(userId));
-        Page<Book> pages = bookService.findAllNotDeletedBooks(PageRequest.of(page, 10));
+        Page<Book> pages = bookService.findAvailableBooksForAddToUser(PageRequest.of(page, sizeOfPage));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("books", pages.getContent());
+//        findAllNotDeletedBooks(page, model);
         return "add-book-to-user";
     }
 

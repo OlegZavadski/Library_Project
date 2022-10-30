@@ -42,7 +42,7 @@ public class SaveNewBookController extends AbstractAdminController {
             return "save-new-book";
         }
         bookService.save(new Book(author, title, year));
-        Page<Book> pages = bookService.findAllNotDeletedBooks(PageRequest.of(0, 10));
+        Page<Book> pages = bookService.findAllNotDeletedBooks(PageRequest.of(0, sizeOfPage));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("books", pages.getContent());
         return "list-of-books-for-admin";

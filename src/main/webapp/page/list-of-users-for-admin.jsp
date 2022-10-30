@@ -67,7 +67,6 @@
                                     </td>
                                 </c:otherwise>
                             </c:choose>
-
                             <c:choose>
                                 <c:when test="${user.books.size()==0}">
                                     <td>

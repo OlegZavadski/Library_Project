@@ -58,4 +58,9 @@ public class BookServiceImpl implements BookService {
     public Page<BookProjection> getBooksFromSearch(String forSearch, Pageable pageable) {
         return bookRepository.getBooksFromSearch("%" + forSearch + "%", pageable);
     }
+
+    @Override
+    public Page<Book> findAvailableBooksForAddToUser(Pageable pageable) {
+        return bookRepository.findAvailableBooksForAddToUser(pageable);
+    }
 }

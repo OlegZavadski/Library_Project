@@ -23,4 +23,6 @@ public interface BookService {
     void delete(Integer id);
 
     Page<BookProjection> getBooksFromSearch(String forSearch, Pageable pageable);
+
+    Page<Book> findAvailableBooksForAddToUser(Pageable pageable);
 }
