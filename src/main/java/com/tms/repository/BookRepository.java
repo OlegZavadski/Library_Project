@@ -25,11 +25,11 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     Page<Book> findAllNotDeletedBooks(Pageable pageable);
 
     @Query(value = "select b.author, b.title, b.year, count(b.title) from books as b where b.is_available = true and b.is_deleted = false group by b.author, b.title, b.year order by b.author, b.title, b.year", nativeQuery = true)
-    Page<BookProjection> findAllBooksWithCount(Pageable pageable);
+    Page<BookProjection> findAllAvailableBooksWithCount(Pageable pageable);
 
     @Query(value = "select b.title, b.year, count(b.title) from books as b where b.is_available = true and b.is_deleted = false and b.author = :author group by b.title, b.year order by b.title", nativeQuery = true)
     Page<BookProjection> findBooksByAuthor(String author, Pageable pageable);
 
-    @Query(value = "select b.author, b.title, b.year, count(b.title) from books as b where b.is_available = true and b.is_deleted = false and upper(b.author) like upper(:forSearch) or upper(b.title) like upper(:forSearch) group by b.author, b.title, b.year", nativeQuery = true)
+    @Query(value = "select b.author, b.title, b.year, count(b.title) from books as b where b.is_available = true and b.is_deleted = false and upper(b.author) like upper(:forSearch) or b.is_available = true and b.is_deleted = false and upper(b.title) like upper(:forSearch) group by b.author, b.title, b.year", nativeQuery = true)
     Page<BookProjection> findAvailableBooksFromSearch(String forSearch, Pageable pageable);
 }

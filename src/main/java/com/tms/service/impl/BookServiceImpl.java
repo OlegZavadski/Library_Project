@@ -34,8 +34,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Page<BookProjection> findAllBooksWithCount(Pageable pageable) {
-        return bookRepository.findAllBooksWithCount(pageable);
+    public Page<BookProjection> findAllAvailableBooksWithCount(Pageable pageable) {
+        return bookRepository.findAllAvailableBooksWithCount(pageable);
     }
 
     @Override

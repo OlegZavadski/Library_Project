@@ -14,7 +14,7 @@ public interface BookService {
 
     Page<Book> findAllNotDeletedBooks(Pageable pageable);
 
-    Page<BookProjection> findAllBooksWithCount(Pageable pageable);
+    Page<BookProjection> findAllAvailableBooksWithCount(Pageable pageable);
 
     List<Book> findOverdueBooks();
 
