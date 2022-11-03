@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 @Controller
 public abstract class AbstractAdminController {
-    protected static final Integer sizeOfPage = 10;
+    protected static final Integer SIZE_OF_PAGE = 10;
     protected final UserService userService;
     protected final BookService bookService;
     protected final GeneralService generalService;

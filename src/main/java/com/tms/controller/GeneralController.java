@@ -23,7 +23,7 @@ public class GeneralController extends AbstractAdminController {
     @GetMapping
     public String mainPage(@RequestParam(defaultValue = "0") Integer page,
                            Model model) {
-        Page<BookProjection> pages = bookService.findAllAvailableBooksWithCount(PageRequest.of(page, sizeOfPage));
+        Page<BookProjection> pages = bookService.findAllAvailableBooksWithCount(PageRequest.of(page, SIZE_OF_PAGE));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("books", pages.getContent());
         return "main-page";
@@ -33,7 +33,7 @@ public class GeneralController extends AbstractAdminController {
     public String search(@RequestParam String forSearch,
                          @RequestParam(defaultValue = "0") Integer page,
                          Model model) {
-        Page<BookProjection> pages = bookService.findAvailableBooksFromSearch(forSearch, PageRequest.of(page, sizeOfPage));
+        Page<BookProjection> pages = bookService.findAvailableBooksFromSearch(forSearch, PageRequest.of(page, SIZE_OF_PAGE));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("books", pages.getContent());
         return "main-page";

@@ -28,7 +28,7 @@ public class AdminController extends AbstractAdminController {
     @GetMapping(path = "/show_all_books")
     public String showAllBooks(@RequestParam(defaultValue = "0") Integer page,
                                Model model) {
-        Page<Book> pages = bookService.findAllNotDeletedBooks(PageRequest.of(page, sizeOfPage));
+        Page<Book> pages = bookService.findAllNotDeletedBooks(PageRequest.of(page, SIZE_OF_PAGE));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("books", pages.getContent());
         return "list-of-books-for-admin";
