@@ -35,7 +35,6 @@
                             <td> ${book.title}</td>
                             <td> ${book.year}</td>
                             <td><fmt:formatDate value="${book.dateOfIssue}" pattern="yyyy-MM-dd"/></td>
-
                         </tr>
                     </c:forEach>
                     </tbody>
