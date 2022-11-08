@@ -2,7 +2,6 @@ package com.tms.controller;
 
 import com.tms.model.Book;
 import com.tms.service.BookService;
-import com.tms.service.GeneralService;
 import com.tms.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,9 +17,11 @@ import java.util.Calendar;
 @Controller
 @RequestMapping(path = "/admin")
 public class SaveNewBookController extends AbstractAdminController {
+    private final BookService bookService;
 
-    public SaveNewBookController(UserService userService, BookService bookService, GeneralService generalService) {
-        super(userService, bookService, generalService);
+    public SaveNewBookController(UserService userService, BookService bookService) {
+        super(userService);
+        this.bookService = bookService;
     }
 
     @GetMapping(path = "/save_new_book")

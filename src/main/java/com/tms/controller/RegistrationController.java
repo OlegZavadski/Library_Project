@@ -2,8 +2,6 @@ package com.tms.controller;
 
 import com.tms.model.ROLE;
 import com.tms.model.User;
-import com.tms.service.BookService;
-import com.tms.service.GeneralService;
 import com.tms.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(path = "/admin")
 public class RegistrationController extends AbstractAdminController {
-
-    public RegistrationController(UserService userService, BookService bookService, GeneralService generalService) {
-        super(userService, bookService, generalService);
+    public RegistrationController(UserService userService) {
+        super(userService);
     }
 
     @GetMapping(path = "/registration")

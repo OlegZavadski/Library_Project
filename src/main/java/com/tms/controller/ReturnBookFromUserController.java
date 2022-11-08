@@ -1,6 +1,5 @@
 package com.tms.controller;
 
-import com.tms.service.BookService;
 import com.tms.service.GeneralService;
 import com.tms.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -13,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(path = "/admin")
 public class ReturnBookFromUserController extends AbstractAdminController {
 
-    public ReturnBookFromUserController(UserService userService, BookService bookService, GeneralService generalService) {
-        super(userService, bookService, generalService);
+    private final GeneralService generalService;
+
+    public ReturnBookFromUserController(UserService userService, GeneralService generalService) {
+        super(userService);
+        this.generalService = generalService;
     }
 
     @PostMapping(path = "/return_book_from_user")

@@ -1,7 +1,5 @@
 package com.tms.controller;
 
-import com.tms.service.BookService;
-import com.tms.service.GeneralService;
 import com.tms.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(path = "/admin")
 public class DeleteUserController extends AbstractAdminController {
+    private final UserService userService;
 
-    public DeleteUserController(UserService userService, BookService bookService, GeneralService generalService) {
-        super(userService, bookService, generalService);
+    public DeleteUserController(UserService userService, UserService userService1) {
+        super(userService);
+        this.userService = userService1;
     }
 
     @PostMapping(path = "/delete_user")

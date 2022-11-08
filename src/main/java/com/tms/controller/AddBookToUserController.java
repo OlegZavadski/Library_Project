@@ -14,8 +14,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/admin")
 public class AddBookToUserController extends AbstractAdminController {
 
+    private final BookService bookService;
+    private final GeneralService generalService;
+
     public AddBookToUserController(UserService userService, BookService bookService, GeneralService generalService) {
-        super(userService, bookService, generalService);
+        super(userService);
+        this.bookService = bookService;
+        this.generalService = generalService;
     }
 
     @GetMapping(path = "/add_book_to_user/{id}")

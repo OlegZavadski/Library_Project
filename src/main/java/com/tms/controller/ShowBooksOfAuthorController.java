@@ -2,7 +2,6 @@ package com.tms.controller;
 
 import com.tms.model.BookProjection;
 import com.tms.service.BookService;
-import com.tms.service.GeneralService;
 import com.tms.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(path = "/")
 public class ShowBooksOfAuthorController extends AbstractAdminController {
 
-    public ShowBooksOfAuthorController(UserService userService, BookService bookService, GeneralService generalService) {
-        super(userService, bookService, generalService);
+    private final BookService bookService;
+
+    public ShowBooksOfAuthorController(UserService userService, BookService bookService) {
+        super(userService);
+        this.bookService = bookService;
     }
 
     @GetMapping(path = "/authors/{author}")

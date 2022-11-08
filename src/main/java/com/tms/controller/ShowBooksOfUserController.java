@@ -2,8 +2,6 @@ package com.tms.controller;
 
 import com.tms.dto.UserDto;
 import com.tms.model.Book;
-import com.tms.service.BookService;
-import com.tms.service.GeneralService;
 import com.tms.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +16,8 @@ import java.util.List;
 @RequestMapping(path = "/admin")
 public class ShowBooksOfUserController extends AbstractAdminController {
 
-    public ShowBooksOfUserController(UserService userService, BookService bookService, GeneralService generalService) {
-        super(userService, bookService, generalService);
+    public ShowBooksOfUserController(UserService userService) {
+        super(userService);
     }
 
     @GetMapping(path = "/show_books_of_user/{id}")
