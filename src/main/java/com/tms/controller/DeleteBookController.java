@@ -21,7 +21,6 @@ public class DeleteBookController extends AbstractAdminController {
     public String delete(@RequestParam Integer bookId,
                          Model model) {
         bookService.deleteBookById(bookId);
-//        model.addAttribute("allUsers", userService.findAllNotDeletedUsers());
         findOnlyActiveUsers(model);
         return "list-of-users-for-admin";
     }
