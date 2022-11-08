@@ -44,7 +44,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                     response.sendRedirect("/");
                 })
                 .failureHandler((request, response, exception) -> {
-                    response.sendRedirect("/login");
+                    request.setAttribute("error", "You wrote wrong login or password");
+                    request.getRequestDispatcher("/page/login.jsp").forward(request, response);
                 })
                 .and()
                 .logout()

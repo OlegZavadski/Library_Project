@@ -13,6 +13,11 @@
         <div class="col-3">
         </div>
         <div class="col-6">
+            <H2>
+                <p style="color: red">
+                    ${error}
+                </p>
+            </H2>
             <form action="${pageContext.request.contextPath}/process_login" method="post">
                 <input class="form-control mr-sm-2" type="text" name="username"
                        placeholder="Input username"
