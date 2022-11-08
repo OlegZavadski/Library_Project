@@ -8,8 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
@@ -39,8 +37,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findOverdueBooks() {
-        return bookRepository.findOverdueBooks();
+    public Page<Book> findOverdueBooks(Pageable pageable) {
+        return bookRepository.findOverdueBooks(pageable);
     }
 
     @Override

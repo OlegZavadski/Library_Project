@@ -5,8 +5,6 @@ import com.tms.model.BookProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
-
 public interface BookService {
     void save(Book book);
 
@@ -16,7 +14,7 @@ public interface BookService {
 
     Page<BookProjection> findAllAvailableBooksWithCount(Pageable pageable);
 
-    List<Book> findOverdueBooks();
+    Page<Book> findOverdueBooks(Pageable pageable);
 
     Page<BookProjection> findBooksByAuthor(String author, Pageable pageable);
 

@@ -9,14 +9,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Repository
 @Transactional
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
     @Query(value = "select * from books as b inner join users_books as ub on b.id = ub.book_id where b.is_deleted = false and b.date_of_issue <= (CURRENT_DATE-20) order by b.date_of_issue", nativeQuery = true)
-    List<Book> findOverdueBooks();
+    Page<Book> findOverdueBooks(Pageable pageable);
 
     @Query(value = "select * from books as b left join users_books as ub on b.id = ub.book_id where b.is_available = true and b.is_deleted = false order by b.title", nativeQuery = true)
     Page<Book> findAvailableBooksToAddToUser(Pageable pageable);

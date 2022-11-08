@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface UserService {
     void save(User user);
+
     UserDto findUserById(Integer id);
 
     void saveNewUser(User user);
