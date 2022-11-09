@@ -34,10 +34,8 @@
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
                             value="Reset">Reset
                     </button>
-                    <H4>
-                        <p style="color: red">
-                            ${error}
-                        </p>
+                    <H4 style="color: red">
+                        ${error}
                     </H4>
                 </div>
             </form>
