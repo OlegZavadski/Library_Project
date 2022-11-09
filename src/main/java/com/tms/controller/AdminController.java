@@ -2,7 +2,7 @@ package com.tms.controller;
 
 import com.tms.model.Book;
 import com.tms.service.BookService;
-import com.tms.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -14,12 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(path = "/admin")
 public class AdminController extends AbstractAdminController {
-    private final BookService bookService;
-
-    public AdminController(UserService userService, BookService bookService) {
-        super(userService);
-        this.bookService = bookService;
-    }
+    @Autowired
+    private BookService bookService;
 
     @GetMapping()
     public String showAllUsers(Model model) {

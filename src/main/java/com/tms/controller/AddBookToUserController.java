@@ -4,6 +4,7 @@ import com.tms.model.Book;
 import com.tms.service.BookService;
 import com.tms.service.GeneralService;
 import com.tms.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -13,15 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping(path = "/admin")
 public class AddBookToUserController extends AbstractAdminController {
-
-    private final BookService bookService;
-    private final GeneralService generalService;
-
-    public AddBookToUserController(UserService userService, BookService bookService, GeneralService generalService) {
-        super(userService);
-        this.bookService = bookService;
-        this.generalService = generalService;
-    }
+    @Autowired
+    private BookService bookService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private GeneralService generalService;
 
     @GetMapping(path = "/add_book_to_user/{id}")
     public String addBookToUser(@PathVariable(name = "id") Integer userId,

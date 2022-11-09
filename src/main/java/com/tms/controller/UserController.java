@@ -2,6 +2,7 @@ package com.tms.controller;
 
 import com.tms.model.Book;
 import com.tms.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -15,11 +16,8 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/user")
 public class UserController {
-    private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     public String main(Model model) {

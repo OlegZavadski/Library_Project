@@ -3,6 +3,7 @@ package com.tms.controller;
 import com.tms.dto.UserDto;
 import com.tms.model.Book;
 import com.tms.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,8 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/admin")
 public class ShowBooksOfUserController extends AbstractAdminController {
-
-    public ShowBooksOfUserController(UserService userService) {
-        super(userService);
-    }
+    @Autowired
+    private UserService userService;
 
     @GetMapping(path = "/show_books_of_user/{id}")
     public String showBooksOfUser(@PathVariable(name = "id") Integer userId,

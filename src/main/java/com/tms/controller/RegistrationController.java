@@ -3,6 +3,7 @@ package com.tms.controller;
 import com.tms.model.ROLE;
 import com.tms.model.User;
 import com.tms.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(path = "/admin")
 public class RegistrationController extends AbstractAdminController {
-    public RegistrationController(UserService userService) {
-        super(userService);
-    }
+    @Autowired
+    private UserService userService;
 
     @GetMapping(path = "/registration")
     public String registration() {
