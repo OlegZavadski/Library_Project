@@ -17,10 +17,10 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query(value = "select * from books as b inner join users_books as ub on b.id = ub.book_id where b.is_deleted = false and b.date_of_issue <= (CURRENT_DATE-20) order by b.date_of_issue", nativeQuery = true)
     Page<Book> findOverdueBooks(Pageable pageable);
 
-    @Query(value = "select * from books as b left join users_books as ub on b.id = ub.book_id where b.is_available = true and b.is_deleted = false order by b.title", nativeQuery = true)
+    @Query(value = "select * from books as b left join users_books as ub on b.id = ub.book_id where b.is_available = true and b.is_deleted = false order by b.title, b.author, b.id", nativeQuery = true)
     Page<Book> findAvailableBooksToAddToUser(Pageable pageable);
 
-    @Query(value = "select * from books as b full join users_books as ub on b.id = ub.book_id where b.is_deleted = false order by b.title", nativeQuery = true)
+    @Query(value = "select * from books as b full join users_books as ub on b.id = ub.book_id where b.is_deleted = false order by b.title, b.author, b.id", nativeQuery = true)
     Page<Book> findAllNotDeletedBooks(Pageable pageable);
 
     @Query(value = "select b.author, b.title, b.year, count(b.title) from books as b where b.is_available = true and b.is_deleted = false group by b.author, b.title, b.year order by b.author, b.title, b.year", nativeQuery = true)
