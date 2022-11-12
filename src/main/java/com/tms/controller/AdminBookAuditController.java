@@ -22,7 +22,7 @@ public class AdminBookAuditController extends AbstractAdminController {
                                     Model model) {
         Page<BookAudit> pages = bookAuditService.findAllBookAudit(PageRequest.of(page, SIZE_OF_PAGE));
         model.addAttribute("totalPages", pages.getTotalPages());
-        model.addAttribute("books_audit", pages.getContent());
+        model.addAttribute("booksAudit", pages.getContent());
         return "issue-history-for-admin";
     }
 

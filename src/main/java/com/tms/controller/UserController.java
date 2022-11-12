@@ -48,7 +48,7 @@ public class UserController {
         Integer userId = userService.findUserByLogin(login).getId();
         Page<BookAudit> pages = bookAuditService.findBookAuditByUserId(userId, PageRequest.of(page, 10));
         model.addAttribute("totalPages", pages.getTotalPages());
-        model.addAttribute("books_audit", pages.getContent());
+        model.addAttribute("booksAudit", pages.getContent());
         return "usage-history-for-user";
     }
 

@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row">
         <c:choose>
-            <c:when test="${books_audit.size()>0}">
+            <c:when test="${booksAudit.size()>0}">
                 <table class="table table-striped">
                     <caption>Usage history</caption>
                     <thead>
@@ -30,7 +30,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${books_audit}" var="bookAudit" varStatus="loop">
+                    <c:forEach items="${booksAudit}" var="bookAudit" varStatus="loop">
                         <tr>
                             <th scope="row"> ${loop.count}</th>
                             <td> ${bookAudit.author}</td>
