@@ -18,3 +18,5 @@ spring:
   flyway:
     enabled: true
     locations[0]: classpath:/db/migration
+
+size-of-page: 10

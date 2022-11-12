@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/admin")
-public class ShowBooksOfUserController extends AbstractAdminController {
+public class ShowBooksOfUserController {
     @Autowired
     private UserService userService;
 

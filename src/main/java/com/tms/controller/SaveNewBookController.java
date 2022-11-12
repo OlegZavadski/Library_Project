@@ -3,6 +3,7 @@ package com.tms.controller;
 import com.tms.model.Book;
 import com.tms.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,9 @@ import java.util.Calendar;
 
 @Controller
 @RequestMapping(path = "/admin")
-public class SaveNewBookController extends AbstractAdminController {
+public class SaveNewBookController {
+    @Value(value = "${size-of-page}")
+    private int sizeOfPage;
     @Autowired
     private BookService bookService;
 
@@ -39,7 +42,7 @@ public class SaveNewBookController extends AbstractAdminController {
             return "save-new-book";
         }
         bookService.save(new Book(author, title, year));
-        Page<Book> pages = bookService.findAllNotDeletedBooks(PageRequest.of(0, SIZE_OF_PAGE));
+        Page<Book> pages = bookService.findAllNotDeletedBooks(PageRequest.of(0, sizeOfPage));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("books", pages.getContent());
         return "list-of-books-for-admin";

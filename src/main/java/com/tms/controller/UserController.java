@@ -5,6 +5,7 @@ import com.tms.model.BookAudit;
 import com.tms.service.BookAuditService;
 import com.tms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +22,8 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/user")
 public class UserController {
+    @Value(value = "${size-of-page}")
+    private int sizeOfPage;
     @Autowired
     private UserService userService;
     @Autowired
@@ -46,7 +49,7 @@ public class UserController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String login = ((UserDetails) principal).getUsername();
         Integer userId = userService.findUserByLogin(login).getId();
-        Page<BookAudit> pages = bookAuditService.findBookAuditByUserId(userId, PageRequest.of(page, 10));
+        Page<BookAudit> pages = bookAuditService.findBookAuditByUserId(userId, PageRequest.of(page, sizeOfPage));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("booksAudit", pages.getContent());
         return "usage-history-for-user";

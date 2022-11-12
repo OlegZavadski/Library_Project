@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 
 @Controller
 public abstract class AbstractAdminController {
-    protected static final Integer SIZE_OF_PAGE = 10;
     @Autowired
     private UserService userService;
 
