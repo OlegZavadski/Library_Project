@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(path = "/admin")
 public class AdminBookAuditController {
-    @Value(value = "${size-of-page}")
-    private int sizeOfPage;
+    @Value(value = "${page-size}")
+    private int pageSize;
     @Autowired
     private BookAuditService bookAuditService;
 
     @GetMapping(path = "/show_issue_history")
     public String showAllBooksAudit(@RequestParam(defaultValue = "0") Integer page,
                                     Model model) {
-        Page<BookAudit> pages = bookAuditService.findAllBookAudit(PageRequest.of(page, sizeOfPage));
+        Page<BookAudit> pages = bookAuditService.findAllBookAudit(PageRequest.of(page, pageSize));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("booksAudit", pages.getContent());
         return "issue-history-for-admin";

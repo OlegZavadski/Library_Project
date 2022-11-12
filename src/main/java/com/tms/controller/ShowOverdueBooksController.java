@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(path = "/admin")
 public class ShowOverdueBooksController {
-    @Value(value = "${size-of-page}")
-    private int sizeOfPage;
+    @Value(value = "${page-size}")
+    private int pageSize;
 
     @Autowired
     private BookService bookService;
@@ -24,7 +24,7 @@ public class ShowOverdueBooksController {
     @GetMapping(path = "/show_overdue_books")
     public String overdueBooks(@RequestParam(defaultValue = "0") Integer page,
                                Model model) {
-        Page<Book> pages = bookService.findOverdueBooks(PageRequest.of(page, sizeOfPage));
+        Page<Book> pages = bookService.findOverdueBooks(PageRequest.of(page, pageSize));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("books", pages.getContent());
         return "overdue-books";

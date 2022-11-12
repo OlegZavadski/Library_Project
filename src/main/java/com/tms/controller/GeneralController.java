@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(path = "/")
 public class GeneralController {
-    @Value(value = "${size-of-page}")
-    private int sizeOfPage;
+    @Value(value = "${page-size}")
+    private int pageSize;
     @Autowired
     private BookService bookService;
 
     @GetMapping
     public String mainPage(@RequestParam(defaultValue = "0") Integer page,
                            Model model) {
-        Page<BookProjection> pages = bookService.findAllAvailableBooksWithCount(PageRequest.of(page, sizeOfPage));
+        Page<BookProjection> pages = bookService.findAllAvailableBooksWithCount(PageRequest.of(page, pageSize));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("books", pages.getContent());
         return "main-page";
@@ -33,7 +33,7 @@ public class GeneralController {
     public String search(@RequestParam String forSearch,
                          @RequestParam(defaultValue = "0") Integer page,
                          Model model) {
-        Page<BookProjection> pages = bookService.findAvailableBooksFromSearch(forSearch, PageRequest.of(page, sizeOfPage));
+        Page<BookProjection> pages = bookService.findAvailableBooksFromSearch(forSearch, PageRequest.of(page, pageSize));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("books", pages.getContent());
         return "main-page";

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(path = "/")
 public class ShowBooksOfAuthorController {
-    @Value(value = "${size-of-page}")
-    private int sizeOfPage;
+    @Value(value = "${page-size}")
+    private int pageSize;
     @Autowired
     private BookService bookService;
 
@@ -25,7 +25,7 @@ public class ShowBooksOfAuthorController {
     public String showBooksOfUser(@PathVariable(name = "author") String author,
                                   @RequestParam(defaultValue = "0") Integer page,
                                   Model model) {
-        Page<BookProjection> pages = bookService.findBooksByAuthor(author, PageRequest.of(page, sizeOfPage));
+        Page<BookProjection> pages = bookService.findBooksByAuthor(author, PageRequest.of(page, pageSize));
         model.addAttribute("author", author);
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("booksOfAuthor", pages.getContent());

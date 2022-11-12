@@ -18,8 +18,8 @@ import java.util.Calendar;
 @Controller
 @RequestMapping(path = "/admin")
 public class SaveNewBookController {
-    @Value(value = "${size-of-page}")
-    private int sizeOfPage;
+    @Value(value = "${page-size}")
+    private int pageSize;
     @Autowired
     private BookService bookService;
 
@@ -42,7 +42,7 @@ public class SaveNewBookController {
             return "save-new-book";
         }
         bookService.save(new Book(author, title, year));
-        Page<Book> pages = bookService.findAllNotDeletedBooks(PageRequest.of(0, sizeOfPage));
+        Page<Book> pages = bookService.findAllNotDeletedBooks(PageRequest.of(0, pageSize));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("books", pages.getContent());
         return "list-of-books-for-admin";

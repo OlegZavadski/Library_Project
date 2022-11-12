@@ -22,8 +22,8 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/user")
 public class UserController {
-    @Value(value = "${size-of-page}")
-    private int sizeOfPage;
+    @Value(value = "${page-size}")
+    private int pageSize;
     @Autowired
     private UserService userService;
     @Autowired
@@ -49,7 +49,7 @@ public class UserController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String login = ((UserDetails) principal).getUsername();
         Integer userId = userService.findUserByLogin(login).getId();
-        Page<BookAudit> pages = bookAuditService.findBookAuditByUserId(userId, PageRequest.of(page, sizeOfPage));
+        Page<BookAudit> pages = bookAuditService.findBookAuditByUserId(userId, PageRequest.of(page, pageSize));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("booksAudit", pages.getContent());
         return "usage-history-for-user";

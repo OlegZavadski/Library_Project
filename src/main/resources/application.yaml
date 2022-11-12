@@ -19,4 +19,4 @@ spring:
     enabled: true
     locations[0]: classpath:/db/migration
 
-size-of-page: 10
+page-size: 10

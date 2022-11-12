@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping(path = "/admin")
 public class AddBookToUserController extends AbstractAdminController {
-    @Value(value = "${size-of-page}")
-    private int sizeOfPage;
+    @Value(value = "${page-size}")
+    private int pageSize;
     @Autowired
     private BookService bookService;
     @Autowired
@@ -29,7 +29,7 @@ public class AddBookToUserController extends AbstractAdminController {
                                 @RequestParam(name = "page", defaultValue = "0") Integer page,
                                 Model model) {
         model.addAttribute("userById", userService.findUserById(userId));
-        Page<Book> pages = bookService.findAvailableBooksToAddToUser(PageRequest.of(page, sizeOfPage));
+        Page<Book> pages = bookService.findAvailableBooksToAddToUser(PageRequest.of(page, pageSize));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("books", pages.getContent());
         return "add-book-to-user";
