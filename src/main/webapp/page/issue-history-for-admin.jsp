@@ -45,6 +45,17 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                <c:if test="${totalPages>1}">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <c:forEach begin="0" end="${totalPages-1}" var="page">
+                                <li class="page-item"><a class="page-link"
+                                                         href="${pageContext.request.contextPath}/admin/show_issue_history?page=${page}">${page+1}</a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </nav>
+                </c:if>
             </c:when>
             <c:otherwise>
                 <table class="table table-striped">

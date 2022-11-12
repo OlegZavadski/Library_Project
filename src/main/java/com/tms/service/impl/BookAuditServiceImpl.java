@@ -3,9 +3,9 @@ package com.tms.service.impl;
 import com.tms.model.BookAudit;
 import com.tms.repository.BookAuditRepository;
 import com.tms.service.BookAuditService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class BookAuditServiceImpl implements BookAuditService {
@@ -21,12 +21,12 @@ public class BookAuditServiceImpl implements BookAuditService {
     }
 
     @Override
-    public List<BookAudit> findAllBookAudit() {
-        return bookAuditRepository.findAllBookAudit();
+    public Page<BookAudit> findAllBookAudit(Pageable pageable) {
+        return bookAuditRepository.findAllBookAudit(pageable);
     }
 
     @Override
-    public List<BookAudit> findBookAuditByUserId(Integer userId) {
-        return bookAuditRepository.findBookAuditByUserId(userId);
+    public Page<BookAudit> findBookAuditByUserId(Integer userId, Pageable pageable) {
+        return bookAuditRepository.findBookAuditByUserId(userId, pageable);
     }
 }

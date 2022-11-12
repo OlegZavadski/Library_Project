@@ -1,14 +1,14 @@
 package com.tms.service;
 
 import com.tms.model.BookAudit;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface BookAuditService {
     void save(BookAudit bookAudit);
 
-    List<BookAudit> findAllBookAudit();
+    Page<BookAudit> findAllBookAudit(Pageable pageable);
 
-    List<BookAudit> findBookAuditByUserId(Integer userId);
+    Page<BookAudit> findBookAuditByUserId(Integer userId, Pageable pageable);
 
 }
