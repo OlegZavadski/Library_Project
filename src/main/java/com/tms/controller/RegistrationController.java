@@ -26,15 +26,16 @@ public class RegistrationController extends AbstractAdminController {
     public String registration(@RequestParam String login,
                                @RequestParam String password,
                                Model model) {
+        User userForSave = new User(login, password, ROLE.ROLE_USER);
         if (login.isBlank() || password.isBlank()) {
             model.addAttribute("error", "Some field is empty");
             return "registration";
         }
-        if (userService.findUserByLogin(login) != null) {
+        if (!userService.saveNewUser(userForSave)) {
             model.addAttribute("error", "User with this login exists!");
             return "registration";
         }
-        userService.saveNewUser(new User(login, password, ROLE.ROLE_USER));
+        userService.saveNewUser(userForSave);
         findOnlyActiveUsers(model);
         return "list-of-users-for-admin";
     }

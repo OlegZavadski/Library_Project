@@ -10,7 +10,7 @@ public interface UserService {
 
     UserDto findUserById(Integer id);
 
-    void saveNewUser(User user);
+    boolean saveNewUser(User user);
 
     UserDto findUserByLogin(String login);
 
