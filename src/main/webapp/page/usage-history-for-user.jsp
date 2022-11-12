@@ -3,51 +3,42 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>Books of user</title>
+    <title>Usage history</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
 
-<jsp:include page="headers/header-for-admin.jsp"/>
+<jsp:include page="headers/header-for-user.jsp"/>
 
 <div class="container">
     <div class="row">
         <c:choose>
-            <c:when test="${booksOfUser.size()>0}">
+            <c:when test="${books_audit.size()>0}">
                 <table class="table table-striped">
-                    <caption>${userById.login}'s books</caption>
+                    <caption>Usage history</caption>
                     <thead>
                     <tr>
                         <th scope="col">Line number</th>
-                        <th scope="col">Book id</th>
                         <th scope="col">Book author</th>
                         <th scope="col">Title of the book</th>
                         <th scope="col">Year of publishing</th>
                         <th scope="col">Date of issue</th>
-                        <th scope="col">Return book</th>
+                        <th scope="col">Return date</th>
+                        <th scope="col">Days of use</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${booksOfUser}" var="book" varStatus="loop">
+                    <c:forEach items="${books_audit}" var="bookAudit" varStatus="loop">
                         <tr>
                             <th scope="row"> ${loop.count}</th>
-                            <td> ${book.id}</td>
-                            <td> ${book.author}</td>
-                            <td> ${book.title}</td>
-                            <td> ${book.year}</td>
-                            <td><fmt:formatDate value="${book.dateOfIssue}" pattern="yyyy-MM-dd"/></td>
-                            <td>
-                                <form class="d-flex"
-                                      action="${pageContext.request.contextPath}/admin/return_book_from_user"
-                                      method="post">
-                                    <input type="hidden" name="bookId" value="${book.id}">
-                                    <input type="hidden" name="userId" value="${userById.id}">
-                                    <button type="submit" class="btn btn-info">Return the book
-                                    </button>
-                                </form>
-                            </td>
+                            <td> ${bookAudit.author}</td>
+                            <td> ${bookAudit.title}</td>
+                            <td> ${bookAudit.year}</td>
+                            <td><fmt:formatDate value="${bookAudit.dateOfIssue}" pattern="yyyy-MM-dd"/></td>
+                            <td><fmt:formatDate value="${bookAudit.returnDate}" pattern="yyyy-MM-dd"/></td>
+                            <td> ${bookAudit.daysOfUse}</td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -57,7 +48,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col"><H4>User doesn't have any books now</H4></th>
+                        <th scope="col"><H4>No usage history</H4></th>
                     </tr>
                     </thead>
                 </table>

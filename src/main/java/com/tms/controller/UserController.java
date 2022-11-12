@@ -1,6 +1,7 @@
 package com.tms.controller;
 
 import com.tms.model.Book;
+import com.tms.service.BookAuditService;
 import com.tms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +19,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private BookAuditService bookAuditService;
 
     @GetMapping
     public String main(Model model) {
@@ -31,6 +34,15 @@ public class UserController {
                 .toList();
         model.addAttribute("books", booksOfUser);
         return "user";
+    }
+
+    @GetMapping(path = "/usage_history")
+    public String getUsageHistory(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String login = ((UserDetails) principal).getUsername();
+        Integer userId = userService.findUserByLogin(login).getId();
+        model.addAttribute("books_audit", bookAuditService.findBookAuditByUserId(userId));
+        return "usage-history-for-user";
     }
 
 }

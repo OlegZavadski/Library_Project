@@ -46,6 +46,10 @@
                     <a class="nav-link" aria-current="page"
                        href="${pageContext.request.contextPath}/admin/save_new_book">Save a new book</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page"
+                       href="${pageContext.request.contextPath}/admin/show_issue_history">Issue history</a>
+                </li>
             </ul>
             <form class="d-flex" role="search" method="get"
                   action="${pageContext.request.contextPath}/search">

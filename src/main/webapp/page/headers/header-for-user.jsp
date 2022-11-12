@@ -25,6 +25,10 @@
                         Welcome Back, <sec:authentication property="name"/>!
                         Logout</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page"
+                       href="${pageContext.request.contextPath}/user/usage_history">Usage history</a>
+                </li>
             </ul>
             <form class="d-flex" role="search" method="get"
                   action="${pageContext.request.contextPath}/search">
