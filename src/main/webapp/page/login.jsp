@@ -17,12 +17,16 @@
                 ${error}
             </H2>
             <form action="${pageContext.request.contextPath}/process_login" method="post">
-                <input class="form-control mr-sm-2" type="text" name="username"
-                       placeholder="Input username"
-                       aria-label="Login">
-                <input class="form-control mr-sm-2" type="password" name="password"
-                       placeholder="Input password"
-                       aria-label="Password"><br>
+                <div class="mb-2">
+                    <input class="form-control mr-sm-2" type="text" name="username" id="username"
+                           placeholder="Input login"
+                           aria-label="Login">
+                </div>
+                <div class="mb-2">
+                    <input class="form-control mr-sm-2" type="password" name="password" id="password"
+                           placeholder="Input password"
+                           aria-label="Password">
+                </div>
                 <div class="d-grid gap-2 col-8 mx-auto">
                     <button class="btn btn-primary" type="submit">Enter</button>
                     <button class="btn btn-secondary" type="reset">Reset</button>

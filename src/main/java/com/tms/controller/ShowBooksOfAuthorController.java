@@ -22,9 +22,9 @@ public class ShowBooksOfAuthorController {
     private BookService bookService;
 
     @GetMapping(path = "/authors/{author}")
-    public String showBooksOfUser(@PathVariable(name = "author") String author,
-                                  @RequestParam(defaultValue = "0") Integer page,
-                                  Model model) {
+    public String showBooksOfAuthor(@PathVariable(name = "author") String author,
+                                    @RequestParam(defaultValue = "0") Integer page,
+                                    Model model) {
         Page<BookProjection> pages = bookService.findBooksByAuthor(author, PageRequest.of(page, pageSize));
         model.addAttribute("author", author);
         model.addAttribute("totalPages", pages.getTotalPages());

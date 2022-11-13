@@ -16,12 +16,16 @@
         </div>
         <div class="col-6">
             <form action="${pageContext.request.contextPath}/admin/registration" method="post">
-                <input class="form-control mr-sm-2" type="text" name="login"
-                       placeholder="Input new login"
-                       aria-label="Login">
-                <input class="form-control mr-sm-2" type="password" name="password"
-                       placeholder="Input new password"
-                       aria-label="Password">
+                <div class="mb-2">
+                    <input class="form-control mr-sm-2" type="text" name="login"
+                           placeholder="Input new login"
+                           aria-label="Login">
+                </div>
+                <div class="mb-2">
+                    <input class="form-control mr-sm-2" type="password" name="password"
+                           placeholder="Input new password"
+                           aria-label="Password">
+                </div>
                 <div class="buttons">
                     <button type="submit" class="btn btn-outline-primary"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
