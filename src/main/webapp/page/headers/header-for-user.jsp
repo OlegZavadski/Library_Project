@@ -8,11 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
-<body>
 
+<body>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/user">Library</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/">Library</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,6 +24,10 @@
                        href="${pageContext.request.contextPath}/logout">
                         Welcome Back, <sec:authentication property="name"/>!
                         Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page"
+                       href="${pageContext.request.contextPath}/user">My books</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page"

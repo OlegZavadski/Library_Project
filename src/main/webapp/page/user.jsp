@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
+
 <body>
 
 <jsp:include page="headers/header-for-user.jsp"/>
@@ -44,7 +45,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col"><H4>You don't have any books</H4></th>
+                        <th scope="col"><H4>You don't have any books now</H4></th>
                     </tr>
                     </thead>
                 </table>
