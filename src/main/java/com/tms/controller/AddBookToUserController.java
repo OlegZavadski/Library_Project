@@ -40,7 +40,6 @@ public class AddBookToUserController extends AbstractAdminController {
                                                @RequestParam Integer userId,
                                                Model model) {
         generalService.addBookToUser(bookId, userId);
-        model.addAttribute("message", "Book was added successfully");
         findOnlyActiveUsers(model);
         return "list-of-users-for-admin";
     }

@@ -91,7 +91,6 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <H4 style="color: blue">${message}</H4>
             </c:when>
             <c:otherwise>
                 <table class="table table-striped">
