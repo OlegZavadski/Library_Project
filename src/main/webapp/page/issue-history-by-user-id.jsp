@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>Issue history</title>
+    <title>Issue history to the user</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -17,11 +17,10 @@
         <c:choose>
             <c:when test="${booksAudit.size()>0}">
                 <table class="table table-striped">
-                    <caption>Issue history</caption>
+                    <caption>Issue history to the user</caption>
                     <thead>
                     <tr>
                         <th scope="col">Line number</th>
-                        <th scope="col">User id</th>
                         <th scope="col">Book author</th>
                         <th scope="col">Title of the book</th>
                         <th scope="col">Year of publishing</th>
@@ -34,9 +33,6 @@
                     <c:forEach items="${booksAudit}" var="bookAudit" varStatus="loop">
                         <tr>
                             <th scope="row"> ${loop.count}</th>
-                            <td>
-                                <a href="${pageContext.request.contextPath}/admin/show_issue_history/${bookAudit.userId}"
-                                   class="link-primary">${bookAudit.userId}</a></td>
                             <td> ${bookAudit.author}</td>
                             <td> ${bookAudit.title}</td>
                             <td> ${bookAudit.year}</td>

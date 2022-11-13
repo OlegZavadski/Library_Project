@@ -23,17 +23,18 @@
                 <th scope="col">Book id</th>
                 <th scope="col">Book author</th>
                 <th scope="col">Title of the book</th>
+                <th scope="col">Year of publishing</th>
                 <th scope="col">Add the book</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${books}" var="book" varStatus="loop">
-                <%--                <c:if test="${!userById.books.contains(book)}">--%>
                 <tr>
                     <th scope="row"> ${loop.count}</th>
                     <td> ${book.id}</td>
                     <td> ${book.author}</td>
                     <td> ${book.title}</td>
+                    <td> ${book.year}</td>
                     <td>
                         <form class="d-flex"
                               action="${pageContext.request.contextPath}/admin/add_book_to_user"
@@ -45,7 +46,6 @@
                         </form>
                     </td>
                 </tr>
-                <%--                </c:if>--%>
             </c:forEach>
             </tbody>
         </table>
