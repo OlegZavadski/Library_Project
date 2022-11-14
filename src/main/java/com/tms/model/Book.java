@@ -42,13 +42,6 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private User user;
 
-    public Book(Integer id, String author, String title, Integer year) {
-        this.id = id;
-        this.author = author;
-        this.title = title;
-        this.year = year;
-    }
-
     public Book(String author, String title, Integer year) {
         this.author = author;
         this.title = title;
