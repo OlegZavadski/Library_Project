@@ -8,4 +8,12 @@ public interface BookProjection {
     Integer getYear();
 
     Integer getCount();
+
+    void setAuthor(String author);
+
+    void setTitle(String title);
+
+    void setYear(Integer year);
+
+    void setCount(Integer count);
 }
