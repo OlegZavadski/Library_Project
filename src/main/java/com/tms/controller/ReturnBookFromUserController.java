@@ -36,7 +36,6 @@ public class ReturnBookFromUserController extends AbstractAdminController {
         BookAudit bookAudit = new BookAudit(userId, bookById.getAuthor(), bookById.getTitle(), bookById.getYear(), bookById.getDateOfIssue(), new Date(), daysOfUse);
         bookAuditService.save(bookAudit);
         generalService.returnBookFromUser(bookId, userId);
-        model.addAttribute("message", "Book was returned successfully");
         findOnlyActiveUsers(model);
         return "list-of-users-for-admin";
     }
