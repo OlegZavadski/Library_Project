@@ -39,6 +39,12 @@ dependencies {
     implementation 'org.flywaydb:flyway-core'
     // https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs
     implementation 'org.springframework.security:spring-security-taglibs'
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.9.0'
+    // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
+    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '4.9.0'
+    // https://mvnrepository.com/artifact/org.assertj/assertj-core
+    testImplementation 'org.assertj:assertj-core'
 }
 
 tasks.named('test') {
