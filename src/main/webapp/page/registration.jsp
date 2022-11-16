@@ -29,7 +29,7 @@
                 <div class="buttons">
                     <button type="submit" class="btn btn-outline-primary"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
-                            value="Enter">Create new user
+                            value="Enter">Save new user
                     </button>
                     <button type="reset" class="btn btn-outline-secondary"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
