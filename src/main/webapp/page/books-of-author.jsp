@@ -63,7 +63,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col"><H4>There aren't any books by ${author}</H4></th>
+                        <th scope="col"><H4>There aren't any available books by ${author}</H4></th>
                     </tr>
                     </thead>
                 </table>
