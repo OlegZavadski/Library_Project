@@ -21,7 +21,7 @@ public class ShowBooksOfAuthorController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping(path = "/authors/{author}")
+    @GetMapping(path = "authors/{author}")
     public String showBooksOfAuthor(@PathVariable(name = "author") String author,
                                     @RequestParam(defaultValue = "0") Integer page,
                                     Model model) {
