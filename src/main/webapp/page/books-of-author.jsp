@@ -27,7 +27,7 @@
         <c:choose>
             <c:when test="${booksOfAuthor.size()>0}">
                 <table class="table table-striped">
-                    <caption>Books by ${author}</caption>
+                    <caption>Available books by ${author}</caption>
                     <thead>
                     <tr>
                         <th scope="col">Line number</th>
