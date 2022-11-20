@@ -1,5 +1,6 @@
 package com.tms.controller;
 
+import com.tms.dto.UserDto;
 import com.tms.model.Book;
 import com.tms.model.BookAudit;
 import com.tms.service.BookAuditService;
@@ -33,8 +34,8 @@ public class UserController {
     public String main(Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String login = ((UserDetails) principal).getUsername();
-        List<Book> booksOfUser = userService
-                .findUserByLogin(login)
+        UserDto userByLogin = userService.findUserByLogin(login);
+        List<Book> booksOfUser = userByLogin
                 .getBooks()
                 .stream()
                 .sorted(Comparator.comparing(Book::getDateOfIssue))
