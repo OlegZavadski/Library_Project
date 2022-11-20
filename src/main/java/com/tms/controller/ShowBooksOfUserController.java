@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/admin")
-public class ShowBooksOfUserController {
+public class ShowBooksOfUserController extends AbstractAdminController {
     @Autowired
     private UserService userService;
 
@@ -23,6 +23,10 @@ public class ShowBooksOfUserController {
     public String showBooksOfUser(@PathVariable(name = "id") Integer userId,
                                   Model model) {
         UserDto userById = userService.findUserById(userId);
+        if (userById == null) {
+            findOnlyActiveUsers(model);
+            return "list-of-users-for-admin";
+        }
         List<Book> booksOfUser = userById.getBooks()
                 .stream()
                 .sorted(Comparator.comparing(Book::getId))

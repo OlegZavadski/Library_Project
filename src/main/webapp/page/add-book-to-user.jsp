@@ -16,50 +16,63 @@
         <h4>Add book to ${userById.login}</h4>
     </div>
     <div class="row">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">Line number</th>
-                <th scope="col">Book id</th>
-                <th scope="col">Book author</th>
-                <th scope="col">Title of the book</th>
-                <th scope="col">Year of publishing</th>
-                <th scope="col">Add the book</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${books}" var="book" varStatus="loop">
-                <tr>
-                    <th scope="row"> ${loop.count}</th>
-                    <td> ${book.id}</td>
-                    <td> ${book.author}</td>
-                    <td> ${book.title}</td>
-                    <td> ${book.year}</td>
-                    <td>
-                        <form class="d-flex"
-                              action="${pageContext.request.contextPath}/admin/add_book_to_user"
-                              method="post">
-                            <input type="hidden" name="bookId" value="${book.id}">
-                            <input type="hidden" name="userId" value="${userById.id}">
-                            <button type="submit" class="btn btn-info">Add the book
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-        <c:if test="${totalPages>1}">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <c:forEach begin="0" end="${totalPages-1}" var="page">
-                        <li class="page-item"><a class="page-link"
-                                                 href="${pageContext.request.contextPath}/admin/add_book_to_user/${userById.id}?page=${page}">${page+1}</a>
-                        </li>
+        <c:choose>
+            <c:when test="${books.size()>0}">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Line number</th>
+                        <th scope="col">Book id</th>
+                        <th scope="col">Book author</th>
+                        <th scope="col">Title of the book</th>
+                        <th scope="col">Year of publishing</th>
+                        <th scope="col">Add the book</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${books}" var="book" varStatus="loop">
+                        <tr>
+                            <th scope="row"> ${loop.count}</th>
+                            <td> ${book.id}</td>
+                            <td> ${book.author}</td>
+                            <td> ${book.title}</td>
+                            <td> ${book.year}</td>
+                            <td>
+                                <form class="d-flex"
+                                      action="${pageContext.request.contextPath}/admin/add_book_to_user"
+                                      method="post">
+                                    <input type="hidden" name="bookId" value="${book.id}">
+                                    <input type="hidden" name="userId" value="${userById.id}">
+                                    <button type="submit" class="btn btn-info">Add the book
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                     </c:forEach>
-                </ul>
-            </nav>
-        </c:if>
+                    </tbody>
+                </table>
+                <c:if test="${totalPages>1}">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <c:forEach begin="0" end="${totalPages-1}" var="page">
+                                <li class="page-item"><a class="page-link"
+                                                         href="${pageContext.request.contextPath}/admin/add_book_to_user/${userById.id}?page=${page}">${page+1}</a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </nav>
+                </c:if>
+            </c:when>
+            <c:otherwise>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col"><H4>There aren't any books to add</H4></th>
+                    </tr>
+                    </thead>
+                </table>
+            </c:otherwise>
+        </c:choose>
     </div>
 </div>
 

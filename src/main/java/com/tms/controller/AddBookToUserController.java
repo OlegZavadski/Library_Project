@@ -1,5 +1,6 @@
 package com.tms.controller;
 
+import com.tms.dto.UserDto;
 import com.tms.model.Book;
 import com.tms.service.BookService;
 import com.tms.service.GeneralService;
@@ -28,7 +29,12 @@ public class AddBookToUserController extends AbstractAdminController {
     public String addBookToUser(@PathVariable(name = "id") Integer userId,
                                 @RequestParam(name = "page", defaultValue = "0") Integer page,
                                 Model model) {
-        model.addAttribute("userById", userService.findUserById(userId));
+        UserDto userById = userService.findUserById(userId);
+        if (userById == null) {
+            findOnlyActiveUsers(model);
+            return "list-of-users-for-admin";
+        }
+        model.addAttribute("userById", userById);
         Page<Book> pages = bookService.findAvailableBooksToAddToUser(PageRequest.of(page, pageSize));
         model.addAttribute("totalPages", pages.getTotalPages());
         model.addAttribute("books", pages.getContent());
