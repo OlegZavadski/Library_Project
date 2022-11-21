@@ -16,15 +16,21 @@
         </div>
         <div class="col-6">
             <form action="${pageContext.request.contextPath}/admin/save_new_book" method="post">
-                <input class="form-control mr-sm-2" type="text" name="author"
-                       placeholder="Input an author"
-                       aria-label="Author">
-                <input class="form-control mr-sm-2" type="text" name="title"
-                       placeholder="Input title"
-                       aria-label="Title">
-                <input class="form-control mr-sm-2" type="number" name="year"
-                       placeholder="Input year of publishing"
-                       aria-label="Year">
+                <div class="mb-2">
+                    <input class="form-control mr-sm-2" type="text" name="author"
+                           placeholder="Input an author"
+                           aria-label="Author">
+                </div>
+                <div class="mb-2">
+                    <input class="form-control mr-sm-2" type="text" name="title"
+                           placeholder="Input title"
+                           aria-label="Title">
+                </div>
+                <div class="mb-2">
+                    <input class="form-control mr-sm-2" type="number" name="year"
+                           placeholder="Input year of publishing"
+                           aria-label="Year">
+                </div>
                 <div class="buttons">
                     <button type="submit" class="btn btn-outline-primary"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 15px;"
